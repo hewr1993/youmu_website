@@ -1,4 +1,4 @@
--![YouMu](http://fmn.xnpic.com/fmn057/20141014/1300/original_Sjs9_4ce10001c578118f.jpg)
+# YouMu Web Server
 - - -
 
 ### Front End
@@ -11,7 +11,3 @@
 * Python
 * Django
 * MongoDB
-
-### Video Server (still working on it)
-* Protocols
-* P2P
