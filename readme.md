@@ -1,6 +1,13 @@
 # YouMu Web Server
 - - -
 
+## Usage
+
+	./manage.py runserver 8000
+	visit http://localhost:8000
+
+## Knowledge Needed
+
 ### Front End
 * AngularJS
 * Asynchronous Web Design (AJAX jQuery)
@@ -11,3 +18,4 @@
 * Python
 * Django
 * MongoDB
+
