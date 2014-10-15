@@ -3,8 +3,11 @@
 
 ## Usage
 
-	./manage.py runserver 8000
-	visit http://localhost:8000
+```
+python runserver.py
+```
+
+And visit [YouMu](http://0.0.0.0:5000)
 
 ## Knowledge Needed
 
@@ -16,6 +19,6 @@
 
 ### Back End
 * Python
-* Django
+* Flask
 * MongoDB
 
