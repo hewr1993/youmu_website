@@ -3,6 +3,20 @@
 
 ## Usage
 
+Before the first time use:
+
+```
+virtualenv env
+```
+
+When requirements changed (and the first time also):
+
+```
+./env/bin/pip install -r requirements.txt
+```
+
+General use:
+
 ```
 python runserver.py
 ```
