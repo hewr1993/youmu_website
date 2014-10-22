@@ -9,7 +9,7 @@ frontend = Blueprint("frontend", __name__)
 def index():
     return render_template('index.html')
 
-@frontend.route('/video/<video_id>')
+@frontend.route('/videos/<video_id>')
 def display(video_id):
 	return render_template('video.html', video_id = video_id)
 
