@@ -1,5 +1,29 @@
--![YouMu](http://fmn.xnpic.com/fmn057/20141014/1300/original_Sjs9_4ce10001c578118f.jpg)
+# YouMu Web Server
 - - -
+
+## Usage
+
+Before the first time use:
+
+```
+virtualenv env
+```
+
+When requirements changed (and the first time also):
+
+```
+./env/bin/pip install -r requirements.txt
+```
+
+General use:
+
+```
+python runserver.py
+```
+
+And visit [YouMu](http://0.0.0.0:5000)
+
+## Knowledge Needed
 
 ### Front End
 * AngularJS
@@ -9,9 +33,6 @@
 
 ### Back End
 * Python
-* Django
+* Flask
 * MongoDB
 
-### Video Server (still working on it)
-* Protocols
-* P2P
