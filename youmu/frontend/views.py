@@ -5,9 +5,18 @@ from flask import (Blueprint, render_template, current_app, request,
 
 frontend = Blueprint("frontend", __name__)
 
+# simple demo of foundation 5
+@frontend.route('/foundation')
+def foundation():
+    return render_template('foundation-index.html')
+
 @frontend.route('/')
 def index():
     return render_template('index.html')
+
+@frontend.route('/demo')
+def demo():
+    return render_template('demo.html')
 
 @frontend.route('/videos/<video_id>')
 def display(video_id):
