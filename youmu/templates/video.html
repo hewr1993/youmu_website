@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1>Video #{{ video_id }}</h1>
-<iframe src="http://127.0.0.1:8888/{{ video_id }}"></iframe>
+<div id="playbox"></div>
+<script>
+var url = "http://" + document.domain + ":8888/{{ video_id }}";
+	var box = document.getElementById("playbox");
+	box.innerHTML = "<iframe src='" + url + "'></iframe>";
+</script>
 </body>
 </html>

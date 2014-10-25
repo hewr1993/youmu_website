@@ -12,13 +12,13 @@ var videoStoreCtrl = function ($scope) {
 			name: "测试视频1",
 			visits: 132,
 			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "http://localhost:5000/videos/1",
+			videoUrl: "/videos/1",
 		},
 		{
 			name: "测试视频2",
 			visits: 231,
 			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "http://localhost:5000/videos/2",
+			videoUrl: "/videos/2",
 		},
 		{
 			name: "测试视频3",
