@@ -18,9 +18,8 @@ class BaseConfig(object):
     # ../../config.py
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-    # TODO Mongo config
-    # MONGO_HOST = "127.0.0.1"
-    # MONGO_PORT =
+    MONGO_HOST = "106.186.121.57"
+    MONGO_PORT = 30017
 
     DEBUG = False
     TESTING = False
