@@ -24,6 +24,9 @@ class BaseConfig(object):
     DEBUG = False
     TESTING = False
 
+    UPLOAD_FOLDER = os.path.realpath('../') + '/upload/videos/'
+    ALLOWED_EXTENSIONS = set(['mp4', 'rmvb'])
+
     # ADMINS = ['youremail@yourdomain.com']
 
     # http://flask.pocoo.org/docs/quickstart/#sessions

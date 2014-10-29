@@ -5,7 +5,6 @@ from flask import Flask, request, session, render_template
 from .config import DefaultConfig
 
 from frontend import frontend
-#from api.video import video
 
 DEFAULT_BLUEPRINTS = [
     frontend,
@@ -20,9 +19,9 @@ def create_app(config = None, app_name = None, blueprints = None):
         app_name = DefaultConfig.PROJECT
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
-
     # app = Flask(app_name, instance_path = DefaultConfig.INSTANCE_FOLDER_PATH, instance_relative_config=True)
     app = Flask(app_name)
+    configure_upload(app)
     configure_app(app, config)
     configure_hook(app)
     configure_blueprints(app, blueprints)
@@ -34,6 +33,9 @@ def create_app(config = None, app_name = None, blueprints = None):
 
     return app
 
+
+def configure_upload(app):
+    app.config['UPLOAD_FOLDER'] = DefaultConfig.UPLOAD_FOLDER
 
 def configure_app(app, config=None):
     """Different ways of configurations."""
