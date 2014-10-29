@@ -7,3 +7,18 @@
 .top-bar {
     margin-bottom: 20px;
 }
+
+/* Fluid video iframes by Thierry Koblentz via A List Apart. */
+#playbox {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+    #playbox iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
