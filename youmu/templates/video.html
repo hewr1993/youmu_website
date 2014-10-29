@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>This is an display page</title>
-</head>
-<body>
-<h1>Video #{{ video_id }}</h1>
-<div id="playbox"></div>
-<script>
-var url = "http://" + document.domain + ":8888/{{ video_id }}";
-	var box = document.getElementById("playbox");
-	box.innerHTML = "<iframe src='" + url + "'></iframe>";
-</script>
-</body>
+<html class="no-js" lang="en" ng-app="youmuApp">
+    <head lang="en">
+		<title>视频点播页</title>
+        {% include 'partials/head.html' %}
+    </head>
+    <body>
+        {% include 'partials/topbar.html' %}
+        <div class="row">
+            <h1>Video #{{ video_id }}</h1>
+            <div id="playbox"></div>
+            <script>
+                var url = "http://" + document.domain + ":8888/{{ video_id }}";
+                var box = document.getElementById("playbox");
+                box.innerHTML = "<iframe src='" + url + "'></iframe>";
+            </script>
+        </div>
+    </body>
 </html>
