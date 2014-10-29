@@ -15,11 +15,17 @@ class MongoClient(Object):
 
     # ABOUT USER
 
+    def has_user_id(self, user_id):
+        return self.user_col.count({"id": user_id}) > 0
+
     def get_user_by_id(self, user_id):
         return self.user_col.find_one({"id": user_id})
 
     def get_user_by_mid(self, user_mongo_id):
         return self.user_col.find_one({"_id": ObjectId(user_mongo_id)})
+
+    def insert_user(self, user_dict):
+        self.user_col.insert(user_dict)
 
     # ABOUT VIDEO
 
