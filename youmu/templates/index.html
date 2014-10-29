@@ -1,23 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="en" ng-app="youmuApp">
 	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="pragma" content="no-cache" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>视频点播页</title>
-		<link rel="icon" href="/static/img/youmu-seal.jpg" type="image/x-icon">
-		<link rel="stylesheet" href="/static/css/foundation.css" />
-		<link rel="stylesheet" href="/static/css/docs.css" />
-		<link rel="stylesheet" href="/static/css/base.css" />
-		<script src="/static/js/angular.min.js"></script>
-		<script src="/static/js/vendor/modernizr.js"></script>
-		<script src="/static/js/mm-foundation-tpls.min.js"></script>
-		<script src="/static/js/app.js"></script>
-		<script src="/static/js/vendor/jquery.js"></script>
+        {% include 'partials/head.html' %}
 	</head>
 	<body>
         {% include 'partials/topbar.html' %}
-		<br>
 		<div class="row" ng-controller="videoStoreCtrl">
 			<div class="large-4 small-12 columns">
 				<img src="{{logoUrl}}">
