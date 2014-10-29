@@ -1,15 +1,16 @@
 import os
 
 from flask import Flask, request, session, render_template
+from flask.ext.login import LoginManager
 
 from .config import DefaultConfig
-
 from frontend import frontend
-from api.video import video
+from api.user.views import user
+from api.user.service import UserService
 
 DEFAULT_BLUEPRINTS = [
     frontend,
-    video
+    user
 ]
 
 def create_app(config = None, app_name = None, blueprints = None):
@@ -20,9 +21,9 @@ def create_app(config = None, app_name = None, blueprints = None):
         app_name = DefaultConfig.PROJECT
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
-
     # app = Flask(app_name, instance_path = DefaultConfig.INSTANCE_FOLDER_PATH, instance_relative_config=True)
     app = Flask(app_name)
+    configure_upload(app)
     configure_app(app, config)
     configure_hook(app)
     configure_blueprints(app, blueprints)
@@ -34,6 +35,9 @@ def create_app(config = None, app_name = None, blueprints = None):
 
     return app
 
+
+def configure_upload(app):
+    app.config['UPLOAD_FOLDER'] = DefaultConfig.UPLOAD_FOLDER
 
 def configure_app(app, config=None):
     """Different ways of configurations."""
@@ -57,7 +61,7 @@ def configure_jinja(app):
 
 def configure_extensions(app):
     # TODO config extensions
-    pass
+
     # flask-sqlalchemy
     # db.init_app(app)
 
@@ -76,13 +80,12 @@ def configure_extensions(app):
     #     return request.accept_languages.best_match(accept_languages)
 
     # flask-login
-    # login_manager.login_view = 'frontend.login'
-    # login_manager.refresh_view = 'frontend.reauth'
+    login_manager = LoginManager()
 
-    # @login_manager.user_loader
-    # def load_user(id):
-    #     return User.query.get(id)
-    # login_manager.setup_app(app)
+    @login_manager.user_loader
+    def load_user(id):
+         return UserService.load_user_by_id(id)
+    login_manager.setup_app(app)
 
     # flask-openid
     # oid.init_app(app)

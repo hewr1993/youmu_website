@@ -1,6 +1,6 @@
 __author__ = 'badpoet'
 
-from youmu.clients import mongo
+import json
 
 class User(object):
 
@@ -11,16 +11,25 @@ class User(object):
         self.avatar = avatar
         self.password = password
 
-    @staticmethod
-    def fromId(id):
-        temp = mongo.get_user_by_id(id)
-        if not temp:
-            return None
-        obj = User(
-            id = temp.get("id"),
-            mid = str(temp.get("_id")),
-            name = temp.get("name"),
-            avatar = temp.get("avatar"),
-            password = temp.get("password")
-        )
-        return obj
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.id)
+
+    def check_password(self, password):
+        return self.password == password
+
+    def to_json(self):
+        dic = {
+            "id": self.id,
+            "name": self.name,
+            "avatar": self.avatar
+        }
+        return json.dumps(dic, ensure_ascii = False)
