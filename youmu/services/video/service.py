@@ -1,20 +1,18 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """Backend video management module.
 """
 
+from youmu.clients.mongoclient import MongoClient
 
-class VideoService():
+__author__ = 'badpoet, ampersand'
+
+mongo = MongoClient()
+
+
+class VideoService(object):
 
     @staticmethod
-    def delete_video(video_id):
-        return
+    def get_video_by_id(vid):
+        return mongo.get_video_by_id(vid)
 
-    @staticmethod
-    def transcode_video(video_id, params):
-        return
-
-#~ Ignore uploading for now
-#~     @staticmethod
-#~     def upload_video():
-#~         return
