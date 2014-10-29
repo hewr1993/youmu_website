@@ -21,6 +21,14 @@ def tell():
     else:
         return "You are " + current_user.name
 
+@user.route("/_login2/<id>/<password>", methods = ["GET"])
+def login2(id, password):
+    user = UserService.authenticate(id, password)
+    if user is not None:
+        login_user(user)
+        return "success!"
+    return "fail!"
+
 @user.route("/_login", methods = ["POST"])
 def login():
     id = request.form.get("username", "")
@@ -28,5 +36,14 @@ def login():
     user = UserService.authenticate(id, password)
     if user is not None:
         login_user(user)
-        return "success!"
-    return "fail!"
+        return '{"state": "ok"}'
+    return '{"state": "failed"}'
+
+@user.route("/_logout", methods = ["POST"])
+def logout():
+    logout_user()
+    return '{"state": "ok"}'
+
+@user.route("/_me", methods = ["GET"])
+def me():
+    return current_user.to_json()

@@ -1,5 +1,7 @@
 __author__ = 'badpoet'
 
+import json
+
 class User(object):
 
     def __init__(self, id = "", mid = "", name = "", avatar = "", password = ""):
@@ -16,10 +18,18 @@ class User(object):
         return True
 
     def is_anonymous(self):
-        return True
+        return False
 
     def get_id(self):
         return unicode(self.id)
 
     def check_password(self, password):
         return self.password == password
+
+    def to_json(self):
+        dic = {
+            "id": self.id,
+            "name": self.name,
+            "avatar": self.avatar
+        }
+        return json.dumps(dic, ensure_ascii = False)
