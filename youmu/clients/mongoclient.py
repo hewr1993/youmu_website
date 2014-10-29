@@ -5,8 +5,6 @@ from bson.objectid import ObjectId
 
 from youmu.config import DefaultConfig
 
-from youmu.models.video import Video
-
 class MongoClient(Object):
 
     def __init__(self, host = DefaultConfig.MONGO_HOST, port = DefaultConfig.MONGO_PORT):
@@ -18,14 +16,16 @@ class MongoClient(Object):
     # ABOUT USER
 
     def get_user_by_id(self, user_id):
-        pass
+        return self.user_col.find_one({"id": user_id})
 
     def get_user_by_mid(self, user_mongo_id):
-        pass
+        return self.user_col.find_one({"_id": ObjectId(user_mongo_id)})
 
     # ABOUT VIDEO
 
+    '''
     def get_video_by_id(self, vid):
         some_query_result = None
         # TODO mongo query
         return Video.fromMongo(some_query_result)
+    '''
