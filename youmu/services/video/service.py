@@ -16,3 +16,7 @@ class VideoService(object):
     def get_video_by_id(vid):
         return mongo.get_video_by_id(vid)
 
+    @staticmethod
+    def delete_video_by_id(vid):
+        return mongo.delete_video_by_id(vid)
+

@@ -15,3 +15,8 @@ class MongoClient(Object):
         some_query_result = None
         # TODO mongo query
         return Video.fromMongo(some_query_result)
+
+    def delete_video_by_id(self, vid):
+        some_query_result = None
+        # TODO mongo query
+        return some_query_result
