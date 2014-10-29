@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 
 from youmu.config import DefaultConfig
 
-class MongoClient(Object):
+class MongoClient(object):
 
     def __init__(self, host = DefaultConfig.MONGO_HOST, port = DefaultConfig.MONGO_PORT):
         self.db = pymongo.Connection(host, port)["youmu"]

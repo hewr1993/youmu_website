@@ -5,10 +5,11 @@ from flask import Flask, request, session, render_template
 from .config import DefaultConfig
 
 from frontend import frontend
+from api.user.views import user
 
 DEFAULT_BLUEPRINTS = [
     frontend,
-    #video
+    user
 ]
 
 def create_app(config = None, app_name = None, blueprints = None):

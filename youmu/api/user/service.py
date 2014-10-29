@@ -29,4 +29,4 @@ class UserService(object):
             "avatar": avatar,
             "password": password
         })
-        return self.load_by_id(id)
+        return UserService.load_by_id(id)
