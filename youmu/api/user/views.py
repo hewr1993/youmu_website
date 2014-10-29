@@ -9,6 +9,8 @@ from .forms import LoginForm
 
 user = Blueprint("user", __name__, url_prefix = "/api/user")
 
+# tests begin
+
 @user.route("/_test", methods = ["GET", "POST"])
 @login_required
 def test():
@@ -29,6 +31,8 @@ def login2(id, password):
         return "success!"
     return "fail!"
 
+# tests end
+
 @user.route("/_login", methods = ["POST"])
 def login():
     id = request.form.get("username", "")
@@ -46,4 +50,6 @@ def logout():
 
 @user.route("/_me", methods = ["GET"])
 def me():
+    if current_user.is_anonymous:
+        return '{"state": "not a user"}'
     return current_user.to_json()
