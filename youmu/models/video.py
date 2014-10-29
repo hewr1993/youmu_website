@@ -6,7 +6,7 @@ class Video(object):
         pass
 
     @staticmethod
-    def fromMongo(self, db_object):
+    def fromMongo(db_object):
         res = Video()
         # set attributes, etc
         return res
