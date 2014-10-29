@@ -1,11 +1,12 @@
 import os
 
 from flask import Flask, request, session, render_template
+from flask.ext.login import LoginManager
 
 from .config import DefaultConfig
-
 from frontend import frontend
 from api.user.views import user
+from api.user.service import UserService
 
 DEFAULT_BLUEPRINTS = [
     frontend,
@@ -60,7 +61,7 @@ def configure_jinja(app):
 
 def configure_extensions(app):
     # TODO config extensions
-    pass
+
     # flask-sqlalchemy
     # db.init_app(app)
 
@@ -79,13 +80,12 @@ def configure_extensions(app):
     #     return request.accept_languages.best_match(accept_languages)
 
     # flask-login
-    # login_manager.login_view = 'frontend.login'
-    # login_manager.refresh_view = 'frontend.reauth'
+    login_manager = LoginManager()
 
-    # @login_manager.user_loader
-    # def load_user(id):
-    #     return User.query.get(id)
-    # login_manager.setup_app(app)
+    @login_manager.user_loader
+    def load_user(id):
+         return UserService.load_user_by_id(id)
+    login_manager.setup_app(app)
 
     # flask-openid
     # oid.init_app(app)
