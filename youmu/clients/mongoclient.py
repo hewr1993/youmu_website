@@ -35,3 +35,6 @@ class MongoClient(object):
         # TODO mongo query
         return Video.fromMongo(some_query_result)
     '''
+
+    def get_video_list(self):
+        return self.video_col.find()

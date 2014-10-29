@@ -7,10 +7,13 @@ from .config import DefaultConfig
 from frontend import frontend
 from api.user.views import user
 from api.user.service import UserService
+from api.video.views import video
+from api.video.service import VideoService
 
 DEFAULT_BLUEPRINTS = [
     frontend,
-    user
+    user,
+    video
 ]
 
 def create_app(config = None, app_name = None, blueprints = None):
