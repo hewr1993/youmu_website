@@ -24,15 +24,8 @@
     }
 
 
-.video-data {
-    display: table;
-    width: 100%;
-}
-
 .video-data .uploader, .video-data .likes-count, .video-data .views-count {
-    display: table-cell;
     font-size: 2em;
-    width: 33%;
     padding: 30px;
     color: white;
 }
