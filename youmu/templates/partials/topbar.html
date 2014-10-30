@@ -1,0 +1,42 @@
+<div class="sticky top-bar" ng-controller="topBarCtrl">
+    <top-bar data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <h1>
+                    <a href="/">
+                        游目
+                    </a>
+                </h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href=""><span>菜单</span></a></li>
+        </ul>
+        <top-bar-section>
+            <ul class="right show-for-large-up">
+                <li class="divider"></li>
+                <li has-dropdown class="active">
+                    <a href="#">登录</a>
+                    <ul top-bar-dropdown>
+                        <li><a href="#">注册</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="left show-for-large-up">
+                <li class="has-form">
+                    <div class="row collapse">
+                        <div class="large-8 small-9 columns">
+                            <input type="text" placeholder="视频信息">
+                        </div>
+                        <div class="large-4 small-3 columns">
+                            <a href="#" class="alert button expand">搜索</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="right hide-for-large-up">
+                <li class="has-form active"><a href="#">登录</a></li>
+                <li class="has-form"><a href="#">注册</a></li>
+            </ul>
+        </top-bar-section>
+    </top-bar>
+</div>
+

@@ -29,12 +29,8 @@ class MongoClient(object):
 
     # ABOUT VIDEO
 
-    '''
-    def get_video_by_id(self, vid):
-        some_query_result = None
-        # TODO mongo query
-        return Video.fromMongo(some_query_result)
-    '''
-
     def get_video_by_id(self, video_id):
         return self.video_col.find_one({"id": video_id})
+
+    def get_video_list(self):
+        return self.video_col.find()

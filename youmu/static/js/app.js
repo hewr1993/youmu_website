@@ -4,39 +4,15 @@ var topBarCtrl = function ($scope) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 };
 
-var videoStoreCtrl = function ($scope) {
+var videoStoreCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
-	$scope.videos = [
-		{
-			name: "测试视频1",
-			visits: 132,
-			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "/videos/1",
-		},
-		{
-			name: "测试视频2",
-			visits: 231,
-			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "/videos/2",
-		},
-		{
-			name: "测试视频3",
-			visits: 312,
-			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "",
-		},
-		{
-			name: "测试视频4",
-			visits: 213,
-			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "",
-		},
-		{
-			name: "测试视频5",
-			visits: 321,
-			logoUrl: "http://placehold.it/1000x1000&text=Thumbnail",
-			videoUrl: "",
-		},
-	];
+	$http.get("/api/video/").success(function(data, status) {
+		$scope.videos = [];
+		for (var i = 0; i < data.length; ++i) {
+			item = JSON.parse(data[i]);
+			item.videoUrl = "/videos/" + item.video_id;
+			$scope.videos.push(item);
+		};
+	});
 };

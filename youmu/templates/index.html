@@ -1,65 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="en" ng-app="youmuApp">
 	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="pragma" content="no-cache" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>视频点播页</title>
-		<link rel="icon" href="/static/img/youmu-seal.jpg" type="image/x-icon">
-		<link rel="stylesheet" href="/static/css/foundation.css" />
-		<link rel="stylesheet" href="/static/css/docs.css" />
-		<link rel="stylesheet" href="/static/css/base.css" />
-		<script src="/static/js/angular.min.js"></script>
-		<script src="/static/js/vendor/modernizr.js"></script>
-		<script src="/static/js/mm-foundation-tpls.min.js"></script>
-		<script src="/static/js/app.js"></script>
-		<script src="/static/js/vendor/jquery.js"></script>
+        {% include 'partials/head.html' %}
 	</head>
 	<body>
-		<div class="sticky" ng-controller="topBarCtrl">
-			<top-bar data-topbar>
-				<ul class="title-area">
-					<li class="name">
-						<h1>
-							<a href="#">
-								游目
-							</a>
-						</h1>
-					</li>
-					<li class="toggle-topbar menu-icon"><a href=""><span>菜单</span></a></li>
-				</ul>
-				<top-bar-section>
-					<ul class="right show-for-large-up">
-						<li class="divider"></li>
-						<li has-dropdown>
-							<a href="#">下拉列表</a>
-							<ul top-bar-dropdown>
-								<li><a href="#">Item 1</a></li>
-							</ul>
-						</li>
-						<li class="divider"></li>
-						<li class="has-form active"><a href="#" class="button">用户</a></li>
-					</ul>
-					<ul class="left show-for-large-up">
-						<li class="has-form">
-							<div class="row collapse">
-								<div class="large-8 small-9 columns">
-									<input type="text" placeholder="视频信息">
-								</div>
-								<div class="large-4 small-3 columns">
-									<a href="#" class="alert button expand">搜索</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<ul class="right hide-for-large-up">
-						<li class="has-form active"><a href="#">登录</a></li>
-						<li class="has-form"><a href="#">注册</a></li>
-					</ul>
-				</top-bar-section>
-			</top-bar>
-		</div>
-		<br>
+        {% include 'partials/topbar.html' %}
 		<div class="row" ng-controller="videoStoreCtrl">
 			<div class="large-4 small-12 columns">
 				<img src="{{logoUrl}}">
@@ -77,11 +23,13 @@
 				<div class="row">
 					<div class="large-4 small-6 columns" ng-repeat="video in videos">
 						<a href="{{video.videoUrl}}" target="_blank">
-							<img src="{{video.logoUrl}}">
+							<div style="height:258px; line-height:258px;">
+								<img ng-src="{{video.cover}}">
+							</div>
 						</a>
 						<div class="panel">
-							<h5>{{video.name}}</h5>
-							<h6 class="subheader">播放数：{{video.visits}}</h6>
+							<h5>{{video.title}}</h5>
+							<h6 class="subheader">播放数：{{video.play_count}}</h6>
 						</div>
 					</div>
 				</div>
@@ -102,28 +50,6 @@
 				</div>
 			</div>
 		</div>
-		<footer class="row">
-			<div class="large-12 columns"><hr/>
-				<div class="row">
-					<div class="large-6 columns">
-						<p>© Copyright no one at all. Go to town.</p>
-					</div>
-					<div class="large-6 columns">
-						<ul class="inline-list right">
-							<li><a href="#">Link 1</a></li>
-							<li><a href="#">Link 2</a></li>
-							<li><a href="#">Link 3</a></li>
-							<li><a href="#">Link 4</a></li>
-						</ul>
-					</div>
-
-				</div>
-			</div>
-		</footer>
-		<script src="/static/js/foundation/foundation.js"></script>
-		<script src="/static/js/foundation/foundation.topbar.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
 	</body>
+    {% include 'partials/foot.html' %}
 </html>
