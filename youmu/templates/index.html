@@ -6,6 +6,12 @@
 	</head>
 	<body>
         {% include 'partials/topbar.html' %}
+        <div id="loginModal" class="reveal-modal" data-reveal>
+            <h2>登录</h2>
+            <p class="lead">blah blah blah</p>
+			<p>blah blah blah</p>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
 		<div class="row" ng-controller="videoStoreCtrl">
 			<div class="large-4 small-12 columns">
 				<img src="{{logoUrl}}">
@@ -51,8 +57,11 @@
 			</div>
 		</div>
 		{% include 'partials/foot.html' %}
+		<!--
 		<script src="/static/js/foundation/foundation.js"></script>
 		<script src="/static/js/foundation/foundation.topbar.js"></script>
+		-->
+		<script src="/static/js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
 		</script>
