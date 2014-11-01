@@ -15,7 +15,7 @@
                 <li has-dropdown class="active">
                     <a href="#" data-reveal-id="loginModal">登录</a>
                     <ul top-bar-dropdown>
-						<li><a href="#" data-reveal-id="loginModal"><del>注册</del></a></li>
+						<li><a href="#" data-reveal-id="signUpModal"><del>注册</del></a></li>
                     </ul>
                 </li>
             </ul>
@@ -38,9 +38,60 @@
         </top-bar-section>
     </top-bar>
 </div>
+
+<!-- 登录表单 -->
 <div id="loginModal" class="reveal-modal" data-reveal>
 	<h2>登录</h2>
-	<p class="lead">blah blah blah</p>
-	<p>blah blah blah</p>
+		<form data-abide> 
+	<div class="id-field"> 
+		<label>用户名/邮箱 <small>必填</small> 
+			<input type="text" required> 
+		</label> 
+		<small class="error">不能为空</small> 
+	</div> 
+	<div class="password-field"> 
+		<label>密码 <small>必填</small> 
+			<input type="password" required> 
+		</label> 
+		<small class="error">不能为空</small> 
+	</div> 
+	<button type="submit">Submit</button> 
+	</form>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
+
+<!-- 注册表单，貌似不需要 -->
+<!--
+<div id="signUpModal" class="reveal-modal" data-reveal>
+	<h2>注册</h2>
+		<form data-abide> 
+	<div class="name-field"> 
+		<label>用户名 <small>必填</small> 
+			<input type="text" required> 
+		</label> 
+		<small class="error">不能为空</small> 
+	</div> 
+	<div class="id-field"> 
+		<label>邮箱 <small>必填</small> 
+			<input type="text" required> 
+		</label> 
+		<small class="error">不能为空</small> 
+	</div> 
+	<div class="password-field"> 
+		<label>密码 <small>必填</small> 
+			<input type="password" id="password" pattern="" required> 
+		</label> 
+		<small class="error">不能为空</small> 
+	</div> 
+
+	<div class="password-confirmation-field">
+    	<label>再次输入密码 <small>required</small>
+      		<input type="password" required pattern="" data-equalto="password">
+    	</label>
+    	<small class="error">The password did not match</small>
+ 	</div>
+
+	<button type="submit">Submit</button> 
+	</form>
+	<a class="close-reveal-modal">&#215;</a>
+</div> -->
