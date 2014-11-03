@@ -22,7 +22,10 @@ var videoStoreCtrl = function ($scope, $http) {
 	});
 };
 
-var videoDataCtrl = function ($scope) {
+var videoDataCtrl = function ($scope, $http) {
+	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
+		$scope.video = data;
+	});
 	$scope.likeVideo = function() {
 		alert("like");
 	};
