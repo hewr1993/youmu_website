@@ -8,7 +8,7 @@
         {% include 'partials/topbar.html' %}
 		<div class="row" ng-controller="videoStoreCtrl">
 			<div class="large-4 small-12 columns">
-				<img src="{{logoUrl}}">
+				<img ng-src="{{logoUrl}}">
 				<div class="hide-for-small panel">
 					<h3>一个标题</h3>
 					<h5 class="subheader">一坨内容</h5>
@@ -38,7 +38,7 @@
 						<div class="panel">
 							<div class="row">
 								<div class="large-2 small-6 columns">
-									<img src="{{authorUrl}}">
+									<img ng-src="{{authorUrl}}">
 								</div>
 								<div class="large-10 small-6 columns">
 									<strong>三比二小组</strong><hr>
@@ -50,6 +50,10 @@
 				</div>
 			</div>
 		</div>
+		{% include 'partials/foot.html' %}
+		<script src="/static/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
 	</body>
-    {% include 'partials/foot.html' %}
 </html>

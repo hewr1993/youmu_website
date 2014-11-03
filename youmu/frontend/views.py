@@ -42,3 +42,7 @@ def to_upload_file():
             #return redirect(url_for('index'))
     return render_template('upload.html')
 
+@frontend.route('/player')
+def player():
+    return render_template('player.html')
+

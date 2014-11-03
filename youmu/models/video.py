@@ -11,6 +11,16 @@ class Video(object):
         self.description = description
         self.play_count = int(play_count)
 
+    def to_dict(self):
+        dic = {
+            "video_id": self.video_id,
+            "title": self.title,
+            "cover": self.cover,
+            "description": self.description,
+            "play_count": self.play_count
+        }
+        return dic
+
     def __repr__(self):
         return json.dumps(self.__dict__)
 
