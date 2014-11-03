@@ -45,15 +45,23 @@
             font-family: FontAwesome;
             opacity: 0.7;
         }
+
+        &:hover, &:active, &:focus {
+            background-color: lighten(#008cba, 10);
+        }
     }
 
     .likes-count {
         background-color: #43ac6a;
-        
+
         &:before {
             content: "\f164";
             font-family: FontAwesome;
             opacity: 0.7;
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: lighten(#43ac6a, 10);
         }
     }
 
