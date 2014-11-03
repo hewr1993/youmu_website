@@ -12,5 +12,5 @@ video = Blueprint("video", __name__, url_prefix = "/api/video")
 @video.route("/", methods = ["GET"])
 def get_video_list():
     videos = VideoService.get_video_list()
-    videos = [str(video) for video in videos]
+    videos = [video.to_dict() for video in videos]
     return json.dumps(videos)

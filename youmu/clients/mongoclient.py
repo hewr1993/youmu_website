@@ -16,7 +16,7 @@ class MongoClient(object):
     # ABOUT USER
 
     def has_user_id(self, user_id):
-        return self.user_col.count({"id": user_id}) > 0
+        return self.user_col.find_one({"id": user_id}) is not None
 
     def get_user_by_id(self, user_id):
         return self.user_col.find_one({"id": user_id})
@@ -32,5 +32,5 @@ class MongoClient(object):
     def get_video_by_id(self, video_id):
         return self.video_col.find_one({"id": video_id})
 
-    def get_video_list(self):
-        return self.video_col.find()
+    def get_video_list(self, offset = 0, size = 10):
+        cursor = self.video_col.find()[offset : size]
