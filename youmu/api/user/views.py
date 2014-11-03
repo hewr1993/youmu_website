@@ -56,3 +56,11 @@ def me():
     if current_user.is_anonymous():
         return '{"state": "not a user"}'
     return json.dumps(current_user.to_dict(), ensure_ascii = False)
+
+@user.route("/_me", methods = ["PUT"])
+def update_me():
+    body = json.loads(request.data)
+    name = body.get("name", "")
+    avatar = body.get("avatar", "")
+    msg = UserService.update(current_user.id, name, avatar)
+    return json.dumps({ "state": msg })

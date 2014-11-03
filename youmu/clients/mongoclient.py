@@ -28,6 +28,12 @@ class MongoClient(object):
     def insert_user(self, user_dict):
         self.user_col.insert(user_dict)
 
+    def update_user(self, user_dict):
+        self.user_col.update(
+            { "_id": user_dict["_id"] },
+            user_dict
+        )
+
     # ABOUT VIDEO
 
     def get_video_by_id(self, video_id):
