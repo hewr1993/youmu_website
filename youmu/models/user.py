@@ -9,7 +9,6 @@ class User(object):
         self.mid = mid
         self.name = name
         self.avatar = avatar
-        self.password = password
 
     def is_authenticated(self):
         return True
@@ -23,13 +22,13 @@ class User(object):
     def get_id(self):
         return unicode(self.id)
 
-    def check_password(self, password):
+    def check_password(self):
         return self.password == password
 
-    def to_json(self):
+    def to_dict(self):
         dic = {
             "id": self.id,
             "name": self.name,
             "avatar": self.avatar
         }
-        return json.dumps(dic, ensure_ascii = False)
+        return dic

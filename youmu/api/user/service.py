@@ -4,6 +4,7 @@ import re
 
 from youmu.clients import mongo
 from youmu.models.user import User
+from youmu.clients.tunetclient import tunet_login
 
 class UserService(object):
 
@@ -11,15 +12,7 @@ class UserService(object):
     def is_valid_id(id):
         try:
             id = str(id)
-            return re.match(r'[0-9a-zA-Z][0-9a-zA-Z\_]{1,15}', id) != None
-        except Exception, e:
-            return False
-
-    @staticmethod
-    def is_valid_password(password):
-        try:
-            password = str(password)
-            return len(password) >= 6 and len(password) <= 16
+            return re.match(r'[0-9a-zA-Z\_\-]{1,15}', id) != None
         except Exception, e:
             return False
 
@@ -33,34 +26,35 @@ class UserService(object):
             mid = str(temp.get("_id")),
             name = temp.get("name"),
             avatar = temp.get("avatar"),
-            password = temp.get("password")
         )
         return obj
 
     @staticmethod
-    def create_user(id, name, avatar, password):
+    def create_user(id, name, avatar):
         if mongo.has_user_id(id):
             return None
         mongo.insert_user({
             "id": id,
             "name": name,
-            "avatar": avatar,
-            "password": password
+            "avatar": avatar
         })
-        return UserService.load_by_id(id)
 
     @staticmethod
     def authenticate(id, password):
-        print id, UserService.is_valid_id(id)
-        print password, UserService.is_valid_password(password)
-        if not UserService.is_valid_id(id) or not UserService.is_valid_password(password):
+        # print id, UserService.is_valid_id(id)
+        # print password, UserService.is_valid_password(password)
+        if not UserService.is_valid_id(id):
             return None
-        user = UserService.load_user_by_id(id)
-        if user is None:
+        tunet_user = tunet_login(id, password)
+        if tunet_user is None:
             return None
-        else:
-            if user.password != password:
-                return None
-            else:
-                return user
+        if not mongo.has_user_id(tunet_user["id"]):
+            UserService.create_user(
+                id = tunet_user["id"],
+                name = tunet_user["name"],
+                avatar = ""
+            )
+        user = UserService.load_user_by_id(tunet_user["id"])
+        return user
+
 
