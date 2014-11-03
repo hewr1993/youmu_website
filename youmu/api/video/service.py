@@ -25,5 +25,18 @@ class VideoService(object):
         return videos
 
     @staticmethod
+    def get_video_by_id(video_id):
+        item = mongo.get_video_by_id(video_id)
+        if item is None:
+            return None
+        return Video(
+            video_id = item.get("video_id"),
+            title = item.get("title", "Untitled Video"),
+            cover = item.get("cover", ""),
+            description = item.get("description", "You know nothing, Jon Snow."),
+            play_count = item.get("play_count", 0)
+        )
+
+    @staticmethod
     def add_play_count(id):
         mongo.add_video_play_count(id)
