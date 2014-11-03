@@ -58,12 +58,6 @@ var videoDataCtrl = function ($scope, $http) {
 	};
 }
 
-var videoDataCtrl = function ($scope) {
-	$scope.likeVideo = function() {
-		alert("like");
-	};
-};
-
 var profileCtrl = function ($scope, $http) {
 	var username = null;
 	$http.get("/api/user/_me").success(
