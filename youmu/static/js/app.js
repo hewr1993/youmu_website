@@ -21,3 +21,9 @@ var videoStoreCtrl = function ($scope, $http) {
 		};
 	});
 };
+
+var videoDataCtrl = function ($scope) {
+	$scope.likeVideo = function() {
+		alert("like");
+	};
+}
