@@ -30,7 +30,7 @@ class MongoClient(object):
     # ABOUT VIDEO
 
     def get_video_by_id(self, video_id):
-        return self.video_col.find_one({"id": video_id})
+        return self.video_col.find_one({"video_id": video_id})
 
     def get_video_list(self, offset = 0, size = 10):
         return self.video_col.find()[offset : size]
