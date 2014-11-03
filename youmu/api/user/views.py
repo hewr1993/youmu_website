@@ -1,5 +1,6 @@
 __author__ = 'badpoet'
 
+import json
 from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort)
 from flask.ext.login import (login_required, current_user, login_user, logout_user, confirm_login)
@@ -52,6 +53,6 @@ def logout():
 
 @user.route("/_me", methods = ["GET"])
 def me():
-    if current_user.is_anonymous:
+    if current_user.is_anonymous():
         return '{"state": "not a user"}'
     return json.dumps(current_user.to_dict(), ensure_ascii = False)

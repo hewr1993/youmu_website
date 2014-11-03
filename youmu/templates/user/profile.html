@@ -7,22 +7,12 @@
 	<body ng-controller="profileCtrl">
         {% include 'partials/topbar.html' %}
 		{% include 'user/partials/tabs.html' %}
-		<label>用户名
-			<input type="text" id="username" placeholder="{{profileCtrl.username}}">
-		</label>
-		<!--
-		<label>邮箱
-			<input type="email" id="email" placeholder="{{profileCtrl.email}}">
-		</label>
-		<div ng-show="{{show_passwd}}">
-			<label>原密码
-				<input type="password" id="oldpass">
+		<fieldset>
+   	 		<legend>个人资料</legend>
+			<label>用户名
+				<input type="text" id="username" placeholder="{{profileCtrl.username}}">
 			</label>
-			<label>新密码
-				<input type="password" id="passwd">
-			</label>
-		</div>
-		<button ng-click="modify_passwd();">修改密码</button>-->
+		</fieldset>
 		<button ng-click="save();">保存</button> 
 		<button ng-click="reset();">重置</button> 
 
