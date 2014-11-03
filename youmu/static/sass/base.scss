@@ -13,8 +13,10 @@
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
-}
-    #playbox iframe {
+
+    background-color: black;
+
+    iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -22,7 +24,7 @@
         height: 100%;
         border: none;
     }
-
+}
 
 .video-data .uploader, .video-data .likes-count, .video-data .views-count {
     font-size: 2em;
@@ -30,36 +32,42 @@
     color: white;
 }
 
-.video-data .label {
-    display: none;
-}
-
-.video-data .uploader {
-    background-color: #008cba;
-}
-    .video-data .uploader:before {
-        content: "\f007";
-        font-family: FontAwesome;
-        opacity: 0.7;
+.video-data {
+    .label {
+        display: none;
     }
 
-.video-data .likes-count {
-    background-color: #43ac6a;
-}
-    .video-data .likes-count:before {
-        content: "\f164";
-        font-family: FontAwesome;
-        opacity: 0.7;
+    .uploader {
+        background-color: #008cba;
+
+        &:before {
+            content: "\f007";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
     }
 
-.video-data .views-count {
-    background-color: #f04124;
-}
-    .video-data .views-count:before {
-        content: "\f06e";
-        font-family: FontAwesome;
-        opacity: 0.7;
+    .likes-count {
+        background-color: #43ac6a;
+        
+        &:before {
+            content: "\f164";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
     }
+
+    .views-count {
+        background-color: #f04124;
+        
+        &:before {
+            content: "\f06e";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
+    }
+}
+
 
 .comments-list {
     list-style-type: none;
