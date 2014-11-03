@@ -33,4 +33,11 @@ class MongoClient(object):
         return self.video_col.find_one({"id": video_id})
 
     def get_video_list(self, offset = 0, size = 10):
-        cursor = self.video_col.find()[offset : size]
+        return self.video_col.find()[offset : size]
+
+    def add_video_play_count(self, id):
+        self.video_col.update(
+            { "video_id": id },
+            { "$inc": { "play_count": 1 }}
+        )
+

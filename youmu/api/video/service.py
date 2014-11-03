@@ -15,13 +15,15 @@ class VideoService(object):
         res = mongo.get_video_list()
         if res is None:
             return None
-        videos = []
-        for item in res:
-            videos.append(Video(
-                video_id = item.get("video_id"),
-                title = item.get("title"),
-                cover = item.get("cover"),
-                description = item.get("description"),
-                play_count = item.get("play_count")
-            ))
+        videos = [Video(
+            video_id = item.get("video_id"),
+            title = item.get("title", "Untitled Video"),
+            cover = item.get("cover", ""),
+            description = item.get("description", "You know nothing, Jon Snow."),
+            play_count = item.get("play_count", 0)
+        ) for item in res]
         return videos
+
+    @staticmethod
+    def add_play_count(id):
+        mongo.add_video_play_count(id)
