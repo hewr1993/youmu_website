@@ -37,27 +37,24 @@
             </ul>
         </top-bar-section>
     </top-bar>
-</div>
-
-<!-- 登录表单 -->
-<div id="loginModal" class="reveal-modal" data-reveal>
-	<h2>登录</h2>
-		<form data-abide> 
-	<div class="id-field"> 
-		<label>用户名/邮箱 <small>必填</small> 
-			<input type="text" required> 
-		</label> 
-		<small class="error">不能为空</small> 
-	</div> 
-	<div class="password-field"> 
-		<label>密码 <small>必填</small> 
-			<input type="password" required> 
-		</label> 
-		<small class="error">不能为空</small> 
-	</div> 
-	<button type="submit">Submit</button> 
-	</form>
-	<a class="close-reveal-modal">&#215;</a>
+	<!-- 登录表单 -->
+	<div id="loginModal" class="reveal-modal" data-reveal>
+		<h2>登录</h2>
+		<div class="id-field"> 
+			<label>用户名/邮箱 <small>必填</small> 
+				<input type="text" id="username" required> 
+			</label> 
+			<small class="error">不能为空</small> 
+		</div> 
+		<div class="password-field"> 
+			<label>密码 <small>必填</small> 
+				<input type="password" id="passwd" required> 
+			</label> 
+			<small class="error">不能为空</small> 
+		</div> 
+		<button ng-click="login();">Submit</button> 
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
 </div>
 
 <!-- 注册表单，貌似不需要 -->
