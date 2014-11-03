@@ -2,7 +2,7 @@ angular.module('youmuApp', ['mm.foundation']);
 
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = false;
+	$scope.isLogin = true;
 	$scope.login = function() {
 		var username = $("#username").val();
 		var passwd = $("#passwd").val();
@@ -99,4 +99,30 @@ var profileCtrl = function ($scope, $http) {
 	};
 
 };
+
+
+var myVideosCtrl = function ($scope, $http) {
+	$http.get("/api/video/").success(function(data, status) {		//用这行可查看大致效果
+	//$http.get("/api/videolist/owner/{id}").success(function(data, status) {		//这里id还不知道怎么获取
+		$scope.videos = [];
+		for (var i = 0; i < data.length; ++i) {
+			item = data[i];
+			item.videoUrl = "/videos/" + item.video_id;
+			$scope.videos.push(item);
+		};
+	});
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 

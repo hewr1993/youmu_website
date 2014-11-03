@@ -11,7 +11,7 @@
             <li class="toggle-topbar menu-icon"><a href=""><span>菜单</span></a></li>
         </ul>
         <top-bar-section>
-			<div ng-hide="{{isLogin}}"> <!-- 当登录后，隐藏 -->
+			<div ng-hide="{{isLogin}}"> <!-- 登录后，隐藏 -->
             <ul class="right show-for-large-up">
                 <li has-dropdown class="active">
                     <a href="#" data-reveal-id="loginModal">登录</a>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
 			</div>
-			<div ng-show="{{isLogin}}"> <!-- 当登录后，出现 -->
+			<div ng-show="{{isLogin}}"> <!-- 登录后，出现 -->
             <ul class="right show-for-large-up">
                 <li has-dropdown class="active">
                     <a href="/me">个人中心</a>
