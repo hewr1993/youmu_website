@@ -6,6 +6,7 @@ from flask.ext.login import (login_required, current_user, login_user, logout_us
 
 from .service import UserService
 from .forms import LoginForm
+import json
 
 user = Blueprint("user", __name__, url_prefix = "/api/user")
 
@@ -35,8 +36,9 @@ def login2(id, password):
 
 @user.route("/_login", methods = ["POST"])
 def login():
-    id = request.form.get("username", "")
-    password = request.form.get("password", "")
+    postBody = json.loads(request.data)
+    id = postBody["username"]
+    password = postBody["password"]
     user = UserService.authenticate(id, password)
     if user is not None:
         login_user(user)
