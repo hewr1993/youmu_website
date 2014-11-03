@@ -12,6 +12,7 @@ class MongoClient(object):
         # self.db.authenticate(username, password)
         self.user_col = self.db["user"]
         self.video_col = self.db["video"]
+        self.video_like_col = self.db["video_like"]
 
     # ABOUT USER
 
@@ -38,6 +39,40 @@ class MongoClient(object):
     def add_video_play_count(self, id):
         self.video_col.update(
             { "video_id": id },
-            { "$inc": { "play_count": 1 }}
+            { "$inc": { "play_count": 1 } }
         )
 
+    def create_like_info(self, user_id, video_id):
+        self.video_like_col.insert(
+            { "user_id": user_id, "video_id": video_id }
+        )
+
+    def delete_like_info(self, user_id, video_id):
+        self.video_like_col.remove(
+            { "user_id": user_id, "video_id": video_id }
+        )
+
+    def query_like_info(self, user_id, video_id):
+        return (self.video_like_col.find_one(
+            { "user_id": user_id, "video_id": video_id }
+        ) is not None)
+
+    def query_like_info_by_user(self, user_id):
+        return self.video_like_col.find(
+            { "user_id": user_id }
+        )
+
+    def query_like_info_by_video(self, video_id):
+        return self.video_like_col.find(
+            { "video_id": video_id }
+        )
+
+    def count_like_info_by_user(self, user_id):
+        return self.video_like_col.find(
+            { "user_id": user_id }
+        ).count()
+
+    def count_like_info_by_video(self, video_id):
+        return self.video_like_col.find(
+            { "video_id": video_id }
+        ).count()

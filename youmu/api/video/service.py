@@ -40,3 +40,20 @@ class VideoService(object):
     @staticmethod
     def add_play_count(id):
         mongo.add_video_play_count(id)
+
+    @staticmethod
+    def has_liked(user_id, video_id):
+        if not user_id:
+            return False
+        return mongo.query_like_info(user_id, video_id)
+
+    @staticmethod
+    def click_like(user_id, video_id):
+        if mongo.query_like_info(user_id, video_id):
+            mongo.delete_like_info(user_id, video_id)
+        else:
+            mongo.create_like_info(user_id, video_id)
+
+    @staticmethod
+    def count_like_info_by_video(video_id):
+        return mongo.count_like_info_by_video(video_id)
