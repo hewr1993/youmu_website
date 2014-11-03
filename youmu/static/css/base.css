@@ -1,11 +1,5 @@
-.top-bar-logo {
-  position: relative;
-  bottom: 2px;
-  height: 40px; }
-
-.top-bar {
-  margin-bottom: 20px; }
-
+/* VARIABLES */
+/* MODULES */
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
   position: relative;
@@ -52,3 +46,11 @@
 
 .comments-list {
   list-style-type: none; }
+
+.top-bar-logo {
+  position: relative;
+  bottom: 2px;
+  height: 40px; }
+
+.top-bar {
+  margin-bottom: 20px; }

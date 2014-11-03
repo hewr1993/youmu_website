@@ -1,0 +1,68 @@
+/* Fluid video iframes by Thierry Koblentz via A List Apart. */
+#playbox {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    background-color: black;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
+.video-data .uploader, .video-data .likes-count, .video-data .views-count {
+    font-size: 2em;
+    padding: 30px;
+    color: white;
+}
+
+.video-data {
+    .label {
+        display: none;
+    }
+
+    .uploader {
+        background-color: $blue;
+
+        &:before {
+            content: "\f007";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: lighten($blue, 10);
+        }
+    }
+
+    .likes-count {
+        background-color: $green;
+
+        &:before {
+            content: "\f164";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: lighten($green, 10);
+        }
+    }
+
+    .views-count {
+        background-color: $red;
+        
+        &:before {
+            content: "\f06e";
+            font-family: FontAwesome;
+            opacity: 0.7;
+        }
+    }
+}
+
