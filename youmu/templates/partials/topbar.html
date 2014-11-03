@@ -11,14 +11,26 @@
             <li class="toggle-topbar menu-icon"><a href=""><span>菜单</span></a></li>
         </ul>
         <top-bar-section>
+			<div ng-hide="{{isLogin}}"> <!-- 当登录后，隐藏 -->
             <ul class="right show-for-large-up">
                 <li has-dropdown class="active">
                     <a href="#" data-reveal-id="loginModal">登录</a>
                     <ul top-bar-dropdown>
-						<li><a href="#" data-reveal-id="signUpModal"><del>注册</del></a></li>
+						<li><a href="#"><del>注册</del></a></li>
                     </ul>
                 </li>
             </ul>
+			</div>
+			<div ng-show="{{isLogin}}"> <!-- 当登录后，出现 -->
+            <ul class="right show-for-large-up">
+                <li has-dropdown class="active">
+                    <a href="/me">个人中心</a>
+                    <ul top-bar-dropdown>
+						<li><a href="#" ng-click="logout();">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+			</div>
             <ul class="left show-for-large-up">
                 <li class="has-form">
                     <div class="row collapse">
@@ -56,39 +68,3 @@
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 </div>
-
-<!-- 注册表单，貌似不需要 -->
-<!--
-<div id="signUpModal" class="reveal-modal" data-reveal>
-	<h2>注册</h2>
-		<form data-abide> 
-	<div class="name-field"> 
-		<label>用户名 <small>必填</small> 
-			<input type="text" required> 
-		</label> 
-		<small class="error">不能为空</small> 
-	</div> 
-	<div class="id-field"> 
-		<label>邮箱 <small>必填</small> 
-			<input type="text" required> 
-		</label> 
-		<small class="error">不能为空</small> 
-	</div> 
-	<div class="password-field"> 
-		<label>密码 <small>必填</small> 
-			<input type="password" id="password" pattern="" required> 
-		</label> 
-		<small class="error">不能为空</small> 
-	</div> 
-
-	<div class="password-confirmation-field">
-    	<label>再次输入密码 <small>required</small>
-      		<input type="password" required pattern="" data-equalto="password">
-    	</label>
-    	<small class="error">The password did not match</small>
- 	</div>
-
-	<button type="submit">Submit</button> 
-	</form>
-	<a class="close-reveal-modal">&#215;</a>
-</div> -->

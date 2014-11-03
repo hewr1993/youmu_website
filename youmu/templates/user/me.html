@@ -1,0 +1,16 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+	<head>
+		<title>个人中心</title>
+        {% include 'partials/head.html' %}
+	</head>
+	<body>
+        {% include 'partials/topbar.html' %}
+		{% include 'user/partials/tabs.html' %}
+		{% include 'partials/foot.html' %}
+		<script src="/static/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

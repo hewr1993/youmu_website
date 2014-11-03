@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+	<head>
+		<title>个人中心</title>
+        {% include 'partials/head.html' %}
+	</head>
+	<body ng-controller="profileCtrl">
+        {% include 'partials/topbar.html' %}
+		{% include 'user/partials/tabs.html' %}
+		<label>用户名
+			<input type="text" id="username" placeholder="{{profileCtrl.username}}">
+		</label>
+		<!--
+		<label>邮箱
+			<input type="email" id="email" placeholder="{{profileCtrl.email}}">
+		</label>
+		<div ng-show="{{show_passwd}}">
+			<label>原密码
+				<input type="password" id="oldpass">
+			</label>
+			<label>新密码
+				<input type="password" id="passwd">
+			</label>
+		</div>
+		<button ng-click="modify_passwd();">修改密码</button>-->
+		<button ng-click="save();">保存</button> 
+		<button ng-click="reset();">重置</button> 
+
+		{% include 'partials/foot.html' %}
+		<script src="/static/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>
