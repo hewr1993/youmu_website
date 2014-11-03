@@ -2,7 +2,7 @@ angular.module('youmuApp', ['mm.foundation']);
 
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = true;
+	$scope.isLogin = false;
 	$scope.login = function() {
 		var username = $("#username").val();
 		var passwd = $("#passwd").val();
