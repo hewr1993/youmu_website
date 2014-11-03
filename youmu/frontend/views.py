@@ -46,13 +46,17 @@ def to_upload_file():
 def player():
     return render_template('player.html')
 
-@frontend.route('/me')
+@frontend.route('/<user>')
 def to_my_area():
     return render_template('user/me.html')
 
-@frontend.route('/me/profile')
+@frontend.route('/<user>/profile')
 def to_my_profile():
     return render_template('user/profile.html')
+
+@frontend.route('/me/notifications')
+def to_my_notifications():
+    return render_template('user/notifications.html')
 
 @frontend.route('/me/videos')
 def to_my_videos():

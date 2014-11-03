@@ -72,6 +72,20 @@
 					</ul>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="comments" ng-repeat="comment in comments">
+					<ul class="comments-list">
+						<li class="comment-item">
+							<div class="author"><a href="#">{{comment.username}}</a></div>
+							<div class="time">{{comment.time}}</div>
+							<div class="content">
+								{{comment.content}}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
     </body>

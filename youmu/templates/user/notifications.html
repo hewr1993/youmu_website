@@ -1,0 +1,24 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+	<head>
+		<title>个人中心</title>
+        {% include 'partials/head.html' %}
+	</head>
+	<body ng-controller="myNotificationsCtrl">
+        {% include 'partials/topbar.html' %}
+		{% include 'user/partials/tabs.html' %}
+		<fieldset>
+   	 		<legend>通知中心</legend>
+			<div ng-repeat="notification in notifications">
+				<a href="#" ng-click="get_notification({{notification.id}})">
+					{{notification.content}}	<!--通知简介-->
+				</a>
+			</div>
+		</fieldset>
+		{% include 'partials/foot.html' %}
+		<script src="/static/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>
