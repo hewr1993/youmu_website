@@ -57,4 +57,18 @@ class UserService(object):
         user = UserService.load_user_by_id(tunet_user["id"])
         return user
 
+    @staticmethod
+    def update(user_id, name, avatar):
+        if not user_id:
+            return "need login"
+        if not mongo.has_user_id(user_id):
+            return "no such person"
+        data = mongo.get_user_by_id(user_id)
+        data["name"] = name
+        data["avatar"] = avatar
+        print data
+        mongo.update_user(data)
+        return "ok"
+
+
 

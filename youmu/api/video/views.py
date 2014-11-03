@@ -46,7 +46,7 @@ def like(video_id):
 @video.route("/<video_id>/_like/<user_id>", methods = ["GET"])
 def is_liked_by_user(video_id, user_id):
     state = VideoService.has_liked(user_id, video_id)
-    return json.dumps("yes" if state else "no", ensure_ascii = False)
+    return json.dumps({ "like": "yes" if state else "no" }, ensure_ascii = False)
 
 
 @video.route("/<video_id>/_like/_me", methods = ["GET"])
