@@ -52,4 +52,4 @@ def logout():
 def me():
     if current_user.is_anonymous:
         return '{"state": "not a user"}'
-    return current_user.to_json()
+    return json.dumps(current_user.to_dict(), ensure_ascii = False)
