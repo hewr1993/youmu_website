@@ -14,8 +14,9 @@ var topBarCtrl = function ($scope, $http) {
 			function(data, status) {
 				if (data.state == "ok"){
 					alert(username);
-					$http.get("/api/user/{username}").success(function(data, status)
+					$http.get("/api/user/" + username).success(function(data, status)
 					{
+						$scope.user_id = data.id;
 						//alert(data.state);					
 					});
 				}
@@ -53,16 +54,13 @@ var videoDataCtrl = function ($scope, $http) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
+	$http.post("/api/comment/" + $("#video_id").val()).success(function(data, status) {
+		$scope.comments = data;
+	});
 	$scope.likeVideo = function() {
 		alert("like");
 	};
 }
-
-var videoDataCtrl = function ($scope) {
-	$scope.likeVideo = function() {
-		alert("like");
-	};
-};
 
 var profileCtrl = function ($scope, $http) {
 	var username = null;
@@ -114,15 +112,21 @@ var myVideosCtrl = function ($scope, $http) {
 };
 
 
+var myNotificationsCtrl = function ($scope, $http) {
+	$scope.logoUrl = "/static/img/youmu-circle.png";
+	$scope.authorUrl = "/static/img/youmu-seal.jpg";
+	$http.get("/api/notification/").success(function(data, status) {
+		$scope.notifications = [];
+		for (var i = 0; i < data.length; ++i) {
+			item = data[i];
+			$scope.videos.push(item);
+		};
+	});
 
-
-
-
-
-
-
-
-
-
-
-
+	$scope.get_notification = function(nid){
+		$http.get("/api/notice/" + nid).error(		//尚不知返回的内容
+			function(data, status){
+				alert("获取通知失败");
+		});
+	};
+};
