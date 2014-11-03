@@ -16,19 +16,19 @@
             </script>
         </div>
 
-        <div class="row">
+        <div class="row" ng-controller="videoDataCtrl">
             <div class="video-data">
-                <div class="small-4 columns uploader">
-                    <div class="label">上传人</div>
-                    ampersand
-                </div>
-                <div class="small-4 columns likes-count">
-                    <div class="label">点赞</div>
-                    100
-                </div>
+                <a href="/user/ampersand" class="small-4 columns uploader">
+                    <span class="label">上传人</span>
+                    <span class="data">ampersand</span>
+                </a>
+                <a class="small-4 columns likes-count" ng-click="likeVideo()">
+                    <span class="label">点赞</span>
+                    <span class="data">100</span>
+                </a>
                 <div class="small-4 columns views-count">
-                    <div class="label">观看</div>
-                    123
+                    <span class="label">观看</span>
+                    <span class="data">123</span>
                 </div>
             </div>
         </div>
