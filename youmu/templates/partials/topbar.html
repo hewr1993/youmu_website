@@ -24,7 +24,7 @@
 			<div ng-show="{{isLogin}}"> <!-- 登录后，出现 -->
             <ul class="right show-for-large-up">
                 <li has-dropdown class="active">
-                    <a href="/me">个人中心</a>	<!--需要在登录时指定-->
+                    <a href="/{{user_id}}">{{name}}</a>	<!--需要在登录时指定-->
                     <ul top-bar-dropdown>
 						<li><a href="#" ng-click="logout();">登出</a></li>
                     </ul>
@@ -54,14 +54,14 @@
 		<h2>登录</h2>
 		<div class="id-field"> 
 			<label>用户名/邮箱 <small>必填</small> 
-				<input type="text" id="username" required> 
+				<input type="text" id="user_id" required> 
 			</label> 
 			<small class="error">不能为空</small> 
 		</div> 
 		<div class="password-field"> 
 			<label>密码 <small>必填</small> 
-				<input type="password" id="passwd" required> 
-			</label> 
+				<input type="password" id="password" required> 
+			</label>
 			<small class="error">不能为空</small> 
 		</div> 
 		<button ng-click="login();">Submit</button> 

@@ -2,27 +2,41 @@ angular.module('youmuApp', ['mm.foundation']);
 
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = false;
+	$scope.isLogin = true;
 	$scope.login = function() {
-		var username = $("#username").val();
-		var passwd = $("#passwd").val();
+		var user_id = $("#user_id").val();
+		var password = $("#password").val();
 		$http.post("/api/user/_login", 
 			{
-				"username": username,
-				"password": passwd
-			}).success(		
-			function(data, status) {
-				if (data.state == "ok"){
-					alert(username);
-					$http.get("/api/user/" + username).success(function(data, status)
-					{
-						$scope.user_id = data.id;
-						//alert(data.state);					
-					});
+				"username": user_id,
+				"password": password
+			}).success(
+				function(data, status) {
+					if (data.state === "ok")
+						alert("登录成功");
+					else	
+						alert("登录失败");
 				}
-			}
-		);	
+			).error(
+				function(data, status) {
+					alert("post失败");
+				}
+			);
 	};
+
+	if ($scope.isLogin === true){
+		$http.get("/api/user/_me").success(
+			function(data, status){
+				$scope.user_id = data.id;
+				$scope.name = data.name;
+				//alert(data.name);				
+			}
+		).error(
+			function(data, status){
+				alert("获取个人信息失败");
+			}
+		);
+	}
 
 	$scope.logout = function() {
 		$http.get("/api/user/_logout").success(		
@@ -62,12 +76,18 @@ var videoDataCtrl = function ($scope, $http) {
 	};
 }
 
+var personCtrl = function ($scope, $http) {
+	$scope.user_id = "luz12";
+}
+
+
 var profileCtrl = function ($scope, $http) {
-	var username = null;
+	$scope.user_id = $("#user_id").val();
 	$http.get("/api/user/_me").success(
 		function(data, status) {
-			username = data.username;
-			$scope.username = username;
+			name = data.name;
+			$scope.name = name;
+			//alert(name + " | " + data.id);
 		}
 	).error(
 		function(data, status) {
@@ -78,12 +98,12 @@ var profileCtrl = function ($scope, $http) {
 	$scope.save = function() {
 		$http.put("/api/user/_me",
 			{
-				"username": $("#username").val(),
+				"name": $("#name").val(),
 			}
 		).success(
 			function(data, status) {
-				username = $("#username").val();
-				alert("修改信息成功");
+				name = $("#name").val();
+				alert("修改信息成功：" + name);
 			}
 		).error(
 			function(data, status) {
@@ -93,7 +113,7 @@ var profileCtrl = function ($scope, $http) {
 	};
 
 	$scope.reset = function() {
-		$scope.username = username;
+		$scope.name = name;
 	};
 
 };
