@@ -46,11 +46,11 @@ def to_upload_file():
 def player():
     return render_template('player.html')
 
-@frontend.route('/<user>')
+@frontend.route('/me')
 def to_my_area():
     return render_template('user/me.html')
 
-@frontend.route('/<user>/profile')
+@frontend.route('/me/profile')
 def to_my_profile():
     return render_template('user/profile.html')
 
