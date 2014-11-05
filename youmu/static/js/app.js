@@ -1,23 +1,46 @@
-angular.module('youmuApp', ['mm.foundation']);
+angular.module('youmuApp', ['mm.foundation'])
+	.service('UserService', function() {
+		var id = "", name = "";
+		return {
+			getID: function() {
+				return id;
+			},
+			getName: function() {
+				return name;
+			},
+			setUser: function(_id, _name) {
+				id = _id;
+				name = _name;
+			},
+			isLogin: function() {
+				return id.length > 0;
+			},
+			logout: function() {
+				id = "";
+				name = "";
+			}
+		};
+	});
 
 var alertInfo = function(info) {
 	$("#alertInfo").html(info);
 	$("#alertModal").foundation("reveal", "open");
 }
 
-var topBarCtrl = function ($scope, $http) {
+var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
 				if (data.hasOwnProperty("id")) {
-					$scope.isLogin = true;
-					$scope.my_id = data.id;
-					$scope.my_name = data.name;
+					UserService.setUser(data.id, data.name);
+					$scope.user_id = UserService.getID();
+					$scope.username = UserService.getName();
 					$scope.logout = function() {
 						$http.post("/api/user/_logout").success(		
 							function(data, status) {
+								UserService.logout();
 								$scope.checkLogin();
 							}
 						).error(
@@ -26,8 +49,8 @@ var topBarCtrl = function ($scope, $http) {
 							}
 						);	
 					};
+					$rootScope.$emit('logined');
 				} else {
-					$scope.isLogin = false;
 					$('#loginForm').on('valid.fndtn.abide', function() {
 						$("#loginButton").attr("disabled", "disabled");
 						var user_id = $("#user_id").val();
@@ -64,6 +87,7 @@ var topBarCtrl = function ($scope, $http) {
 							);
 					});
 				}
+				$scope.isLogin = UserService.isLogin();
 			}
 		).error(
 			function(data, status){
@@ -99,18 +123,21 @@ var videoDataCtrl = function ($scope, $http) {
 	};
 };
 
-var personCtrl = function ($scope, $http) {
-	var me;								//保存个人信息的
+var personCtrl = function ($scope, $rootScope, $http, UserService) {
+	$rootScope.$on('logined', function() {
+	});
+
+/*{var me;								//保存个人信息的
 	var user_id = $("#user_id").val();	//当前要访问的是谁的页面
 	$scope.is_me = false;				//判断是否访问的是自己的页面
 	$scope.tab = 0;
 	$http.get("/api/user/_me").success(
 		function(data, status) {
-			alert($("#user_id").val() + " | " + data.id);
+			//alert($("#user_id").val() + " | " + data.id);
 			me = data;
 			if (user_id === data.id){
 				$scope.is_me = true;
-				alert("is me");
+				//alert("is me");
 			}
 		}
 	).error(
@@ -208,4 +235,5 @@ var personCtrl = function ($scope, $http) {
 			},
 		];
 	};
+}*/
 };
