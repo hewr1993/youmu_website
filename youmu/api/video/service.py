@@ -11,17 +11,27 @@ __author__ = 'badpoet'
 class VideoService(object):
 
     @staticmethod
+    def mto(item):
+        return Video(
+            video_id = item.get("video_id"),
+            title = item.get("title", "Untitled Video"),
+            owner_id = item.get("owner_id", ""),
+            disabled = item.get("disabled", False),
+            upload_time = item.get("upload_time", "1900-01-01-00:00:00"),
+            length = item.get("length", 0),
+            tags = item.get("tags", []),
+            cover = item.get("cover", ""),
+            description = item.get("description", "You know nothing, Jon Snow."),
+            play_count = item.get("play_count", 0),
+            like = item.get("like", 0)
+        )
+
+    @staticmethod
     def get_video_list():
         res = mongo.get_video_list()
         if res is None:
             return None
-        videos = [Video(
-            video_id = item.get("video_id"),
-            title = item.get("title", "Untitled Video"),
-            cover = item.get("cover", ""),
-            description = item.get("description", "You know nothing, Jon Snow."),
-            play_count = item.get("play_count", 0)
-        ) for item in res]
+        videos = [VideoService.mto(item) for item in res]
         return videos
 
     @staticmethod
@@ -29,13 +39,7 @@ class VideoService(object):
         item = mongo.get_video_by_id(video_id)
         if item is None:
             return None
-        return Video(
-            video_id = item.get("video_id"),
-            title = item.get("title", "Untitled Video"),
-            cover = item.get("cover", ""),
-            description = item.get("description", "You know nothing, Jon Snow."),
-            play_count = item.get("play_count", 0)
-        )
+        return VideoService.mto(item)
 
     @staticmethod
     def add_play_count(id):
