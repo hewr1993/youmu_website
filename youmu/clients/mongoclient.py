@@ -13,6 +13,8 @@ class MongoClient(object):
         self.user_col = self.db["user"]
         self.video_col = self.db["video"]
         self.video_like_col = self.db["video_like"]
+        self.comment_col = self.db["comment"]
+        self.comment_floor_ctrl_col = self.db["floor_ctrl"]
 
     # ABOUT USER
 
@@ -97,3 +99,27 @@ class MongoClient(object):
         return self.video_like_col.find(
             { "video_id": video_id }
         ).count()
+
+    # ABOUT COMMENT
+
+    def assign_comment_floor(self, video_id):
+        tmp = self.comment_floor_ctrl_col.find_and_modify(
+            query = { "video_id": video_id },
+            update = { "$inc": { "floor_cnt": 1 } },
+            new = True,
+            upsert = True
+        )
+        return int(tmp["floor"])
+
+    def insert_comment(self, comment):
+        self.insert_comment(comment)
+
+    def get_comment_by_video_id(self, video_id):
+        return self.comment_col.find(
+            { "video_id": video_id }
+        )
+
+    def get_comment_by_user_id(self, user_id):
+        return self.comment_col.find(
+            { "user_id": user_id }
+        )
