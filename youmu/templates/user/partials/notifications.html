@@ -1,6 +1,6 @@
 <fieldset>
 	<legend>通知中心</legend>
-	<div ng-repeat="notification in notifications | orderBy: 'date'">
+	<div class="panel" ng-repeat="notification in notifications | orderBy: 'date'">
 		{{notification.date}}
 		<div ng-show="{{notification.is_comment}}">
 			<a href="/{{notification.user_id}}">{{notification.user_id}}</a>
