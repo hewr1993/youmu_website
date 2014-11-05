@@ -2,7 +2,7 @@ angular.module('youmuApp', ['mm.foundation']);
 
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = true;
+	$scope.isLogin = false;
 	$scope.login = function() {
 		var user_id = $("#user_id").val();
 		var password = $("#password").val();
@@ -24,7 +24,7 @@ var topBarCtrl = function ($scope, $http) {
 			);
 	};
 
-	if ($scope.isLogin === true){
+	if ($scope.isLogin == true){
 		$http.get("/api/user/_me").success(
 			function(data, status){
 				$scope.my_id = data.id;
