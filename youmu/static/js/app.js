@@ -3,7 +3,7 @@ angular.module('youmuApp', ['mm.foundation']);
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
-	$scope.login = function() {
+	$('#loginForm').on('valid.fndtn.abide', function() {
 		var user_id = $("#user_id").val();
 		var password = $("#password").val();
 		$http.post("/api/user/_login", 
@@ -22,7 +22,7 @@ var topBarCtrl = function ($scope, $http) {
 					alert("post失败");
 				}
 			);
-	};
+	});
 
 	if ($scope.isLogin == true){
 		$http.get("/api/user/_me").success(

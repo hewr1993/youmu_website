@@ -52,19 +52,23 @@
 	<!-- 登录表单 -->
 	<div id="loginModal" class="reveal-modal" data-reveal>
 		<h2>登录</h2>
-		<div class="id-field"> 
-			<label>用户名/邮箱 <small>必填</small> 
-				<input type="text" id="user_id" required> 
-			</label> 
-			<small class="error">不能为空</small> 
-		</div> 
-		<div class="password-field"> 
-			<label>密码 <small>必填</small> 
-				<input type="password" id="password" required> 
-			</label>
-			<small class="error">不能为空</small> 
-		</div> 
-		<button ng-click="login();">Submit</button> 
-		<a class="close-reveal-modal">&#215;</a>
+		<form class="custom" id="loginForm" data-abide="ajax">
+			<fieldset>
+				<div class="id-field"> 
+					<label>用户名/邮箱 <small>必填</small> 
+						<input type="text" id="user_id" placeholder="网络学堂用户名或学号" required pattern="loginID" /> 
+					</label>
+					<small class="error">学号格式错误</small> 
+				</div> 
+				<div class="password-field"> 
+					<label>密码 <small>必填</small> 
+						<input type="password" id="password" placeholder="网络学堂账户密码" required /> 
+					</label>
+					<small class="error">密码不能为空</small> 
+				</div> 
+				<button type="submit">登录</button>
+				<a class="close-reveal-modal">&#215;</a>
+			</fieldset>
+		</form>
 	</div>
 </div>
