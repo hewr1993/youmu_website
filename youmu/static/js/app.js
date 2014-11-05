@@ -2,53 +2,52 @@ angular.module('youmuApp', ['mm.foundation']);
 
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = false;
-	$('#loginForm').on('valid.fndtn.abide', function() {
-		var user_id = $("#user_id").val();
-		var password = $("#password").val();
-		$http.post("/api/user/_login", 
-			{
-				"username": user_id,
-				"password": password
-			}).success(
-				function(data, status) {
-					if (data.state === "ok")
-						alert("登录成功");
-					else	
-						alert("登录失败");
-				}
-			).error(
-				function(data, status) {
-					alert("post失败");
-				}
-			);
-	});
-
-	if ($scope.isLogin == true){
-		$http.get("/api/user/_me").success(
-			function(data, status){
+	$http.get("/api/user/_me").success(
+		function(data, status){
+			if (data.hasOwnProperty("id")) {
+				$scope.isLogin = true;
 				$scope.my_id = data.id;
 				$scope.my_name = data.name;
-				//alert(data.name);				
+				$scope.logout = function() {
+					$http.post("/api/user/_logout").success(		
+						function(data, status) {
+							alert(data.state);
+						}
+					).error(
+						function(data, status) {
+							alert("登出失败");
+						}
+					);	
+				};
+			} else {
+				$scope.isLogin = false;
+				$('#loginForm').on('valid.fndtn.abide', function() {
+					var user_id = $("#user_id").val();
+					var password = $("#password").val();
+					$http.post("/api/user/_login", 
+						{
+							"username": user_id,
+							"password": password
+						}).success(
+							function(data, status) {
+								if (data.state === "ok")
+									alert("登录成功");
+								else	
+									alert("登录失败");
+							}
+						).error(
+							function(data, status) {
+								alert("post失败");
+							}
+						);
+				});
 			}
-		).error(
-			function(data, status){
-				alert("获取个人信息失败");
-			}
-		);
-	}
-
-	$scope.logout = function() {
-		$http.get("/api/user/_logout").success(		
-			function(data, status) {
-				alert(data.state);
-			}
-		).error(
-			function(data, status) {
-				alert("登出失败");
-			}
-		);	
-	};
+		}
+	).error(
+		function(data, status){
+			alert("获取个人信息失败");
+		}
+	);
 };
 
 var videoStoreCtrl = function ($scope, $http) {
