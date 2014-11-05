@@ -50,22 +50,6 @@ def player():
 def to_my_area(user_id):
     return render_template('user/me.html', user_id = user_id)
 
-@frontend.route('/<user_id>/profile')
-def to_my_profile(user_id):
-    return render_template('user/profile.html', user_id = user_id)
-
-@frontend.route('/<user_id>/notifications')
-def to_my_notifications(user_id):
-    return render_template('user/notifications.html', user_id = user_id)
-
-@frontend.route('/<user_id>/videos')
-def to_my_videos(user_id):
-    return render_template('user/videos.html', user_id = user_id)
-
-@frontend.route('/<user_id>/audios')
-def to_my_audios(user_id):
-    return render_template('user/audios.html', user_id = user_id)
-
 @frontend.route('/users')
 def to_all_users():
     return render_template('user/users.html')

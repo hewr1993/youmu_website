@@ -27,8 +27,8 @@ var topBarCtrl = function ($scope, $http) {
 	if ($scope.isLogin === true){
 		$http.get("/api/user/_me").success(
 			function(data, status){
-				$scope.user_id = data.id;
-				$scope.name = data.name;
+				$scope.my_id = data.id;
+				$scope.my_name = data.name;
 				//alert(data.name);				
 			}
 		).error(
@@ -74,18 +74,158 @@ var videoDataCtrl = function ($scope, $http) {
 	$scope.likeVideo = function() {
 		alert("like");
 	};
-}
+};
 
 var personCtrl = function ($scope, $http) {
-	$scope.user_id = "luz12";
-}
+	var me;								//保存个人信息的
+	var user_id = $("#user_id").val();	//当前要访问的是谁的页面
+	$scope.is_me = false;				//判断是否访问的是自己的页面
+	$scope.tab = 0;
+	$http.get("/api/user/_me").success(
+		function(data, status) {
+			alert($("#user_id").val() + " | " + data.id);
+			me = data;
+			if (user_id === data.id){
+				$scope.is_me = true;
+				alert("is me");
+			}
+		}
+	).error(
+		function(data, status) {
+			alert("获取个人信息失败");
+		}
+	);
+
+	$scope.isSelected = function(checkTab){
+		if ($scope.tab === checkTab)
+			return true;
+		else return false;
+	};
+
+	$scope.get_profile = function(){
+		$scope.tab = 1;
+		alert("获取当前用户信息");
+		if ($scope.is_me){
+			$scope.name = me.name;
+		}
+		else {
+			$http.get("/api/user/" + user_id).success(
+				function(data, status) {
+					$scope.name = data.name;
+				}
+			).error(
+				function(data, status) {
+					alert("获取个人信息失败");
+				}
+			);
+		}
+	};
+
+	$scope.get_videos = function(){
+		$scope.tab = 2;
+		alert("获取当前用户上传视频信息");
+		$http.get("/api/videolist/owner/" + user_id).success(
+			function(data, status) {
+				$scope.videos = [];
+				for (var i = 0; i < data.length; ++i) {
+					item = data[i];
+					item.videoUrl = "/videos/" + item.video_id;
+					$scope.videos.push(item);
+				};
+			}
+		).error(
+			function(data, status) {
+				alert("失败了");
+				$http.get("/api/video/").success(function(data, status) {		//用这行可查看大致效
+					$scope.videos = [];
+					for (var i = 0; i < data.length; ++i) {
+						item = data[i];
+						item.videoUrl = "/videos/" + item.video_id;
+						$scope.videos.push(item);
+					};
+				});
+			}
+		);
+	};
+
+	$scope.get_audios = function(){
+		$scope.tab = 3;
+		alert("获取当前用户订阅音频信息");
+	};
+
+	$scope.get_notifications = function(){
+		$scope.tab = 4;
+		alert("获取通知");
+		$scope.notifications = [
+			{
+				"is_comment": false,
+				"content": "你已被屏蔽",
+				"date": "2014/1/1",
+			},
+			{
+				"is_comment": true,
+				"content": "hwr12在5回复了你",
+				"user_id": "hwr12",
+				"comment_id": "1",
+				"video_id": "5",		//111在
+				"date": "2014/1/5",
+			},
+			{
+				"is_comment": true,
+				"content": "zxk12在1回复了你",
+				"user_id": "zxk12",
+				"comment_id": "1",
+				"video_id": "1",		//111在
+				"date": "2014/1/3",
+			},
+			{
+				"is_comment": false,
+				"content": "你已解除屏蔽",
+				"date": "2014/1/4",
+			},
+		];
+	};
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var profileCtrl = function ($scope, $http) {
 	$scope.user_id = $("#user_id").val();
+	var name;
 	$http.get("/api/user/_me").success(
 		function(data, status) {
-			name = data.name;
+			my_id = data.id;
+			my_name = data.name;
 			$scope.name = name;
 			//alert(name + " | " + data.id);
 		}
@@ -94,6 +234,8 @@ var profileCtrl = function ($scope, $http) {
 			alert("获取个人信息失败");
 		}
 	);
+
+	if (my_id === $("#user_id").val()); 		//说明是自己
 	
 	$scope.save = function() {
 		$http.put("/api/user/_me",
@@ -113,7 +255,8 @@ var profileCtrl = function ($scope, $http) {
 	};
 
 	$scope.reset = function() {
-		$scope.name = name;
+		alert(name);
+		$scope.name = name;		//为啥不刷新页面...
 	};
 
 };
@@ -133,13 +276,36 @@ var myVideosCtrl = function ($scope, $http) {
 
 
 var myNotificationsCtrl = function ($scope, $http) {
-	$scope.logoUrl = "/static/img/youmu-circle.png";
-	$scope.authorUrl = "/static/img/youmu-seal.jpg";
+	$scope.notifications = [
+		{
+			"content": "你已被屏蔽",
+			"date": "2014/1/1",
+		},
+		{
+			"content": "hwr12在5回复了你",
+			"user_id": "hwr12",
+			"comment_id": "1",
+			"video_id": "5",		//111在
+			"date": "2014/1/5",
+		},
+		{
+			"content": "zxk12在1回复了你",
+			"user_id": "zxk12",
+			"comment_id": "1",
+			"video_id": "1",		//111在
+			"date": "2014/1/3",
+		},
+		{
+			"content": "你已解除屏蔽",
+			"date": "2014/1/4",
+		},
+	];
 	$http.get("/api/notification/").success(function(data, status) {
+		alert("成功");
 		$scope.notifications = [];
 		for (var i = 0; i < data.length; ++i) {
 			item = data[i];
-			$scope.videos.push(item);
+			$scope.notifications.push(item);
 		};
 	});
 

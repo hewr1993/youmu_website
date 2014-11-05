@@ -4,7 +4,8 @@
 		<title>个人中心</title>
         {% include 'partials/head.html' %}
 	</head>
-	<body>
+	<body ng-controller="personCtrl">
+		<input type="hidden" id="user_id" value="{{ user_id }}">
         {% include 'partials/topbar.html' %}
 		{% include 'user/partials/tabs.html' %}
 		{% include 'partials/foot.html' %}
