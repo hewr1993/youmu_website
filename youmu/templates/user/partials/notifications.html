@@ -1,0 +1,17 @@
+<fieldset>
+	<legend>通知中心</legend>
+	<div class="panel" ng-repeat="notification in notifications | orderBy: 'date'">
+		{{notification.date}}
+		<div ng-show="{{notification.is_comment}}">
+			<a href="/{{notification.user_id}}">{{notification.user_id}}</a>
+			在视频
+			<a href="#">{{notification.video_id}}</a>
+			下回复了你
+		</div>
+		<div ng-hide="{{notification.is_comment}}"
+			<a href="#">
+			{{notification.content}}	<!--通知简介-->
+			</a>
+		</div>
+	</div>
+</fieldset>

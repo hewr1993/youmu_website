@@ -46,21 +46,9 @@ def to_upload_file():
 def player():
     return render_template('player.html')
 
-@frontend.route('/me')
-def to_my_area():
-    return render_template('user/me.html')
-
-@frontend.route('/me/profile')
-def to_my_profile():
-    return render_template('user/profile.html')
-
-@frontend.route('/me/videos')
-def to_my_videos():
-    return render_template('user/videos.html')
-
-@frontend.route('/me/audios')
-def to_my_audios():
-    return render_template('user/audios.html')
+@frontend.route('/<user_id>')
+def to_my_area(user_id):
+    return render_template('user/me.html', user_id = user_id)
 
 @frontend.route('/users')
 def to_all_users():
