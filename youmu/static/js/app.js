@@ -1,54 +1,77 @@
 angular.module('youmuApp', ['mm.foundation']);
 
+var alertInfo = function(info) {
+	$("#alertInfo").html(info);
+	$("#alertModal").foundation("reveal", "open");
+}
+
 var topBarCtrl = function ($scope, $http) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$http.get("/api/user/_me").success(
-		function(data, status){
-			if (data.hasOwnProperty("id")) {
-				$scope.isLogin = true;
-				$scope.my_id = data.id;
-				$scope.my_name = data.name;
-				$scope.logout = function() {
-					$http.post("/api/user/_logout").success(		
-						function(data, status) {
-							alert(data.state);
-						}
-					).error(
-						function(data, status) {
-							alert("登出失败");
-						}
-					);	
-				};
-			} else {
-				$scope.isLogin = false;
-				$('#loginForm').on('valid.fndtn.abide', function() {
-					var user_id = $("#user_id").val();
-					var password = $("#password").val();
-					$http.post("/api/user/_login", 
-						{
-							"username": user_id,
-							"password": password
-						}).success(
+	$scope.isLogin = false;
+	$scope.checkLogin = function() {
+		$http.get("/api/user/_me").success(
+			function(data, status){
+				if (data.hasOwnProperty("id")) {
+					$scope.isLogin = true;
+					$scope.my_id = data.id;
+					$scope.my_name = data.name;
+					$scope.logout = function() {
+						$http.post("/api/user/_logout").success(		
 							function(data, status) {
-								if (data.state === "ok")
-									alert("登录成功");
-								else	
-									alert("登录失败");
+								$scope.checkLogin();
 							}
 						).error(
 							function(data, status) {
-								alert("post失败");
+								alertInfo("登出失败");
 							}
-						);
-				});
+						);	
+					};
+				} else {
+					$scope.isLogin = false;
+					$('#loginForm').on('valid.fndtn.abide', function() {
+						$("#loginButton").attr("disabled", "disabled");
+						var user_id = $("#user_id").val();
+						var password = $("#password").val();
+						$http.post("/api/user/_login", 
+							{
+								"username": user_id,
+								"password": password
+							}).success(
+								function(data, status) {
+									$("#loginButton").removeAttr("disabled");
+									if (data.state === "ok") {
+										$('#loginModal').foundation('reveal', 'close');
+										$scope.checkLogin();
+									} else {
+										$("#loginFormFieldset").append(
+											'<div data-alert class="alert-box alert radius">'+
+												'用户名或密码错误'+
+												'<a href="#" class="close">&times;</a>'+
+											'</div>'
+										).foundation();
+									}
+								}
+							).error(
+								function(data, status) {
+									$("#loginButton").removeAttr("disabled");
+									$("#loginFormFieldset").append(
+										'<div data-alert class="alert-box warning radius">'+
+											'服务器繁忙，请稍候再试'+
+											'<a href="#" class="close">&times;</a>'+
+										'</div>'
+									).foundation();
+								}
+							);
+					});
+				}
 			}
-			alert($scope.isLogin);
-		}
-	).error(
-		function(data, status){
-			alert("获取个人信息失败");
-		}
-	);
+		).error(
+			function(data, status){
+				alertInfo("获取用户信息出错");
+			}
+		);
+	};
+	$scope.checkLogin();
 };
 
 var videoStoreCtrl = function ($scope, $http) {
