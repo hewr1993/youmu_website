@@ -42,6 +42,13 @@ class MongoClient(object):
     def get_video_list(self, offset = 0, size = 10):
         return self.video_col.find()[offset : size]
 
+    def get_ordered_video_list(self, query, offset = 0, size = 10, order_by = "upload_time", reverse = False):
+        query = {
+            "$query": query,
+            "$orderby": { order_by: -1 if reverse else 1 }
+        }
+        return self.video_col.find(query)[offset : size]
+
     def add_video_play_count(self, id):
         self.video_col.update(
             { "video_id": id },
@@ -52,10 +59,18 @@ class MongoClient(object):
         self.video_like_col.insert(
             { "user_id": user_id, "video_id": video_id }
         )
+        self.video_col.update(
+            { "video_id": video_id },
+            { "$inc": { "like": 1 } }
+        )
 
     def delete_like_info(self, user_id, video_id):
         self.video_like_col.remove(
             { "user_id": user_id, "video_id": video_id }
+        )
+        self.video_col.update(
+            { "video_id": video_id },
+            { "$inc": { "like": -1} }
         )
 
     def query_like_info(self, user_id, video_id):

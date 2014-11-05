@@ -12,11 +12,11 @@ class Video(object):
         self.cover = cover
         self.description = description
         self.play_count = int(play_count)
-        self.like = int(like),
-        self.owner_id = owner_id,
-        self.disabled = disabled,
-        self.upload_time = upload_time,
-        self.length = int(length),
+        self.like = int(like)
+        self.owner_id = owner_id
+        self.disabled = disabled
+        self.upload_time = upload_time
+        self.length = int(length)
         self.tags = tags
 
     def to_dict(self):

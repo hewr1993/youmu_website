@@ -55,11 +55,14 @@
 			</div>
 
 			<div class="row">
+				<fieldset>
+				<legend>视频信息</legend>
 				<div class="medium-3 large-2 columns time">{{video.upload_time | date}}</div>
 				<div class="medium-9 large-10 columns description">{{video.description}}</div>
+				</fieldset>
 			</div>
 
-			<div class="row">
+			<!--div class="row">
 				<div class="comments">
 					<ul class="comments-list">
 						<li class="comment-item">
@@ -71,20 +74,32 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div-->
 
 			<div class="row">
-				<div class="comments" ng-repeat="comment in comments">
-					<ul class="comments-list">
+				<fieldset>
+				<legend>评论</legend>
+				<div class="comments">
+					<ul class="comments-list" ng-repeat="comment in comments | orderBy: 'time'">
 						<li class="comment-item">
-							<div class="author"><a href="#">{{comment.username}}</a></div>
+							<div class="author">
+								<a href="/{{comment.user_id}}">{{comment.user_id}}</a>
+							</div>
 							<div class="time">{{comment.time}}</div>
 							<div class="content">
 								{{comment.content}}
 							</div>
+							<a href>回复</a>
 						</li>
 					</ul>
+					<div class="row">
+						<div class="large-12 columns">
+						 	<textarea placeholder="请输入你的评论..."></textarea>
+							<button ng-click="comment();">评论</button>
+						</div>
+					</div>
 				</div>
+				</fieldset>
 			</div>
 		</div>
 

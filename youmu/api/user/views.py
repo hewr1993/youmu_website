@@ -54,7 +54,7 @@ def logout():
 @user.route("/_me", methods = ["GET"])
 def me():
     if current_user.is_anonymous():
-        return '{"state": "not a user"}'
+        return ""
     return json.dumps(current_user.to_dict(), ensure_ascii = False)
 
 @user.route("/_me", methods = ["PUT"])

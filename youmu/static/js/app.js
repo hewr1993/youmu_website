@@ -42,6 +42,7 @@ var topBarCtrl = function ($scope, $http) {
 						);
 				});
 			}
+			alert($scope.isLogin);
 		}
 	).error(
 		function(data, status){
