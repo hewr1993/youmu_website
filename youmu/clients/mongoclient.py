@@ -114,12 +114,14 @@ class MongoClient(object):
     def insert_comment(self, comment):
         self.comment_col.insert(comment)
 
-    def get_comment_by_video_id(self, video_id):
-        return self.comment_col.find(
-            { "video_id": video_id }
-        )
+    def get_comment_by_video_id(self, video_id, offset, size):
+        return self.comment_col.find({
+            "$query": { "video_id": video_id },
+            "$orderby": { "floor": 1 }
+        })[offset : size]
 
-    def get_comment_by_user_id(self, user_id):
-        return self.comment_col.find(
-            { "user_id": user_id }
-        )
+    def get_comment_by_user_id(self, user_id, offset, size, reverse):
+        return self.comment_col.find({
+            "$query": { "user_id": user_id },
+            "$orderby": { "reply_time": -1 if reverse else 1 }
+        })[offset : size]

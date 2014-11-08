@@ -13,7 +13,10 @@ comment = Blueprint("comment", __name__, url_prefix = "/api/comment")
 @comment.route("/video/<video_id>", methods = ["GET", "POST"])
 def work_on_video(video_id):
     if request.method == "GET":
-        comments = [c.to_dict() for c in CommentService.get_comments_by_video_id(video_id)]
+        offset = int(request.args.get("offset", 0))
+        size = int(request.args.get("size", 20))
+
+        comments = [c.to_dict() for c in CommentService.get_comments_by_video_id(video_id, offset, size)]
         return json.dumps(comments, ensure_ascii = False)
     else:
         if current_user.is_anonymous():
@@ -27,5 +30,8 @@ def work_on_video(video_id):
 
 @comment.route("/user/<user_id>", methods = ["GET"])
 def work_on_user(user_id):
-    comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id)]
+    offset = int(request.args.get("offset", 0))
+    size = int(request.args.get("size", 20))
+    reverse = int(request.args.get("reverse", 0)) > 0
+    comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
     return json.dumps(comments, ensure_ascii = False)

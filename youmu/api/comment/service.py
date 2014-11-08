@@ -33,9 +33,9 @@ class CommentService(object):
         })
 
     @staticmethod
-    def get_comments_by_video_id(video_id):
-        return [CommentService.mto(item) for item in mongo.get_comment_by_video_id(video_id)]
+    def get_comments_by_video_id(video_id, offset, size):
+        return [CommentService.mto(item) for item in mongo.get_comment_by_video_id(video_id, offset, size)]
 
     @staticmethod
-    def get_comments_by_user_id(user_id):
-        return [CommentService.mto(item) for item in mongo.get_comment_by_user_id(user_id)]
+    def get_comments_by_user_id(user_id, offset, size, reverse):
+        return [CommentService.mto(item) for item in mongo.get_comment_by_user_id(user_id, offset, size, reverse)]
