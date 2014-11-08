@@ -11,25 +11,20 @@
             <li class="toggle-topbar menu-icon"><a href=""><span>菜单</span></a></li>
         </ul>
         <top-bar-section>
-			<div ng-hide="{{isLogin}}"> <!-- 登录后，隐藏 -->
+			<div ng-hide="isLogin"> <!-- 登录后，隐藏 -->
             <ul class="right show-for-large-up">
-                <li has-dropdown class="active">
-                    <a href="#" data-reveal-id="loginModal">登录</a>
-                    <ul top-bar-dropdown>
-						<li><a href="#"><del>注册</del></a></li>
-                    </ul>
-                </li>
+				<li class="active"><a href="#" data-reveal-id="loginModal">登录</a></li>
             </ul>
 			</div>
-			<div ng-show="{{isLogin}}"> <!-- 登录后，出现 -->
-            <ul class="right show-for-large-up">
-                <li has-dropdown class="active">
-                    <a href="/{{my_id}}">{{my_name}}</a>	<!--需要在登录时指定-->
-                    <ul top-bar-dropdown>
-						<li><a href="#" ng-click="logout();">登出</a></li>
-                    </ul>
-                </li>
-            </ul>
+			<div ng-show="isLogin"> <!-- 登录后，出现 -->
+				<ul class="right show-for-large-up">
+					<li has-dropdown class="active">
+						<a href="/user/{{user_id}}">{{username}}</a>	<!--需要在登录时指定-->
+						<ul top-bar-dropdown>
+							<li><a href="#" ng-click="logout();">登出</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
             <ul class="left show-for-large-up">
                 <li class="has-form">
@@ -44,8 +39,7 @@
                 </li>
             </ul>
             <ul class="right hide-for-large-up">
-                <li class="has-form active"><a href="#">登录</a></li>
-                <li class="has-form"><a href="#">注册</a></li>
+				<li class="has-form active"><a href="#" data-reveal-id="loginModal">登录</a></li>
             </ul>
         </top-bar-section>
     </top-bar>
@@ -53,7 +47,7 @@
 	<div id="loginModal" class="reveal-modal" data-reveal>
 		<h2>登录</h2>
 		<form class="custom" id="loginForm" data-abide="ajax">
-			<fieldset>
+			<fieldset id="loginFormFieldset">
 				<div class="id-field"> 
 					<label>用户名/邮箱 <small>必填</small> 
 						<input type="text" id="user_id" placeholder="网络学堂用户名或学号" required pattern="loginID" /> 
@@ -66,9 +60,14 @@
 					</label>
 					<small class="error">密码不能为空</small> 
 				</div> 
-				<button type="submit">登录</button>
-				<a class="close-reveal-modal">&#215;</a>
+				<button type="submit" id="loginButton">登录</button>
 			</fieldset>
 		</form>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	<div id="alertModal" class="reveal-modal" data-reveal>
+		<center>
+			<h3 id="alertInfo" style="color:red;font-weight:bold;"></h3>
+		</center>
 	</div>
 </div>

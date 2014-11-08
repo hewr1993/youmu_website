@@ -1,54 +1,101 @@
-angular.module('youmuApp', ['mm.foundation']);
-
-var topBarCtrl = function ($scope, $http) {
-	$scope.logoUrl = "/static/img/youmu-seal.jpg";
-	$scope.isLogin = false;
-	$('#loginForm').on('valid.fndtn.abide', function() {
-		var user_id = $("#user_id").val();
-		var password = $("#password").val();
-		$http.post("/api/user/_login", 
-			{
-				"username": user_id,
-				"password": password
-			}).success(
-				function(data, status) {
-					if (data.state === "ok")
-						alert("登录成功");
-					else	
-						alert("登录失败");
-				}
-			).error(
-				function(data, status) {
-					alert("post失败");
-				}
-			);
+angular.module('youmuApp', ['mm.foundation'])
+	.service('UserService', function() {
+		var id = "", name = "";
+		return {
+			getID: function() {
+				return id;
+			},
+			getName: function() {
+				return name;
+			},
+			setUser: function(_id, _name) {
+				id = _id;
+				name = _name;
+			},
+			isLogin: function() {
+				return id.length > 0;
+			},
+			logout: function() {
+				id = "";
+				name = "";
+			}
+		};
 	});
 
-	if ($scope.isLogin == true){
+var alertInfo = function(info) {
+	$("#alertInfo").html(info);
+	$("#alertModal").foundation("reveal", "open");
+}
+
+var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
+	$scope.logoUrl = "/static/img/youmu-seal.jpg";
+	$scope.isLogin = false;
+	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
-				$scope.my_id = data.id;
-				$scope.my_name = data.name;
-				//alert(data.name);				
+				if (data.hasOwnProperty("id")) {
+					UserService.setUser(data.id, data.name);
+					$scope.user_id = UserService.getID();
+					$scope.username = UserService.getName();
+					$scope.logout = function() {
+						$http.post("/api/user/_logout").success(		
+							function(data, status) {
+								UserService.logout();
+								$scope.checkLogin();
+							}
+						).error(
+							function(data, status) {
+								alertInfo("登出失败");
+							}
+						);	
+					};
+					$rootScope.$emit('logined');
+				} else {
+					$('#loginForm').on('valid.fndtn.abide', function() {
+						$("#loginButton").attr("disabled", "disabled");
+						var user_id = $("#user_id").val();
+						var password = $("#password").val();
+						$http.post("/api/user/_login", 
+							{
+								"username": user_id,
+								"password": password
+							}).success(
+								function(data, status) {
+									$("#loginButton").removeAttr("disabled");
+									if (data.state === "ok") {
+										$('#loginModal').foundation('reveal', 'close');
+										$scope.checkLogin();
+									} else {
+										$("#loginFormFieldset").append(
+											'<div data-alert class="alert-box alert radius">'+
+												'用户名或密码错误'+
+												'<a href="#" class="close">&times;</a>'+
+											'</div>'
+										).foundation();
+									}
+								}
+							).error(
+								function(data, status) {
+									$("#loginButton").removeAttr("disabled");
+									$("#loginFormFieldset").append(
+										'<div data-alert class="alert-box warning radius">'+
+											'服务器繁忙，请稍候再试'+
+											'<a href="#" class="close">&times;</a>'+
+										'</div>'
+									).foundation();
+								}
+							);
+					});
+				}
+				$scope.isLogin = UserService.isLogin();
 			}
 		).error(
 			function(data, status){
-				alert("获取个人信息失败");
+				alertInfo("获取用户信息出错");
 			}
 		);
-	}
-
-	$scope.logout = function() {
-		$http.get("/api/user/_logout").success(		
-			function(data, status) {
-				alert(data.state);
-			}
-		).error(
-			function(data, status) {
-				alert("登出失败");
-			}
-		);	
 	};
+	$scope.checkLogin();
 };
 
 var videoStoreCtrl = function ($scope, $http) {
@@ -76,18 +123,21 @@ var videoDataCtrl = function ($scope, $http) {
 	};
 };
 
-var personCtrl = function ($scope, $http) {
-	var me;								//保存个人信息的
+var personCtrl = function ($scope, $rootScope, $http, UserService) {
+	$rootScope.$on('logined', function() {
+	});
+
+/*{var me;								//保存个人信息的
 	var user_id = $("#user_id").val();	//当前要访问的是谁的页面
 	$scope.is_me = false;				//判断是否访问的是自己的页面
 	$scope.tab = 0;
 	$http.get("/api/user/_me").success(
 		function(data, status) {
-			alert($("#user_id").val() + " | " + data.id);
+			//alert($("#user_id").val() + " | " + data.id);
 			me = data;
 			if (user_id === data.id){
 				$scope.is_me = true;
-				alert("is me");
+				//alert("is me");
 			}
 		}
 	).error(
@@ -185,4 +235,5 @@ var personCtrl = function ($scope, $http) {
 			},
 		];
 	};
+}*/
 };
