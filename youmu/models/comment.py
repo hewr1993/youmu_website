@@ -2,7 +2,7 @@ __author__ = 'badpoet'
 
 class Comment(object):
 
-    def ___init__(self, comment_id, user_id, video_id, content, reply_to, reply_time, floor = -1):
+    def __init__(self, comment_id, user_id, video_id, content, reply_to, reply_time, floor = -1):
         self.user_id = user_id
         self.comment_id = comment_id
         self.video_id = video_id
@@ -18,6 +18,6 @@ class Comment(object):
             "video_id": self.video_id,
             "content": self.content,
             "reply_to": self.reply_to,
-            "reply_time": self.reply_time,
+            "reply_time": self.reply_time.strftime("%Y-%m-%d-%X"),
             "floor": self.floor
         }

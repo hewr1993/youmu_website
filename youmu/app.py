@@ -4,18 +4,22 @@ from flask import Flask, request, session, render_template
 from flask.ext.login import LoginManager
 
 from .config import DefaultConfig
+
 from frontend import frontend
 from api.user.views import user
-from api.user.service import UserService
 from api.video.views import video
-from api.video.service import VideoService
 from api.videolist.views import video_list
+from api.comment.views import comment
+
+from api.user.service import UserService
+from api.video.service import VideoService
 
 DEFAULT_BLUEPRINTS = [
     frontend,
     user,
     video,
-    video_list
+    video_list,
+    comment
 ]
 
 def create_app(config = None, app_name = None, blueprints = None):

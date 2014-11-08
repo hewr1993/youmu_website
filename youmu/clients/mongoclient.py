@@ -109,10 +109,10 @@ class MongoClient(object):
             new = True,
             upsert = True
         )
-        return int(tmp["floor"])
+        return int(tmp["floor_cnt"])
 
     def insert_comment(self, comment):
-        self.insert_comment(comment)
+        self.comment_col.insert(comment)
 
     def get_comment_by_video_id(self, video_id):
         return self.comment_col.find(

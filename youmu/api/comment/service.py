@@ -8,6 +8,7 @@ class CommentService(object):
 
     @staticmethod
     def mto(item):
+        print item
         return Comment(
             item.get("comment_id"),
             item.get("user_id"),
@@ -15,7 +16,7 @@ class CommentService(object):
             item.get("content"),
             item.get("reply_to"),
             item.get("reply_time"),
-            item.get("floor")
+            int(item.get("floor"))
         )
 
     @staticmethod

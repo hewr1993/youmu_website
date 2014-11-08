@@ -10,22 +10,22 @@ import json
 
 comment = Blueprint("comment", __name__, url_prefix = "/api/comment")
 
-@comment.route("/video/<video_id>", method = ["GET", "POST"])
+@comment.route("/video/<video_id>", methods = ["GET", "POST"])
 def work_on_video(video_id):
     if request.method == "GET":
-        comments = CommentService.get_comments_by_video_id(video_id)
+        comments = [c.to_dict() for c in CommentService.get_comments_by_video_id(video_id)]
         return json.dumps(comments, ensure_ascii = False)
     else:
-        if not current_user.id:
-            return '{ "state": "no" }'
+        if current_user.is_anonymous():
+            return '{ "state": "need login" }'
         body = json.loads(request.data)
         content = body.get("content", "")
         if not content:
-            return '{ "state": "no" }'
+            return '{ "state": "empty content" }'
         CommentService.comment_on(current_user.id, video_id, content, "")
         return '{ "state": "yes" }'
 
-@comment.route("/user/<user_id>", method = ["GET"])
+@comment.route("/user/<user_id>", methods = ["GET"])
 def work_on_user(user_id):
-    comments = CommentService.get_comments_by_user_id(user_id)
+    comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id)]
     return json.dumps(comments, ensure_ascii = False)
