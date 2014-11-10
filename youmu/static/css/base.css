@@ -227,3 +227,22 @@ html {
 
 .comments-list {
   list-style-type: none; }
+
+footer {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin: 50px 0 0 0;
+  padding: 20px;
+  border-top: 1px solid #777;
+  background-color: rgba(85, 85, 85, 0.5); }
+  footer:last-child {
+    margin-right: 0; }
+  footer .logo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    footer .logo:last-child {
+      margin-right: 0; }
