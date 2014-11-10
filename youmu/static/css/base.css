@@ -1,10 +1,126 @@
-.top-bar-logo {
-  position: relative;
-  bottom: 2px;
-  height: 40px; }
+/* Neat 1.7.0
+ * http://neat.bourbon.io
+ * Copyright 2012-2014 thoughtbot, inc.
+ * MIT License */
+html {
+  box-sizing: border-box; }
 
-.top-bar {
-  margin-bottom: 20px; }
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/* VARIABLES */
+/* MODULES */
+/* MODULES */
+.index {
+  background-image: url('/static/img/stone_lion_blurred.jpg'); }
+
+.main {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto; }
+  .main:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.masthead {
+  margin: 50px 0;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-left: 34.11922%;
+  text-align: center; }
+  .masthead:last-child {
+    margin-right: 0; }
+
+.notification {
+  background-color: #008cba;
+  color: white;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  margin-left: 17.05961%; }
+  .notification:last-child {
+    margin-right: 0; }
+
+.video-list {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin-right: 0; }
+  .video-list:last-child {
+    margin-right: 0; }
+
+.video-list-item {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 23.23176%;
+  margin-bottom: 20px;
+  position: relative;
+  background-color: black; }
+  .video-list-item:last-child {
+    margin-right: 0; }
+  .video-list-item:nth-child(4n+3) {
+    margin-right: 0; }
+  .video-list-item .video-link:hover .video-thumbnail {
+    box-shadow: 0 0 20px #333; }
+  .video-list-item .video-thumbnail {
+    display: block;
+    padding-top: 62.5%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 0.2s ease; }
+  .video-list-item .video-data-container-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9) 80%); }
+  .video-list-item .video-data-area {
+    padding: 1.618em; }
+  .video-list-item .video-title, .video-list-item .video-play-count, .video-list-item .video-description {
+    color: white; }
+  .video-list-item .video-title {
+    font-size: 1.5em; }
+
+.video-list .first {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%; }
+  .video-list .first:last-child {
+    margin-right: 0; }
+  .video-list .first .video-title {
+    font-size: 3em; }
+.video-list .second, .video-list .third {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0; }
+  .video-list .second:last-child, .video-list .third:last-child {
+    margin-right: 0; }
+  .video-list .second .video-title, .video-list .third .video-title {
+    font-size: 2.5em; }
+
+.credits {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .credits:last-child {
+    margin-right: 0; }
 
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
@@ -50,5 +166,103 @@
     font-family: FontAwesome;
     opacity: 0.7; }
 
+.navbar {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin-right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px; }
+  .navbar:last-child {
+    margin-right: 0; }
+  .navbar .logo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    .navbar .logo:last-child {
+      margin-right: 0; }
+    .navbar .logo img {
+      max-height: 49px; }
+  .navbar .button {
+    margin: 0;
+    width: 100%; }
+  .navbar .login {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%;
+    margin-left: 17.05961%;
+    margin-right: 0; }
+    .navbar .login:last-child {
+      margin-right: 0; }
+  .navbar .logout {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .navbar .logout:last-child {
+      margin-right: 0; }
+  .navbar .user, .navbar .logout-button {
+    float: left;
+    display: block;
+    margin-right: 7.42297%;
+    width: 46.28851%; }
+    .navbar .user:last-child, .navbar .logout-button:last-child {
+      margin-right: 0; }
+  .navbar .user {
+    padding-top: 14px;
+    padding-bottom: 15px;
+    text-align: right; }
+  .navbar .search-area {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 57.35098%; }
+    .navbar .search-area:last-child {
+      margin-right: 0; }
+    .navbar .search-area input {
+      height: 49px;
+      float: left;
+      display: block;
+      margin-right: 4.11092%;
+      width: 70.25402%;
+      margin: 0; }
+      .navbar .search-area input:last-child {
+        margin-right: 0; }
+    .navbar .search-area .button {
+      margin: 0;
+      float: left;
+      display: block;
+      margin-right: 4.11092%;
+      width: 25.63506%;
+      background-color: #f04124; }
+      .navbar .search-area .button:last-child {
+        margin-right: 0; }
+      .navbar .search-area .button:hover {
+        background-color: #d32a0e; }
+
 .comments-list {
   list-style-type: none; }
+
+footer {
+  margin: 50px 0 0 0;
+  padding: 20px;
+  border-top: 1px solid #777;
+  background-color: rgba(85, 85, 85, 0.5); }
+  footer .footer-wrap {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto; }
+    footer .footer-wrap:after {
+      content: "";
+      display: table;
+      clear: both; }
+  footer .logo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    footer .logo:last-child {
+      margin-right: 0; }
