@@ -17,6 +17,7 @@ class MongoClient(object):
         self.comment_col = self.db["comment"]
         self.comment_trash_col = self.db["comment_trash"]
         self.comment_floor_ctrl_col = self.db["floor_ctrl"]
+        self.inc_id_ctrl_col = self.db["inc_id_ctrl"]
 
     # ABOUT USER
 
@@ -42,6 +43,19 @@ class MongoClient(object):
         return self.admin_col.find_one({ "id": user_id }) is not None
 
     # ABOUT VIDEO
+
+    def assign_video_id(self):
+        tmp = self.inc_id_ctrl_col.find_and_modify(
+            query = { "type": "video_id" },
+            update = { "$inc": { "video_id": 1 } },
+            new = True,
+            upsert = True
+        )
+        return int(tmp["video_id"])
+
+    def insert_video(self, video, file_name):
+        self.video_col.insert(video)
+        self.video_file_col.insert( { "video_id": video["video_id"], "file_name": file_name } )
 
     def get_video_by_id(self, video_id):
         return self.video_col.find_one({"video_id": video_id})
