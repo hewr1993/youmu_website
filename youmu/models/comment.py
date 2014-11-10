@@ -14,7 +14,6 @@ class Comment(object):
         self.floor = floor
 
     def to_dict(self):
-        user = UserService.load_user_by_id(self.user_id)
         return {
             "comment_id": self.comment_id,
             "user_id": self.user_id,
@@ -22,7 +21,11 @@ class Comment(object):
             "content": self.content,
             "reply_to": self.reply_to,
             "reply_time": self.reply_time.strftime("%Y-%m-%d-%X"),
-            "floor": self.floor,
-            "user_name": user.name,
-            "user_avatar": user.avatar
+            "floor": self.floor
         }
+
+    def to_rich_dict(self):
+        user = UserService.load_user_by_id(self.user_id)
+        dic = self.to_dict()
+        dic["user_name"] = user.name
+        dic["user_avatar"] = user.avatar
