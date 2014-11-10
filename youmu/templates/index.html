@@ -5,20 +5,18 @@
         {% include 'partials/head.html' %}
 	</head>
     <body class="index" data-stellar-background-ratio="0.5">
-        {% include 'partials/topbar.html' %}
         <div class="main" ng-controller="videoStoreCtrl">
-            <div class="masthead">
-                <img ng-src="{{logoUrl}}">
-                <div class="hide-for-small panel">
-                    <h3>一个标题</h3>
-                    <h5 class="subheader">一坨内容</h5>
+
+            <header>
+                <div class="masthead">
+                    <img class="logo" ng-src="{{logoUrl}}">
                 </div>
-                <a href="#">
+                {% include 'partials/topbar.html' %}
+            </header>
+
                 <div class="panel callout radius">
                     <h6>找到{{videos.length}}个视频</h6>
                 </div>
-                </a>
-            </div>
 
             <div class="video-list">
                 <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">

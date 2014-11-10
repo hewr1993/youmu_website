@@ -10,61 +10,6 @@ html {
 
 /* VARIABLES */
 /* MODULES */
-/* Fluid video iframes by Thierry Koblentz via A List Apart. */
-#playbox {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  background-color: black; }
-  #playbox iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; }
-
-.video-data .uploader, .video-data .likes-count, .video-data .views-count {
-  font-size: 2em;
-  padding: 30px;
-  color: white; }
-
-.video-data .label {
-  display: none; }
-.video-data .uploader {
-  background-color: #008cba; }
-  .video-data .uploader:before {
-    content: "\f007";
-    font-family: FontAwesome;
-    opacity: 0.7; }
-  .video-data .uploader:hover, .video-data .uploader:active, .video-data .uploader:focus {
-    background-color: #00b2ed; }
-.video-data .likes-count {
-  background-color: #43ac6a; }
-  .video-data .likes-count:before {
-    content: "\f164";
-    font-family: FontAwesome;
-    opacity: 0.7; }
-  .video-data .likes-count:hover, .video-data .likes-count:active, .video-data .likes-count:focus {
-    background-color: #61c185; }
-.video-data .views-count {
-  background-color: #f04124; }
-  .video-data .views-count:before {
-    content: "\f06e";
-    font-family: FontAwesome;
-    opacity: 0.7; }
-
-.comments-list {
-  list-style-type: none; }
-
-.top-bar-logo {
-  position: relative;
-  bottom: 2px;
-  height: 40px; }
-
-.top-bar {
-  margin-bottom: 20px; }
-
 /* MODULES */
 .index {
   background-image: url('/static/img/stone_lion_blurred.jpg'); }
@@ -104,7 +49,8 @@ html {
   margin-right: 2.35765%;
   width: 23.23176%;
   margin-bottom: 20px;
-  position: relative; }
+  position: relative;
+  background-color: black; }
   .video-list-item:last-child {
     margin-right: 0; }
   .video-list-item:nth-child(4n+3) {
@@ -157,3 +103,100 @@ html {
   width: 100%; }
   .credits:last-child {
     margin-right: 0; }
+
+/* Fluid video iframes by Thierry Koblentz via A List Apart. */
+#playbox {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  background-color: black; }
+  #playbox iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; }
+
+.video-data .uploader, .video-data .likes-count, .video-data .views-count {
+  font-size: 2em;
+  padding: 30px;
+  color: white; }
+
+.video-data .label {
+  display: none; }
+.video-data .uploader {
+  background-color: #008cba; }
+  .video-data .uploader:before {
+    content: "\f007";
+    font-family: FontAwesome;
+    opacity: 0.7; }
+  .video-data .uploader:hover, .video-data .uploader:active, .video-data .uploader:focus {
+    background-color: #00b2ed; }
+.video-data .likes-count {
+  background-color: #43ac6a; }
+  .video-data .likes-count:before {
+    content: "\f164";
+    font-family: FontAwesome;
+    opacity: 0.7; }
+  .video-data .likes-count:hover, .video-data .likes-count:active, .video-data .likes-count:focus {
+    background-color: #61c185; }
+.video-data .views-count {
+  background-color: #f04124; }
+  .video-data .views-count:before {
+    content: "\f06e";
+    font-family: FontAwesome;
+    opacity: 0.7; }
+
+.navbar {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin-right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px; }
+  .navbar:last-child {
+    margin-right: 0; }
+  .navbar .button {
+    margin: 0;
+    width: 100%; }
+  .navbar .login {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%;
+    margin-left: 34.11922%;
+    margin-right: 0; }
+    .navbar .login:last-child {
+      margin-right: 0; }
+  .navbar .search-area {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .navbar .search-area:last-child {
+      margin-right: 0; }
+    .navbar .search-area input {
+      height: 49px;
+      float: left;
+      display: block;
+      margin-right: 4.82916%;
+      width: 65.05695%;
+      margin: 0; }
+      .navbar .search-area input:last-child {
+        margin-right: 0; }
+    .navbar .search-area .button {
+      margin: 0;
+      float: left;
+      display: block;
+      margin-right: 4.82916%;
+      width: 30.11389%;
+      background-color: #f04124; }
+      .navbar .search-area .button:last-child {
+        margin-right: 0; }
+      .navbar .search-area .button:hover {
+        background-color: #d32a0e; }
+
+.comments-list {
+  list-style-type: none; }
