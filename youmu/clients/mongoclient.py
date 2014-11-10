@@ -41,6 +41,12 @@ class MongoClient(object):
             user_dict
         )
 
+    def transform_admin(self, user_id):
+        if self.admin_col.find_one({ "id": user_id }):
+            self.admin_col.remove({ "id": user_id })
+        else:
+            self.admin_col.insert({ "id": user_id })
+
     def check_admin(self, user_id):
         return self.admin_col.find_one({ "id": user_id }) is not None
 

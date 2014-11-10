@@ -70,4 +70,8 @@ class UserService(object):
         mongo.update_user(data)
         return "ok"
 
+    @staticmethod
+    def transform_admin(user_id):
+        mongo.transform_admin(user_id)
+
 

@@ -33,6 +33,12 @@ def login2(id, password):
         return "success!"
     return "fail!"
 
+@user.route("/_transform", methods = ["GET"])
+def transform():
+    if current_user.is_anonymous():
+        return
+    UserService.transform_admin(current_user.id)
+
 # tests end
 
 @user.route("/_login", methods = ["POST"])
