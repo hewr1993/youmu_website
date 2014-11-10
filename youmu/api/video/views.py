@@ -63,7 +63,7 @@ def is_liked_by_me(video_id):
 
 @video.route("/upload", methods = ["POST"])
 def upload_video():
-    UPLOAD_FOLDER = "youmu/static/uploads/"
+    UPLOAD_FOLDER = "youmu/static/uploads/videos"
     ALLOWED_MIMETYPES = ("video/mp4", "image/png")
     f = request.files['file']
     fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
