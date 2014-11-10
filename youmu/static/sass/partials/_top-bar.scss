@@ -4,6 +4,8 @@
 
     background-color: rgba(white, 0.5);
 
+    transition: all 0.3s ease;
+
     padding: 10px;
 
     .logo {
@@ -63,4 +65,6 @@
 .navbar-fixed {
     position: fixed;
     @include outer-container();
+    z-index: 100;
+    background-color: rgba(white, 0.9);
 }
