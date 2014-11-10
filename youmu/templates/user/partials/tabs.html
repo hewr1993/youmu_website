@@ -2,14 +2,19 @@
 	<div data-magellan-expedition="fixed">
 		<dl class="sub-nav">
 			<dd data-magellan-arrival="profile"><a href="#profile">个人资料</a></dd>
+			<dd data-magellan-arrival="videos"><a href="#videos">视频管理</a></dd>
 		</dl>
 	</div>
-
 	<a name="profile"></a><hr><h3 data-magellan-destination="profile">个人资料</h3>
 	<div class="row">
 		<div class="small-12 small-centered columns">
 			{% include 'user/partials/profile.html' %}
 		</div>
 	</div>
-
+	<a name="videos"></a><hr><h3 data-magellan-destination="videos">视频管理</h3>
+	<div class="row">
+		<div class="small-12 small-centered columns">
+			{% include 'user/partials/videos.html' %}
+		</div>
+	</div>
 </section>

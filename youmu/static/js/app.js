@@ -126,78 +126,28 @@ var videoDataCtrl = function ($scope, $http) {
 var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 	$rootScope.$on('logined', function() {
 		$scope.username = UserService.getName();
-	});
-
-/*{var me;								//保存个人信息的
-	var user_id = $("#user_id").val();	//当前要访问的是谁的页面
-	$scope.is_me = false;				//判断是否访问的是自己的页面
-	$scope.tab = 0;
-	$http.get("/api/user/_me").success(
-		function(data, status) {
-			//alert($("#user_id").val() + " | " + data.id);
-			me = data;
-			if (user_id === data.id){
-				$scope.is_me = true;
-				//alert("is me");
-			}
-		}
-	).error(
-		function(data, status) {
-			alert("获取个人信息失败");
-		}
-	);
-
-	$scope.isSelected = function(checkTab){
-		if ($scope.tab === checkTab)
-			return true;
-		else return false;
-	};
-
-	$scope.get_profile = function(){
-		$scope.tab = 1;
-		alert("获取当前用户信息");
-		if ($scope.is_me){
-			$scope.name = me.name;
-		}
-		else {
-			$http.get("/api/user/" + user_id).success(
+		$scope.user_id = UserService.getID();
+		$scope.get_videos = function(){
+			//$http.get("/api/videolist/").success(
+			$http.get("/api/videolist/owner/" + $scope.user_id).success(
 				function(data, status) {
-					$scope.name = data.name;
-				}
-			).error(
-				function(data, status) {
-					alert("获取个人信息失败");
-				}
-			);
-		}
-	};
-
-	$scope.get_videos = function(){
-		$scope.tab = 2;
-		alert("获取当前用户上传视频信息");
-		$http.get("/api/videolist/owner/" + user_id).success(
-			function(data, status) {
-				$scope.videos = [];
-				for (var i = 0; i < data.length; ++i) {
-					item = data[i];
-					item.videoUrl = "/videos/" + item.video_id;
-					$scope.videos.push(item);
-				};
-			}
-		).error(
-			function(data, status) {
-				alert("失败了");
-				$http.get("/api/video/").success(function(data, status) {		//用这行可查看大致效
 					$scope.videos = [];
 					for (var i = 0; i < data.length; ++i) {
 						item = data[i];
 						item.videoUrl = "/videos/" + item.video_id;
 						$scope.videos.push(item);
 					};
-				});
-			}
-		);
-	};
+				}
+			).error(
+				function(data, status) {
+					alertInfo("获取上传视频列表失败");
+				}
+			);
+		};
+		$scope.get_videos();
+	});
+
+/*{var me;								//保存个人信息的
 
 	$scope.get_audios = function(){
 		$scope.tab = 3;

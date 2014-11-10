@@ -3,16 +3,16 @@
 </div>
 <div class="large-8 columns">
 	<div class="row">
-		<div class="large-4 small-10 columns" ng-repeat="video in videos">
-			<a href="#">禁用</a>
+		<div class="small-4 columns" ng-repeat="video in videos">
+			<!-- TODO：根据最新设计修改 -->
 			<a href="{{video.videoUrl}}" target="_blank">
 				<div style="height:258px; line-height:258px;">
 					<img ng-src="{{video.cover}}">
 				</div>
 			</a>
 			<div class="panel">
-				<h5>{{video.title}}</h5>
-				<h6 class="subheader">播放数：{{video.play_count}}</h6>
+				<button class="warning">禁用</button>
+				{{video.title}}
 			</div>
 		</div>
 	</div>
