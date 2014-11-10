@@ -14,7 +14,7 @@ class Comment(object):
         self.floor = floor
 
     def to_dict(self):
-        user = UserService.load_user_by_id(user_id)
+        user = UserService.load_user_by_id(self.user_id)
         return {
             "comment_id": self.comment_id,
             "user_id": self.user_id,
@@ -24,5 +24,5 @@ class Comment(object):
             "reply_time": self.reply_time.strftime("%Y-%m-%d-%X"),
             "floor": self.floor,
             "user_name": user.name,
-            "user_avatar": user.avatarß
+            "user_avatar": user.avatar
         }
