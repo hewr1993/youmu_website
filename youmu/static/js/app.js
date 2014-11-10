@@ -146,45 +146,4 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		};
 		$scope.get_videos();
 	});
-
-/*{var me;								//保存个人信息的
-
-	$scope.get_audios = function(){
-		$scope.tab = 3;
-		alert("获取当前用户订阅音频信息");
-	};
-
-	$scope.get_notifications = function(){
-		$scope.tab = 4;
-		alert("获取通知");
-		$scope.notifications = [
-			{
-				"is_comment": false,
-				"content": "你已被屏蔽",
-				"date": "2014/1/1",
-			},
-			{
-				"is_comment": true,
-				"content": "hwr12在5回复了你",
-				"user_id": "hwr12",
-				"comment_id": "1",
-				"video_id": "5",		//111在
-				"date": "2014/1/5",
-			},
-			{
-				"is_comment": true,
-				"content": "zxk12在1回复了你",
-				"user_id": "zxk12",
-				"comment_id": "1",
-				"video_id": "1",		//111在
-				"date": "2014/1/3",
-			},
-			{
-				"is_comment": false,
-				"content": "你已解除屏蔽",
-				"date": "2014/1/4",
-			},
-		];
-	};
-}*/
 };
