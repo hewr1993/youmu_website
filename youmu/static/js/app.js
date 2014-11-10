@@ -217,20 +217,17 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.get_videos();
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");
-			$http.put("/api/user/_me",
-			{
-				"name":$("#username").val(),
-				"avatar":""
-			}).success(
-				function(data, status) {
+			$("#modifyProfileForm").ajaxSubmit({
+				type:'put',
+				url: "/api/user/_me", 
+				success: function(data) {
 					location.reload();
-				}
-			).error(
-				function(data, status) {
-					alertInfo(data + "<br>Code:" + status);
+				},
+				error: function(e) {
 					$("#modifyProfileButton").removeAttr("disabled");
+					alertInfo("上传失败"/* + e.responseText*/);
 				}
-			);
+			});
 		});
 		$('#uploadVideoForm').on('valid.fndtn.abide', function() {
 			$("#uploadVideoButton").attr("disabled", "disabled");
