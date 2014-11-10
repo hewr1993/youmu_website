@@ -1,37 +1,15 @@
-<section ng-controller="personCtrl"> 
-	<h1>{{ user_id }}</h1>
-	<div>
-		<ul class="nav nav-pills">
-	        <li ng-class="{ active: {{tab}} === 1 }">
-				<a href ng-click="get_profile();">个人资料</a>
-				<!--a href="/{{ user_id }}/profile" ng-click="get_profile();">个人资料</a-->
-			</li>
-	        <li ng-class="{ active: tab === 2 }">
-				<a href ng-click="get_videos();">视频管理</a>
-				<!--a href="/{{ user_id }}/videos">视频管理</a-->
-			</li>
-	        <li ng-class="{ active: tab === 3 }">
-				<a href ng-click="get_audios();">音频管理</a>
-				<!--a href="/{{ user_id }}/audios">音频管理</a-->
-			</li>
-			<!--li ng-hide="{{!is_me}}" ng-class="{ active: tab === 4 }"-->
-			<li ng-class="{ active: tab === 4 }">
-				<a href ng-click="get_notifications();">通知中心</a>
-				<!--a href="/me/notifications">通知中心</a-->
-			</li>
-	        <li ng-class="{ active: tab === 5 }"><a href="/users">用户管理</a></li>
-		</ul>		
+<section ng-controller="personalCenterCtrl"> 
+	<div data-magellan-expedition="fixed">
+		<dl class="sub-nav">
+			<dd data-magellan-arrival="profile"><a href="#profile">个人资料</a></dd>
+		</dl>
 	</div>
-	<div ng-show="isSelected(1)">
-		{% include 'user/partials/profile.html' %}
+
+	<a name="profile"></a><hr><h3 data-magellan-destination="profile">个人资料</h3>
+	<div class="row">
+		<div class="small-12 small-centered columns">
+			{% include 'user/partials/profile.html' %}
+		</div>
 	</div>
-	<div ng-show="isSelected(2)">
-		{% include 'user/partials/videos.html' %}
-	</div>
-	<div ng-show="isSelected(3)">
-		{% include 'user/partials/audios.html' %}
-	</div>
-	<div ng-show="isSelected(4)">
-		{% include 'user/partials/notifications.html' %}
-	</div>
+
 </section>

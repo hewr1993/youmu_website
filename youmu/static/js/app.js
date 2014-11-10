@@ -123,8 +123,9 @@ var videoDataCtrl = function ($scope, $http) {
 	};
 };
 
-var personCtrl = function ($scope, $rootScope, $http, UserService) {
+var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 	$rootScope.$on('logined', function() {
+		$scope.username = UserService.getName();
 	});
 
 /*{var me;								//保存个人信息的

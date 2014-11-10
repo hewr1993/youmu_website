@@ -46,13 +46,7 @@ def to_upload_file():
 def player():
     return render_template('player.html')
 
-@frontend.route('/user/<user_id>')
-def to_my_area(user_id):
-    return render_template('user/user.html', user_id = user_id)
-
-@frontend.route('/users')
-def to_all_users():
-    return render_template('user/users.html')
-
-
+@frontend.route('/user/')
+def to_my_area():
+    return render_template('user/index.html')
 
