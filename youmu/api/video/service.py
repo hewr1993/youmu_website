@@ -27,8 +27,9 @@ class VideoService(object):
         )
 
     @staticmethod
-    def insert_video(video):
+    def insert_video(video, fname):
         video.video_id = mongo.assign_video_id()
+        mongo.insert_video(video.to_dict(), fname)
 
     @staticmethod
     def get_video_list():

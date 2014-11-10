@@ -82,4 +82,5 @@ def upload_video():
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         cover = "",
         description = postBody["description"])
-    VideoService.insert_video(obj)
+    VideoService.insert_video(obj, fname)
+    return json.dumps({"state":"success"}, ensure_ascii = False)
