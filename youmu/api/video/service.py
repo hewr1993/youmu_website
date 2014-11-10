@@ -70,3 +70,16 @@ class VideoService(object):
     @staticmethod
     def count_like_info_by_video(video_id):
         return mongo.count_like_info_by_video(video_id)
+
+    @staticmethod
+    def hide_video(video_id, user_id, op = False):
+        v = VideoService.get_video_by_id(video_id)
+        if v.owner_id != user_id:
+            return
+        mongo.disable_video(video_id, op)
+
+    @staticmethod
+    def ban_video(video_id, is_admin, op = False):
+        if not is_admin:
+            return
+        mongo.ban_video(video_id, op)

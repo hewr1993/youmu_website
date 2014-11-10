@@ -68,6 +68,18 @@ class MongoClient(object):
     def get_video_by_id(self, video_id):
         return self.video_col.find_one({"video_id": video_id})
 
+    def hide_video(self, video_id, op = True):
+        self.video_col.update(
+            { "video_id": video_id },
+            { "$set": { "disabled": op } }
+        )
+
+    def ban_video(self, video_id, op = True):
+        self.video_col.update(
+            { "video_id": video_id },
+            { "$set": { "banned": op } }
+        )
+
     def get_video_list(self, offset = 0, size = 10):
         return self.video_col.find()[offset : size]
 

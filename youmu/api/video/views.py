@@ -35,6 +35,26 @@ def get_video_by_id(video_id):
     return json.dumps(v, ensure_ascii = False)
 
 
+@video.route("/<video_id>/_disable", methods = ["POST"])
+def hide_video(video_id):
+    VideoService.hide_video(video_id, current_user.id, op = True)
+
+
+@video.route("/<video_id>/_ban", methods = ["POST"])
+def ban_video(video_id):
+    VideoService.ban_video(video, current_user.is_admin(), op = True)
+
+
+@video.route("/<video_id>/_enable", methods = ["POST"])
+def hide_video(video_id):
+    VideoService.hide_video(video_id, current_user.id, op = False)
+
+
+@video.route("/<video_id>/_unban", methods = ["POST"])
+def ban_video(video_id):
+    VideoService.ban_video(video, current_user.is_admin(), op = False)
+
+
 @video.route("/<video_id>/_play", methods = ["POST"])
 def add_play_count(video_id):
     VideoService.add_play_count(video_id)
