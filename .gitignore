@@ -1,4 +1,4 @@
-upload
+youmu/static/uploads/*
 
 *.egg-info
 *.log
