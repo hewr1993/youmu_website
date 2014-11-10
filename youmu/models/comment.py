@@ -1,5 +1,7 @@
 __author__ = 'badpoet'
 
+from youmu.api.user.service import UserService
+
 class Comment(object):
 
     def __init__(self, comment_id, user_id, video_id, content, reply_to, reply_time, floor = -1):
@@ -12,6 +14,7 @@ class Comment(object):
         self.floor = floor
 
     def to_dict(self):
+        user = UserService.load_user_by_id(user_id)
         return {
             "comment_id": self.comment_id,
             "user_id": self.user_id,
@@ -19,5 +22,7 @@ class Comment(object):
             "content": self.content,
             "reply_to": self.reply_to,
             "reply_time": self.reply_time.strftime("%Y-%m-%d-%X"),
-            "floor": self.floor
+            "floor": self.floor,
+            "user_name": user.name,
+            "user_avatar": user.avatarß
         }

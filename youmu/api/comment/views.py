@@ -33,5 +33,5 @@ def work_on_user(user_id):
     offset = int(request.args.get("offset", 0))
     size = int(request.args.get("size", 20))
     reverse = int(request.args.get("reverse", 0)) > 0
-    comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
+    comments = [c.to_dict_with_user() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
     return json.dumps(comments, ensure_ascii = False)
