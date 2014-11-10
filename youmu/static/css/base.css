@@ -70,7 +70,7 @@ html {
   background-image: url('/static/img/stone_lion_blurred.jpg'); }
 
 .main {
-  max-width: 1280px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto; }
   .main:after {
@@ -82,7 +82,10 @@ html {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 31.76157%; }
+  width: 31.76157%;
+  margin-left: 34.11922%;
+  text-align: center;
+  margin-bottom: 50px; }
   .masthead:last-child {
     margin-right: 0; }
 
