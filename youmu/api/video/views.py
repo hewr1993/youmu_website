@@ -86,3 +86,8 @@ def upload_video():
         description = postBody["description"])
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
+
+
+@video.route("/file/<video_id>/WAIMAIdi2fen0.5price")
+def get_file_name(video_id):
+    return VideoService.get_file_name(video_id)

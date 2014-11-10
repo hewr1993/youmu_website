@@ -53,7 +53,7 @@ class MongoClient(object):
             new = True,
             upsert = True
         )
-        return int(tmp["video_id"])
+        return str(tmp["video_id"])
 
     def get_video_file_name(self, video_id):
         d = self.video_file_col.find_one({"video_id": video_id })
