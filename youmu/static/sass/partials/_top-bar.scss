@@ -6,20 +6,27 @@
 
     padding: 10px;
 
+    .logo {
+        @include span-columns(1);
+
+        img {
+            max-height: 49px;
+        }
+    }
+
     .button {
         margin: 0;
         width: 100%;
     }
 
     .login {
-        @include span-columns(2 of 12);
-        @include shift(3);
+        @include span-columns(2);
+        @include shift(2);
         margin-right: 0;
     }
 
     .logout {
-        @include span-columns(4 of 12);
-        @include shift(1);
+        @include span-columns(4);
     }
 
     .user, .logout-button {

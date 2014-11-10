@@ -169,6 +169,15 @@ html {
   padding: 10px; }
   .navbar:last-child {
     margin-right: 0; }
+  .navbar .logo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    .navbar .logo:last-child {
+      margin-right: 0; }
+    .navbar .logo img {
+      max-height: 49px; }
   .navbar .button {
     margin: 0;
     width: 100%; }
@@ -177,7 +186,7 @@ html {
     display: block;
     margin-right: 2.35765%;
     width: 14.70196%;
-    margin-left: 25.58941%;
+    margin-left: 17.05961%;
     margin-right: 0; }
     .navbar .login:last-child {
       margin-right: 0; }
@@ -185,8 +194,7 @@ html {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 31.76157%;
-    margin-left: 8.5298%; }
+    width: 31.76157%; }
     .navbar .logout:last-child {
       margin-right: 0; }
   .navbar .user, .navbar .logout-button {
