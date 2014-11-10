@@ -163,6 +163,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 				"content":$("#commentContent").val()
 			}).success(
 				function(data, status) {
+					//$("#commentContent").blur();
 					$("#commentContent").val("");
 					$("#commentButton").removeAttr("disabled");
 					$scope.refreshCommentBox();
@@ -177,6 +178,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.delComment = function(comment_id) {
 			$http.delete("/api/comment/" + comment_id).success(
 				function(data, status) {
+					alertInfo("评论删除成功");
 					$scope.refreshCommentBox();
 				}
 			).error(

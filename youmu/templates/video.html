@@ -60,7 +60,8 @@
                     <fieldset>
                         <legend>视频信息</legend>
                         <div class="medium-3 large-2 columns time">{{video.upload_time | date}}</div>
-                        <div class="medium-9 large-10 columns description">{{video.description}}</div>
+                        <div class="medium-7 large-8 columns description">{{video.description}}</div>
+						<div class="medium-1 large-1 columns right avatar"><img ng-src="{{video.owner_avatar}}" style="width:100%" /></div>
                     </fieldset>
                 </div>
 
@@ -86,15 +87,26 @@
                                     <li class="comment-item">
                                         <div class="row">
                                             <div class="small-1 columns author">
-                                                <i class="fi-x" 
-                                                   ng-show="comment.user_id == user_id" 
-                                                   ng-click="delComment(comment.comment_id)"
-                                                   style="cursor:pointer;">
-                                                </i>
-                                                <a href="#">{{comment.user_name}}</a>
+												<img ng-src="{{comment.user_avatar}}" />
                                             </div>
                                             <div class="small-9 columns content">
-                                                {{comment.content}}
+												<table style="width:100%">
+													<tr>
+														<td>
+															<i class="fi-x" 
+															   ng-show="comment.user_id == user_id" 
+															   ng-click="delComment(comment.comment_id)"
+															   style="cursor:pointer;">
+															</i>
+															<a href="#">{{comment.user_name}}</a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															{{comment.content}}
+														</td>
+													</tr>
+												</table>
                                             </div>
                                             <div class="small-2 columns time">
                                                 {{comment.reply_time}}&nbsp;
@@ -104,8 +116,12 @@
                                     </li>
                                 </ul>
                                 <form class="custom" id="commentForm" data-abide="ajax">
-                                    <textarea id="commentContent" placeholder="请输入你的评论..."></textarea>
-                                    <button type="submit" id="commentButton">评论</button>
+									<fieldset>
+										<legend>不吐不快</legend>
+										<input type="text" id="commentContent" placeholder="请输入你的评论..." required />
+										<small class="error">评论不能为空</small> 
+										<button type="submit" id="commentButton">吐槽</button>
+									</fieldset>
                                 </form>
                             </div>
                         </fieldset>
