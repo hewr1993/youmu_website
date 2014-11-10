@@ -7,6 +7,10 @@ from flask.ext.login import (login_required, current_user, login_user, logout_us
 from .service import VideoService
 
 import json
+import os
+import mimetypes
+from werkzeug.utils import secure_filename
+from tempfile import mktemp
 
 video = Blueprint("video", __name__, url_prefix = "/api/video")
 
@@ -58,3 +62,24 @@ def is_liked_by_me(video_id):
         return '{"like": "no"}'
     state = VideoService.has_liked(current_user.id, video_id)
     return json.dumps({ "like": "yes" if state else "no" }, ensure_ascii = False)
+
+
+@video.route("/upload", methods = ["POST"])
+def upload_video():
+    if current_user.is_anonymous():
+        return '{"state":"fail"}'
+    UPLOAD_FOLDER = "youmu/static/uploads/videos/"
+    ALLOWED_MIMETYPES = ("video/mp4", "image/png")
+    f = request.files['file']
+    fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+    f.save(fname)
+    if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
+        os.remove(fname)
+        return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+    postBody = json.loads(request.data)
+    obj = Video(owner_id = current_user.id,
+        title = postBody["title"],
+        upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
+        cover = "",
+        description = postBody["description"])
+    VideoService.insert_video(obj)

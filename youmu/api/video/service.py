@@ -27,6 +27,10 @@ class VideoService(object):
         )
 
     @staticmethod
+    def insert_video(video):
+        video.video_id = mongo.assign_video_id()
+
+    @staticmethod
     def get_video_list():
         res = mongo.get_video_list()
         if res is None:
