@@ -38,5 +38,7 @@ def work_on_user(user_id):
 
 @comment.route("/<comment_id>", methods = ["DELETE"])
 def delete_comment(comment_id):
-    CommentService.remove_comment_by_id(comment_id)
-    return '{ "state": "ok" }'
+    if CommentService.remove_comment_by_id(comment_id, current_user.id, current_user.is_admin()):
+        return '{ "state": "ok" }'
+    else:
+        return '{ "state": "failed" }'
