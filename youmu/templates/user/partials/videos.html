@@ -1,5 +1,6 @@
 <div class="panel callout radius">
 	<h6>共上传{{videos.length}}个视频</h6>
+	<a href="#" data-reveal-id="uploadVideoModal" class="radius button">上传新视频</a>
 </div>
 <div class="large-8 columns">
 	<div class="row">
@@ -16,4 +17,34 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div id="uploadVideoModal" class="reveal-modal" data-reveal>
+	<form class="custom" id="uploadVideoForm" data-abide="ajax">
+		<!--<form action="/api/video/upload" method="post" enctype="multipart/form-data">-->
+		<fieldset>
+            <div class="title-field"> 
+				<label>视频标题 <small>必填</small>
+					<input type="text" name="title" value="我的视频" required />
+				</label>
+				<small class="error">标题不能为空</small> 
+			</div>
+            <div class="description-field"> 
+				<label>视频描述 
+					<input type="text" name="description" value="无" />
+				</label>
+			</div>
+            <div class="cover-field"> 
+				<label>视频封面 
+					<input type="file" name="cover" />
+				</label>
+			</div>
+            <div class="video-field"> 
+				<label>视频文件 <small>必填</small>
+					<input type="file" name="video" required />
+				</label>
+				<small class="error">视频不能为空</small> 
+			</div>
+            <button type="submit" id="uploadVideoButton">上传视频</button>
+		</fieldset>
+	</form>
 </div>

@@ -12,7 +12,7 @@ class Video(object):
                  banned = False, upload_time = "", length = 0, tags = ()):
         self.video_id = unicode(video_id)
         self.title = title
-        self.cover = cover
+        self.cover = cover if len(cover) > 0 else "http://placehold.it/1000x1000&amp;text=Thumbnail"
         self.description = description
         self.play_count = int(play_count)
         self.like = int(like)

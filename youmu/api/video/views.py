@@ -70,21 +70,40 @@ def is_liked_by_me(video_id):
 def upload_video():
     if current_user.is_anonymous():
         return '{"state":"fail"}'
-    UPLOAD_FOLDER = "youmu/static/uploads/videos/"
-    ALLOWED_MIMETYPES = ("video/mp4")
-    f = request.files["video"]
-    fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
-    f.save(fname)
-    if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
-        os.remove(fname)
-        return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
-    fname = str(fname)
-    fname = fname[fname.find("/"):]
+    # video
+    try:
+        UPLOAD_FOLDER = "youmu/static/uploads/videos/"
+        ALLOWED_MIMETYPES = ("video/mp4")
+        f = request.files["video"]
+        fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        f.save(fname)
+        if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
+            os.remove(fname)
+            return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+        fname = str(fname)
+        fname = fname[fname.find("/"):]
+    except:
+        return json.dumps({"state":"fail", "content":"video upload failed"}, ensure_ascii = False)
+    # cover
+    try:
+        UPLOAD_FOLDER = "youmu/static/uploads/images/"
+        ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
+        f = request.files["cover"]
+        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        f.save(pname)
+        if mimetypes.guess_type(pname)[0] not in ALLOWED_MIMETYPES:
+            os.remove(pname)
+            return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+        pname = str(pname)
+        pname = pname[pname.find("/"):]
+    except:
+        pname = ""
+    # other information
     postBody = request.form
     obj = Video(owner_id = current_user.id,
         title = postBody["title"],
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
-        cover = "",
+        cover = pname,
         description = postBody["description"])
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
