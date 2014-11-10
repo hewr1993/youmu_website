@@ -12,8 +12,10 @@ class MongoClient(object):
         # self.db.authenticate(username, password)
         self.user_col = self.db["user"]
         self.video_col = self.db["video"]
+        self.video_trash_col = self.db["video_trash"]
         self.video_like_col = self.db["video_like"]
         self.comment_col = self.db["comment"]
+        self.comment_trash_col = self.db["comment_trash"]
         self.comment_floor_ctrl_col = self.db["floor_ctrl"]
 
     # ABOUT USER
@@ -125,3 +127,6 @@ class MongoClient(object):
             "$query": { "user_id": user_id },
             "$orderby": { "reply_time": -1 if reverse else 1 }
         })[offset : size]
+
+    def remove_comment_by_id(self, comment_id):
+        d = self.comment_col
