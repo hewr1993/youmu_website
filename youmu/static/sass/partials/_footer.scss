@@ -1,0 +1,16 @@
+footer {
+    margin: 50px 0 0 0;
+    padding: 20px;
+
+    border-top: 1px solid #777;
+    background-color: rgba(#555, 0.5);
+
+    .footer-wrap {
+        @include outer-container();
+    }
+
+    .logo {
+        @include span-columns(1);
+    }
+}
+

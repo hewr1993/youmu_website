@@ -9,7 +9,7 @@ class User(object):
         self.id = id
         self.mid = mid
         self.name = name
-        self.avatar = avatar
+        self.avatar = avatar if len(avatar) > 0 else "/static/img/human-head-with-question-mark.jpg"
 
     def is_authenticated(self):
         return True

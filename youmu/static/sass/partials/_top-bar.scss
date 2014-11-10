@@ -1,0 +1,70 @@
+.navbar {
+    @include span-columns(12);
+    margin-right: 0;
+
+    background-color: rgba(white, 0.5);
+
+    transition: all 0.3s ease;
+
+    padding: 10px;
+
+    .logo {
+        @include span-columns(1);
+
+        img {
+            max-height: 49px;
+        }
+    }
+
+    .button {
+        margin: 0;
+        width: 100%;
+    }
+
+    .login {
+        @include span-columns(2);
+        @include shift(2);
+        margin-right: 0;
+    }
+
+    .logout {
+        @include span-columns(4);
+    }
+
+    .user, .logout-button {
+        @include span-columns(2 of 4);
+    }
+
+    .user {
+        padding-top: 14px;
+        padding-bottom: 15px;
+        text-align: right;
+    }
+
+    .search-area {
+        @include span-columns(7 of 12);
+
+        input {
+            height: 49px;
+            @include span-columns(5 of 7);
+            margin: 0;
+        }
+        .button {
+            margin: 0;
+            @include span-columns(2 of 7);
+
+            background-color: $red;
+
+            &:hover {
+                background-color: darken($red, 10);
+            }
+        }
+    }
+}
+
+.navbar-fixed {
+    position: fixed;
+    @include outer-container();
+    z-index: 100;
+    background-color: rgba(white, 0.9);
+}

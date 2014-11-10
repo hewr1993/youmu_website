@@ -20,96 +20,114 @@
 		</script>
     </head>
     <body class="video">
-        {% include 'partials/topbar.html' %}
-		<div ng-controller="videoDataCtrl">
-			<div class="row">
-				<input type="hidden" value="{{ video_id }}" id="video_id"/>
-				<h1>{{video.title}}</h1>
-				<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover == '' ? 'http://placehold.it/1000x1000&amp;text=Thumbnail' : video.cover}}" data-setup='{}' width="100%">
-					<source src="" id="playboxUrl" type="video/mp4" />
-					<p class="vjs-no-js">
-					To view this video please enable JavaScript, and consider upgrading to a web browser
-					that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-					</p>
-				</video>
-				<script>
-					$("#playboxUrl").attr("src", "http://" + document.domain + ":8888/" + $("#video_id").val());
-				</script>
-			</div>
+        <div class="main">
+            {% include 'partials/topbar.html' %}
+            <div ng-controller="videoDataCtrl">
+                <div class="row">
+                    <input type="hidden" value="{{ video_id }}" id="video_id"/>
+                    <h1>{{video.title}}</h1>
+                    <video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup='{}' width="100%">
+                        <source src="" id="playboxUrl" type="video/mp4" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser
+                            that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                    <script>
+                        $("#playboxUrl").attr("src", "http://" + document.domain + ":8888/" + $("#video_id").val());
+                    </script>
+                </div>
 
-			<div class="row">
-				<div class="video-data">
-					<a href="#" class="small-4 columns uploader">
-						<span class="label">上传人</span>
-						<span class="data">{{video.owner_name}}</span>
-					</a>
-					<a class="small-4 columns likes-count" ng-click="likeVideo()">
-						<span class="label">点赞</span>
-						<span class="data">{{video.like}}</span>
-						<span class="data" ng-show="melike">（您赞过了）</span>
-					</a>
-					<div class="small-4 columns views-count">
-						<span class="label">观看</span>
-						<span class="data">{{video.play_count}}</span>
-					</div>
-				</div>
-			</div>
+                <div class="row">
+                    <div class="video-data">
+                        <a href="#" class="small-4 columns uploader">
+                            <span class="label">上传人</span>
+                            <span class="data">{{video.owner_name}}</span>
+                        </a>
+                        <a class="small-4 columns likes-count" ng-click="likeVideo()">
+                            <span class="label">点赞</span>
+                            <span class="data">{{video.like}}</span>
+                            <span class="data" ng-show="melike">（您赞过了）</span>
+                        </a>
+                        <div class="small-4 columns views-count">
+                            <span class="label">观看</span>
+                            <span class="data">{{video.play_count}}</span>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="row">
-				<fieldset>
-				<legend>视频信息</legend>
-				<div class="medium-3 large-2 columns time">{{video.upload_time | date}}</div>
-				<div class="medium-9 large-10 columns description">{{video.description}}</div>
-				</fieldset>
-			</div>
+                <div class="row">
+                    <fieldset>
+                        <legend>视频信息</legend>
+                        <div class="medium-3 large-2 columns time">{{video.upload_time | date}}</div>
+                        <div class="medium-7 large-8 columns description">{{video.description}}</div>
+						<div class="medium-1 large-1 columns right avatar"><img ng-src="{{video.owner_avatar}}" style="width:100%" /></div>
+                    </fieldset>
+                </div>
 
-			<!--div class="row">
-				<div class="comments">
-					<ul class="comments-list">
-						<li class="comment-item">
-							<div class="author"><a href='/u/ampersand'>ampersand</a></div>
-							<div class="time">2014/10/30 6:32 AM</div>
-							<div class="content">
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div-->
+                <!--div class="row">
+                    <div class="comments">
+                    <ul class="comments-list">
+                    <li class="comment-item">
+                    <div class="author"><a href='/u/ampersand'>ampersand</a></div>
+                    <div class="time">2014/10/30 6:32 AM</div>
+                    <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    </li>
+                    </ul>
+                    </div>
+                    </div-->
 
-			<div class="row">
-				<fieldset>
-				<legend>评论</legend>
-				<div class="comments">
-					<ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
-						<li class="comment-item">
-							<div class="row">
-								<div class="small-1 columns author">
-									<i class="fi-x" 
-										ng-show="comment.user_id == user_id" 
-										ng-click="delComment(comment.comment_id)"
-										style="cursor:pointer;">
-									</i>
-									<a href="#">{{comment.user_name}}</a>
-								</div>
-								<div class="small-9 columns content">
-									{{comment.content}}
-								</div>
-								<div class="small-2 columns time">
-									{{comment.reply_time}}&nbsp;
-									<span class="round secondary label">{{comment.floor}}</span>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<form class="custom" id="commentForm" data-abide="ajax">
-						<textarea id="commentContent" placeholder="请输入你的评论..."></textarea>
-						<button type="submit" id="commentButton">评论</button>
-					</form>
-				</div>
-				</fieldset>
-			</div>
-		</div>
+                    <div class="row">
+                        <fieldset>
+                            <legend>评论</legend>
+                            <div class="comments">
+                                <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
+                                    <li class="comment-item">
+                                        <div class="row">
+                                            <div class="small-1 columns author">
+												<img ng-src="{{comment.user_avatar}}" />
+                                            </div>
+                                            <div class="small-9 columns content">
+												<table style="width:100%">
+													<tr>
+														<td>
+															<i class="fi-x" 
+															   ng-show="comment.user_id == user_id" 
+															   ng-click="delComment(comment.comment_id)"
+															   style="cursor:pointer;">
+															</i>
+															<a href="#">{{comment.user_name}}</a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															{{comment.content}}
+														</td>
+													</tr>
+												</table>
+                                            </div>
+                                            <div class="small-2 columns time">
+                                                {{comment.reply_time}}&nbsp;
+                                                <span class="round secondary label">{{comment.floor}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <form class="custom" id="commentForm" data-abide="ajax">
+									<fieldset>
+										<legend>不吐不快</legend>
+										<input type="text" id="commentContent" placeholder="请输入你的评论..." required />
+										<small class="error">评论不能为空</small> 
+										<button type="submit" id="commentButton">吐槽</button>
+									</fieldset>
+                                </form>
+                            </div>
+                        </fieldset>
+                    </div>
+        </div>
+        </div>
 
     </body>
     {% include 'partials/foot.html' %}

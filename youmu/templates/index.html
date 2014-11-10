@@ -1,55 +1,41 @@
 <!doctype html>
 <html class="no-js" lang="en" ng-app="youmuApp">
-	<head>
-		<title>视频点播页</title>
+    <head>
+        <title>视频点播页</title>
         {% include 'partials/head.html' %}
 	</head>
-	<body>
-        {% include 'partials/topbar.html' %}
-		<div class="row" ng-controller="videoStoreCtrl">
-			<div class="large-4 small-12 columns">
-				<img ng-src="{{logoUrl}}">
-				<div class="hide-for-small panel">
-					<h3>一个标题</h3>
-					<h5 class="subheader">一坨内容</h5>
-				</div>
-				<a href="#">
-				<div class="panel callout radius">
-					<h6>找到{{videos.length}}个视频</h6>
-				</div>
-				</a>
-			</div>
-			<div class="large-8 columns">
-				<div class="row">
-					<div class="large-4 small-6 columns" ng-repeat="video in videos">
-						<a href="{{video.videoUrl}}" target="_blank">
-							<div style="height:258px; line-height:258px;">
-								<img ng-src="{{video.cover == '' ? 'http://placehold.it/1000x1000&amp;text=Thumbnail' : video.cover}}">
-							</div>
-						</a>
-						<div class="panel">
-							<h5>{{video.title}}</h5>
-							<h6 class="subheader">播放数：{{video.play_count}}</h6>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<div class="panel">
-							<div class="row">
-								<div class="large-2 small-6 columns">
-									<img ng-src="{{authorUrl}}">
-								</div>
-								<div class="large-10 small-6 columns">
-									<strong>三比二小组</strong><hr>
-									blah blah blah
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		{% include 'partials/foot.html' %}
-	</body>
+    <body class="index" data-stellar-background-ratio="0.5">
+        <div class="main" ng-controller="videoStoreCtrl">
+
+            <header>
+                <div class="masthead">
+                    <img class="logo" ng-src="{{logoUrl}}">
+                </div>
+                {% include 'partials/topbar.html' %}
+            </header>
+
+                <div class="video-list-length notification">
+                    找到{{videos.length}}个视频
+                </div>
+
+            <div class="video-list">
+                <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
+                    <a class="video-link" href="{{video.videoUrl}}" target="_blank">
+                        <div class='video-thumbnail' style="background-image: url('{{video.cover}}')"></div>
+
+                        <div class="video-data-container-area">
+                            <div class="video-data-area">
+                                <h5 class="video-title">{{video.title}}</h5>
+                                <h6 class="video-play-count subheader">播放数：{{video.play_count}}</h6>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    {% include 'partials/foot.html' %}
+    <script src="/static/js/index.js"></script>
 </html>

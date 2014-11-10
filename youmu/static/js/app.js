@@ -25,6 +25,9 @@ angular.module('youmuApp', ['mm.foundation'])
 var alertInfo = function(info) {
 	$("#alertInfo").html(info);
 	$("#alertModal").foundation("reveal", "open");
+	setTimeout(function() {
+		$("#alertModal").foundation("reveal", "close");
+	}, 3000);
 }
 
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
@@ -115,6 +118,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
+	$http.post("/api/video/" + $("#video_id").val() + "/_play").success(function(data, status) {});
 	$scope.refreshCommentBox = function() {
 		$http.get("/api/comment/video/" + $("#video_id").val()).success(
 			function(data, status) {
@@ -162,6 +166,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 				"content":$("#commentContent").val()
 			}).success(
 				function(data, status) {
+					//$("#commentContent").blur();
 					$("#commentContent").val("");
 					$("#commentButton").removeAttr("disabled");
 					$scope.refreshCommentBox();
@@ -176,6 +181,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.delComment = function(comment_id) {
 			$http.delete("/api/comment/" + comment_id).success(
 				function(data, status) {
+					alertInfo("评论删除成功");
 					$scope.refreshCommentBox();
 				}
 			).error(
@@ -225,6 +231,29 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 					$("#modifyProfileButton").removeAttr("disabled");
 				}
 			);
+		});
+		$('#uploadVideoForm').on('valid.fndtn.abide', function() {
+			$("#uploadVideoButton").attr("disabled", "disabled");
+			$("#uploadVideoForm").ajaxSubmit({
+				type:'post',
+				url: "/api/video/upload", 
+				beforeSubmit: function() {
+					alertInfo("开始上传");
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					alertInfo("上传进度: " + percentComplete + "%");
+				},
+				success: function(data) {
+					res = JSON.parse(data);
+					$("#uploadVideoButton").removeAttr("disabled");
+					$scope.get_videos();
+					alertInfo(res.state);
+				},
+				error: function(e) {
+					$("#uploadVideoButton").removeAttr("disabled");
+					alertInfo("上传失败"/* + e.responseText*/);
+				}
+			});
 		});
 	});
 };
