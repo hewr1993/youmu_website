@@ -16,7 +16,7 @@ def work_on_video(video_id):
         offset = int(request.args.get("offset", 0))
         size = int(request.args.get("size", 20))
 
-        comments = [c.to_dict() for c in CommentService.get_comments_by_video_id(video_id, offset, size)]
+        comments = [c.to_rich_dict() for c in CommentService.get_comments_by_video_id(video_id, offset, size)]
         return json.dumps(comments, ensure_ascii = False)
     else:
         if current_user.is_anonymous():
@@ -33,10 +33,12 @@ def work_on_user(user_id):
     offset = int(request.args.get("offset", 0))
     size = int(request.args.get("size", 20))
     reverse = int(request.args.get("reverse", 0)) > 0
-    comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
+    comments = [c.to_rich_dict() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
     return json.dumps(comments, ensure_ascii = False)
 
 @comment.route("/<comment_id>", methods = ["DELETE"])
 def delete_comment(comment_id):
-    CommentService.remove_comment_by_id(comment_id)
-    return '{ "state": "ok" }'
+    if CommentService.remove_comment_by_id(comment_id, current_user.id, current_user.is_admin()):
+        return '{ "state": "ok" }'
+    else:
+        return '{ "state": "failed" }'

@@ -143,6 +143,9 @@ class MongoClient(object):
     def insert_comment(self, comment):
         self.comment_col.insert(comment)
 
+    def get_comment_by_comment_id(self, comment_id):
+        return self.comment_col.find_one({ "comment_id": comment_id})
+
     def get_comment_by_video_id(self, video_id, offset, size):
         return self.comment_col.find({
             "$query": { "video_id": video_id },

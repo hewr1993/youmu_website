@@ -40,9 +40,9 @@
 
                 <div class="row">
                     <div class="video-data">
-                        <a href="/user/ampersand" class="small-4 columns uploader">
+                        <a href="#" class="small-4 columns uploader">
                             <span class="label">上传人</span>
-                            <span class="data">{{video.id}}</span>
+                            <span class="data">{{video.owner_name}}</span>
                         </a>
                         <a class="small-4 columns likes-count" ng-click="likeVideo()">
                             <span class="label">点赞</span>
@@ -88,10 +88,10 @@
                                             <div class="small-1 columns author">
                                                 <i class="fi-x" 
                                                    ng-show="comment.user_id == user_id" 
-                                                   ng-click="delComment(comment.floor)"
+                                                   ng-click="delComment(comment.comment_id)"
                                                    style="cursor:pointer;">
                                                 </i>
-                                                <a href="#">{{comment.user_id}}</a>
+                                                <a href="#">{{comment.user_name}}</a>
                                             </div>
                                             <div class="small-9 columns content">
                                                 {{comment.content}}
