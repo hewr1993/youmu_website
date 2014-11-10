@@ -4,9 +4,11 @@ from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort)
 
 from flask.ext.login import (login_required, current_user, login_user, logout_user, confirm_login)
+from youmu.models.video import Video
 from .service import VideoService
 
 import json
+import time
 import os
 import mimetypes
 from werkzeug.utils import secure_filename
@@ -76,7 +78,7 @@ def upload_video():
     if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
         os.remove(fname)
         return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
-    postBody = json.loads(request.data)
+    postBody = request.form
     obj = Video(owner_id = current_user.id,
         title = postBody["title"],
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),

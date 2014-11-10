@@ -13,6 +13,7 @@ class MongoClient(object):
         self.user_col = self.db["user"]
         self.admin_col = self.db["admin_user"]
         self.video_col = self.db["video"]
+        self.video_file_col = self.db["video_file"]
         self.video_trash_col = self.db["video_trash"]
         self.video_like_col = self.db["video_like"]
         self.comment_col = self.db["comment"]
