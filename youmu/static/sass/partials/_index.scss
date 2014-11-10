@@ -15,7 +15,14 @@
 }
 
 .notification {
-    @include span-columns(12);
+    background-color: $blue;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    @include span-columns(8);
+    @include shift(2);
 }
 
 .video-list {

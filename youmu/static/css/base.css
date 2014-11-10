@@ -35,10 +35,17 @@ html {
     margin-right: 0; }
 
 .notification {
+  background-color: #008cba;
+  color: white;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 100%; }
+  width: 65.88078%;
+  margin-left: 17.05961%; }
   .notification:last-child {
     margin-right: 0; }
 
