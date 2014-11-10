@@ -29,3 +29,4 @@ class Comment(object):
         dic = self.to_dict()
         dic["user_name"] = user.name
         dic["user_avatar"] = user.avatar
+        return dic

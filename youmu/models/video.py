@@ -45,6 +45,7 @@ class Video(object):
         user = UserService.load_user_by_id(self.owner_id)
         dic["owner_name"] = user.name
         dic["owner_avatar"] = user.avatar
+        return dic
 
     def valid(self, user_id):
         if mongo.check_admin(user_id):
