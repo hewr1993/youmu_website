@@ -66,8 +66,8 @@ def upload_video():
     if current_user.is_anonymous():
         return '{"state":"fail"}'
     UPLOAD_FOLDER = "youmu/static/uploads/videos/"
-    ALLOWED_MIMETYPES = ("video/mp4", "image/png")
-    f = request.files['file']
+    ALLOWED_MIMETYPES = ("video/mp4")
+    f = request.files["video"]
     fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
     f.save(fname)
     if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
