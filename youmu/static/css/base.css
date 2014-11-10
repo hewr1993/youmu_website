@@ -63,13 +63,17 @@ html {
     margin-right: 0; }
   .video-list-item:nth-child(4n+3) {
     margin-right: 0; }
+  .video-list-item .video-link:hover .video-thumbnail {
+    box-shadow: 0 0 20px #333;
+    background-size: 300%; }
   .video-list-item .video-thumbnail {
     display: block;
     padding-top: 62.5%;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center; }
+    background-position: center center;
+    transition: all 0.2s ease; }
   .video-list-item .video-data-container-area {
     position: absolute;
     bottom: 0;

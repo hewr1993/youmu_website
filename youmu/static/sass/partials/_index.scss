@@ -35,6 +35,10 @@
 
     .video-link:hover {
         // TODO
+        .video-thumbnail {
+            box-shadow: 0 0 20px #333;
+            background-size: 300%;
+        }
     }
 
     .video-thumbnail {
@@ -45,6 +49,8 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+
+        transition: all 0.2s ease;
     }
 
     .video-data-container-area {
