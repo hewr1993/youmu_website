@@ -1,7 +1,10 @@
 <form class="custom" id="modifyProfileForm" data-abide="ajax">
 	<fieldset>
 		<label>用户名
-			<input type="text" id="username" value="{{username}}" />
+			<input type="text" name="name" value="{{username}}" />
+		</label>
+		<label>头像
+			<input type="file" name="avatar" />
 		</label>
 		<button type="submit" id="modifyProfileButton">确认修改</button>
 	</fieldset>

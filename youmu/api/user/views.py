@@ -8,6 +8,10 @@ from flask.ext.login import (login_required, current_user, login_user, logout_us
 from .service import UserService
 from .forms import LoginForm
 import json
+import os
+import mimetypes
+from werkzeug.utils import secure_filename
+from tempfile import mktemp
 
 user = Blueprint("user", __name__, url_prefix = "/api/user")
 
@@ -59,8 +63,20 @@ def me():
 
 @user.route("/_me", methods = ["PUT"])
 def update_me():
-    body = json.loads(request.data)
-    name = body.get("name", "")
-    avatar = body.get("avatar", "")
+    body = request.form
+    name = body["name"]
+    try:
+        UPLOAD_FOLDER = "youmu/static/uploads/images/"
+        ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
+        f = request.files["avatar"]
+        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        f.save(pname)
+        if mimetypes.guess_type(pname)[0] not in ALLOWED_MIMETYPES:
+            os.remove(pname)
+            return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+        pname = str(pname)
+        avatar = pname[pname.find("/"):]
+    except:
+        avatar = ""
     msg = UserService.update(current_user.id, name, avatar)
     return json.dumps({ "state": msg })
