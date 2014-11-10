@@ -1,3 +1,7 @@
+@import 'vendor/bourbon/bourbon';
+@import 'grid-settings';
+@import 'vendor/neat/neat';
+
 /* VARIABLES */
 
 @import 'variables/variables';
@@ -5,4 +9,8 @@
 /* MODULES */
 
 @import 'modules/modules';
+
+/* MODULES */
+
+@import 'partials/partials';
 
