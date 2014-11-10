@@ -1,7 +1,7 @@
 __author__ = 'badpoet'
 
 import json
-from youmu.api.user.service import UserService
+from youmu.clients import mongo
 
 class User(object):
 
@@ -27,7 +27,7 @@ class User(object):
         return self.password == password
 
     def is_admin(self):
-        return UserService.is_admin(self.id)
+        return mongo.check_admin(self.id)
 
     def to_dict(self):
         dic = {

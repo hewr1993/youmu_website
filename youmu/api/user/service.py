@@ -70,8 +70,4 @@ class UserService(object):
         mongo.update_user(data)
         return "ok"
 
-    @staticmethod
-    def is_admin(user_id):
-        return mongo.check_admin(user_id)
-
 
