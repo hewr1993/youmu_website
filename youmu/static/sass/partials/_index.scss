@@ -7,13 +7,13 @@
 }
 
 .video-list {
-    @include span-columns(8);
+    @include span-columns(12);
     margin-right: 0;
 }
 
 .video-list-item {
-    @include span-columns(4);
-    &:nth-child(3n) {
+    @include span-columns(3);
+    &:nth-child(4n + 3) {
         margin-right: 0;
     }
     margin-bottom: 20px;
@@ -52,6 +52,25 @@
 
     .video-title {
         font-size: 1.5em;
+    }
+}
+
+.video-list {
+    .first {
+        @include span-columns(8);
+
+        .video-title {
+            font-size: 3em;
+        }
+    }
+
+    .second, .third {
+        @include span-columns(4);
+        margin-right: 0;
+
+        .video-title {
+            font-size: 2.5em;
+        }
     }
 }
 

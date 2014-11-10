@@ -87,7 +87,7 @@ html {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 65.88078%;
+  width: 100%;
   margin-right: 0; }
   .video-list:last-child {
     margin-right: 0; }
@@ -96,12 +96,12 @@ html {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 31.76157%;
+  width: 23.23176%;
   margin-bottom: 20px;
   position: relative; }
   .video-list-item:last-child {
     margin-right: 0; }
-  .video-list-item:nth-child(3n) {
+  .video-list-item:nth-child(4n+3) {
     margin-right: 0; }
   .video-list-item .video-thumbnail {
     display: block;
@@ -123,6 +123,26 @@ html {
     color: white; }
   .video-list-item .video-title {
     font-size: 1.5em; }
+
+.video-list .first {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%; }
+  .video-list .first:last-child {
+    margin-right: 0; }
+  .video-list .first .video-title {
+    font-size: 3em; }
+.video-list .second, .video-list .third {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0; }
+  .video-list .second:last-child, .video-list .third:last-child {
+    margin-right: 0; }
+  .video-list .second .video-title, .video-list .third .video-title {
+    font-size: 2.5em; }
 
 .credits {
   float: left;
