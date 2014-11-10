@@ -94,7 +94,7 @@
 													<tr>
 														<td>
 															<i class="fi-x" 
-															   ng-show="comment.user_id == user_id" 
+															   ng-show="comment.user_id == user_id || isAdmin" 
 															   ng-click="delComment(comment.comment_id)"
 															   style="cursor:pointer;">
 															</i>
