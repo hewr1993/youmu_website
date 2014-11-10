@@ -115,6 +115,9 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
+	$http.post("/api/video/" + $("#video_id").val() + "/_play").success(function(data, status) {
+		console.log("play");
+	});
 	$scope.refreshCommentBox = function() {
 		$http.get("/api/comment/video/" + $("#video_id").val()).success(
 			function(data, status) {
