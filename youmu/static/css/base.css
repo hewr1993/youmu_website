@@ -1,3 +1,13 @@
+/* Neat 1.7.0
+ * http://neat.bourbon.io
+ * Copyright 2012-2014 thoughtbot, inc.
+ * MIT License */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
 /* VARIABLES */
 /* MODULES */
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
@@ -54,3 +64,70 @@
 
 .top-bar {
   margin-bottom: 20px; }
+
+/* MODULES */
+.main {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto; }
+  .main:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.masthead {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%; }
+  .masthead:last-child {
+    margin-right: 0; }
+
+.video-list {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  margin-right: 0; }
+  .video-list:last-child {
+    margin-right: 0; }
+
+.video-list-item {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-bottom: 20px;
+  position: relative; }
+  .video-list-item:last-child {
+    margin-right: 0; }
+  .video-list-item:nth-child(3n) {
+    margin-right: 0; }
+  .video-list-item .video-thumbnail {
+    display: block;
+    padding-top: 62.5%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .video-list-item .video-data-container-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9) 80%); }
+  .video-list-item .video-data-area {
+    padding: 1.618em; }
+  .video-list-item .video-title, .video-list-item .video-play-count, .video-list-item .video-description {
+    color: white; }
+  .video-list-item .video-title {
+    font-size: 1.5em; }
+
+.credits {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .credits:last-child {
+    margin-right: 0; }

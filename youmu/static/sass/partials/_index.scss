@@ -1,0 +1,60 @@
+.main {
+    @include outer-container();
+}
+
+.masthead {
+    @include span-columns(4);
+}
+
+.video-list {
+    @include span-columns(8);
+    margin-right: 0;
+}
+
+.video-list-item {
+    @include span-columns(4);
+    &:nth-child(3n) {
+        margin-right: 0;
+    }
+    margin-bottom: 20px;
+    position: relative;
+
+    .video-link:hover {
+    }
+
+    .video-thumbnail {
+        display: block;
+        padding-top: 62.5%;
+        width: 100%;
+        
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .video-data-container-area {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        overflow: hidden;
+        background-image: linear-gradient(rgba(black, 0), rgba(black, 0.9) 80%);
+    }
+
+    .video-data-area {
+        padding: $gutter;
+    }
+
+    .video-title, .video-play-count, .video-description {
+        color: white;
+    }
+
+    .video-title {
+        font-size: 1.5em;
+    }
+}
+
+.credits {
+    @include span-columns(12);
+}
