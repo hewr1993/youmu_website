@@ -66,6 +66,9 @@ html {
   margin-bottom: 20px; }
 
 /* MODULES */
+.index {
+  background-image: url('/static/img/stone_lion_blurred.jpg'); }
+
 .main {
   max-width: 1280px;
   margin-left: auto;
