@@ -111,16 +111,49 @@ var videoStoreCtrl = function ($scope, $http) {
 	});
 };
 
-var videoDataCtrl = function ($scope, $http) {
+var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
-	$http.post("/api/comment/" + $("#video_id").val()).success(function(data, status) {
-		$scope.comments = data;
-	});
-	$scope.likeVideo = function() {
-		alert("like");
+	$scope.refreshCommentBox = function() {
+		$http.get("/api/comment/video/" + $("#video_id").val()).success(
+			function(data, status) {
+				$scope.comments = data;
+			}
+		).error(
+			function(data, status) {
+				alertInfo("获取评论失败");
+			}
+		);
 	};
+	$scope.refreshCommentBox();
+	$rootScope.$on('logined', function() {
+		$scope.user_id = UserService.getID();
+		$scope.likeVideo = function() {
+			alertInfo("like");
+		};
+		$('#commentForm').on('valid.fndtn.abide', function() {
+			$("#commentButton").attr("disabled", "disabled");
+			$http.post("/api/comment/video/" + $("#video_id").val(),
+			{
+				"content":$("#commentContent").val()
+			}).success(
+				function(data, status) {
+					$("#commentContent").val("");
+					$("#commentButton").removeAttr("disabled");
+					$scope.refreshCommentBox();
+				}
+			).error(
+				function(data, status) {
+					alertInfo(data + "<br>Code:" + status);
+					$("#commentButton").removeAttr("disabled");
+				}
+			);
+		});
+		$scope.delComment = function(floor) {
+			alertInfo("没有删除API<br>" + floor + "楼<br>" + "video_id:" + $("#video_id").val());
+		};
+	});
 };
 
 var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
@@ -157,7 +190,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			).error(
 				function(data, status) {
-					alertInfo("服务器繁忙，请稍候再试<br>Code:" + status);
+					alertInfo(data + "<br>Code:" + status);
 					$("#modifyProfileButton").removeAttr("disabled");
 				}
 			);
