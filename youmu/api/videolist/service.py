@@ -25,7 +25,7 @@ class VideoListService(object):
         if not show_disabled: query["disabled"] = False
         if not show_banned: query["banned"] = False
         return [VideoListService.mto(item) for item in mongo.get_ordered_video_list(
-            { "banned": show_banned, "disabled": show_disabled }, offset, size, order_by, reverse)]
+            query, offset, size, order_by, reverse)]
 
     @staticmethod
     def get_with_owner(owner_id, offset = 0, size = 10, order_by = "upload_time", reverse = False,

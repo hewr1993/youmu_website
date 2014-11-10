@@ -19,7 +19,7 @@ def general_query():
     res = VideoListService.general_get(offset, size, order_by, reverse,
                                        show_banned = current_user.is_admin(),
                                        show_disabled = current_user.is_admin())
-    res = [v.to_dict() for v in res]
+    res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
 
 @video_list.route("/owner/<owner_id>", methods = ["GET"])
@@ -31,7 +31,7 @@ def query_on_owner(owner_id):
     res = VideoListService.get_with_owner(owner_id, offset, size, order_by, reverse,
                                           show_banned = current_user.is_admin(),
                                           show_disabled = current_user.id == owner_id)
-    res = [v.to_dict() for v in res]
+    res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
 
 @video_list.route("/title/<title>", methods = ["GET"])
@@ -43,5 +43,5 @@ def query_on_title(title):
     res = VideoListService.query_on_title(title, offset, size, order_by, reverse,
                                           show_banned = current_user.is_admin(),
                                           show_disabled = current_user.is_admin())
-    res = [v.to_dict() for v in res]
+    res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
