@@ -1,26 +1,26 @@
 <!doctype html>
 <html class="no-js" lang="en" ng-app="youmuApp">
-	<head>
-		<title>视频点播页</title>
+    <head>
+        <title>视频点播页</title>
         {% include 'partials/head.html' %}
-	</head>
-	<body>
+    </head>
+    <body>
         {% include 'partials/topbar.html' %}
-		<div class="main" ng-controller="videoStoreCtrl">
-			<div class="masthead">
-				<img ng-src="{{logoUrl}}">
-				<div class="hide-for-small panel">
-					<h3>一个标题</h3>
-					<h5 class="subheader">一坨内容</h5>
-				</div>
-				<a href="#">
-				<div class="panel callout radius">
-					<h6>找到{{videos.length}}个视频</h6>
-				</div>
-				</a>
-			</div>
+        <div class="main" ng-controller="videoStoreCtrl">
+            <div class="masthead">
+                <img ng-src="{{logoUrl}}">
+                <div class="hide-for-small panel">
+                    <h3>一个标题</h3>
+                    <h5 class="subheader">一坨内容</h5>
+                </div>
+                <a href="#">
+                <div class="panel callout radius">
+                    <h6>找到{{videos.length}}个视频</h6>
+                </div>
+                </a>
+            </div>
 
-			<div class="video-list">
+            <div class="video-list">
                 <div class="video-list-item" ng-repeat="video in videos">
 
                     <a class="video-link" href="{{video.videoUrl}}" target="_blank">
@@ -35,7 +35,7 @@
 
                     </a>
                 </div>
-			</div>
+            </div>
 
             <div class="credits">
                 <div class="panel">
@@ -48,8 +48,8 @@
                     </div>
                 </div>
             </div>
-		</div>
+        </div>
 
-		{% include 'partials/foot.html' %}
-	</body>
+        {% include 'partials/foot.html' %}
+    </body>
 </html>
