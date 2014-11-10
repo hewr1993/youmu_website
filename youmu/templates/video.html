@@ -46,6 +46,7 @@
 					<a class="small-4 columns likes-count" ng-click="likeVideo()">
 						<span class="label">点赞</span>
 						<span class="data">{{video.like}}</span>
+						<span class="data" ng-show="melike">（您赞过了）</span>
 					</a>
 					<div class="small-4 columns views-count">
 						<span class="label">观看</span>
@@ -80,24 +81,31 @@
 				<fieldset>
 				<legend>评论</legend>
 				<div class="comments">
-					<ul class="comments-list" ng-repeat="comment in comments | orderBy: 'time'">
+					<ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
 						<li class="comment-item">
-							<div class="author">
-								<a href="/{{comment.user_id}}">{{comment.user_id}}</a>
+							<div class="row">
+								<div class="small-1 columns author">
+									<i class="fi-x" 
+										ng-show="comment.user_id == user_id" 
+										ng-click="delComment(comment.floor)"
+										style="cursor:pointer;">
+									</i>
+									<a href="#">{{comment.user_id}}</a>
+								</div>
+								<div class="small-9 columns content">
+									{{comment.content}}
+								</div>
+								<div class="small-2 columns time">
+									{{comment.reply_time}}&nbsp;
+									<span class="round secondary label">{{comment.floor}}</span>
+								</div>
 							</div>
-							<div class="time">{{comment.time}}</div>
-							<div class="content">
-								{{comment.content}}
-							</div>
-							<a href>回复</a>
 						</li>
 					</ul>
-					<div class="row">
-						<div class="large-12 columns">
-						 	<textarea placeholder="请输入你的评论..."></textarea>
-							<button ng-click="comment();">评论</button>
-						</div>
-					</div>
+					<form class="custom" id="commentForm" data-abide="ajax">
+						<textarea id="commentContent" placeholder="请输入你的评论..."></textarea>
+						<button type="submit" id="commentButton">评论</button>
+					</form>
 				</div>
 				</fieldset>
 			</div>
