@@ -3,6 +3,7 @@ __author__ = 'badpoet'
 import json
 
 from youmu.clients import mongo
+from youmu.api.user.service import UserService
 
 class Video(object):
 
@@ -41,7 +42,7 @@ class Video(object):
 
     def to_rich_dict(self):
         dic = self.to_dict()
-        user = mongo.get_user_by_id(self.owner_id)
+        user = UserService.load_user_by_id(self.owner_id)
         dic["owner_name"] = user.name
         dic["owner_avatar"] = user.avatar
 
