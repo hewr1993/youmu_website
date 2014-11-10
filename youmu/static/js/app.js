@@ -140,10 +140,27 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			).error(
 				function(data, status) {
-					alertInfo("获取上传视频列表失败");
+					alertInfo("获取上传视频列表失败<br>Code:" + status);
 				}
 			);
 		};
 		$scope.get_videos();
+		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
+			$("#modifyProfileButton").attr("disabled", "disabled");
+			$http.put("/api/user/_me",
+			{
+				"name":$("#username").val(),
+				"avatar":""
+			}).success(
+				function(data, status) {
+					location.reload();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，请稍候再试<br>Code:" + status);
+					$("#modifyProfileButton").removeAttr("disabled");
+				}
+			);
+		});
 	});
 };
