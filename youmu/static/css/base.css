@@ -12,7 +12,8 @@ html {
 /* MODULES */
 /* MODULES */
 .index {
-  background-image: url('/static/img/stone_lion_blurred.jpg'); }
+  background-image: url('/static/img/stone_lion_blurred.jpg');
+  background-attachment: fixed; }
 
 .main {
   max-width: 1000px;
