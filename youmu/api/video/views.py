@@ -22,7 +22,10 @@ def get_video_list():
 def get_video_by_id(video_id):
     v = VideoService.get_video_by_id(video_id)
     if v:
-        v = v.to_dict()
+        if v.valid(current_user.id):
+            v = v.to_dict()
+        else:
+            v = None
     return json.dumps(v, ensure_ascii = False)
 
 

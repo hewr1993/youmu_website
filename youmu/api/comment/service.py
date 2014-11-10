@@ -39,3 +39,8 @@ class CommentService(object):
     @staticmethod
     def get_comments_by_user_id(user_id, offset, size, reverse):
         return [CommentService.mto(item) for item in mongo.get_comment_by_user_id(user_id, offset, size, reverse)]
+
+    @staticmethod
+    def remove_comment_by_id(comment_id):
+        mongo.remove_comment_by_id(comment_id)
+        return True

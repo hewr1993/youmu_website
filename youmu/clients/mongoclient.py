@@ -38,6 +38,9 @@ class MongoClient(object):
             user_dict
         )
 
+    def check_admin(self, user_id):
+        return self.admin_col.find_one({ "id": user_id }) is not None
+
     # ABOUT VIDEO
 
     def get_video_by_id(self, video_id):
@@ -58,6 +61,8 @@ class MongoClient(object):
             { "video_id": id },
             { "$inc": { "play_count": 1 } }
         )
+
+    # ABOUT LIKE
 
     def create_like_info(self, user_id, video_id):
         self.video_like_col.insert(
@@ -129,4 +134,13 @@ class MongoClient(object):
         })[offset : size]
 
     def remove_comment_by_id(self, comment_id):
-        d = self.comment_col
+        d = self.comment_col.find({ "comment_id": comment_id })
+        for each in d:
+            each.pop("_id")
+            self.comment_trash_col.insert(each)
+        d = self.comment_col.find_and_modify(
+            query = { "comment_id": comment_id },
+            remove = True
+        )
+
+
