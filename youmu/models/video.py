@@ -2,11 +2,13 @@ __author__ = 'badpoet'
 
 import json
 
+from youmu.clients import mongo
+
 class Video(object):
 
     def __init__(self, video_id = "", title = "", cover = "", description = "",
                  play_count = 0, like = 0, owner_id = "", disabled = False,
-                 upload_time = "", length = 0, tags = ()):
+                 banned = False, upload_time = "", length = 0, tags = ()):
         self.video_id = unicode(video_id)
         self.title = title
         self.cover = cover
@@ -15,6 +17,7 @@ class Video(object):
         self.like = int(like)
         self.owner_id = owner_id
         self.disabled = disabled
+        self.banned = banned
         self.upload_time = upload_time
         self.length = int(length)
         self.tags = tags
@@ -29,9 +32,19 @@ class Video(object):
             "like": self.like,
             "owner_id": self.owner_id,
             "disabled": self.disabled,
+            "banned": self.banned,
             "upload_time": self.upload_time,
             "length": self.length,
             "tags": self.tags
         }
         return dic
+
+    def valid(self, user_id):
+        if mongo.check_admin(user_id):
+            return True
+        if self.banned:
+            return False
+        if self.owner_id == user_id:
+            return True
+        return not self.disabled
 
