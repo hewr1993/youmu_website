@@ -26,7 +26,7 @@ def work_on_video(video_id):
         if not content:
             return '{ "state": "empty content" }'
         CommentService.comment_on(current_user.id, video_id, content, "")
-        return '{ "state": "yes" }'
+        return '{ "state": "ok" }'
 
 @comment.route("/user/<user_id>", methods = ["GET"])
 def work_on_user(user_id):
@@ -35,3 +35,8 @@ def work_on_user(user_id):
     reverse = int(request.args.get("reverse", 0)) > 0
     comments = [c.to_dict() for c in CommentService.get_comments_by_user_id(user_id, offset, size, reverse)]
     return json.dumps(comments, ensure_ascii = False)
+
+@comment.route("/<comment_id>", methods = ["DELETE"])
+def delete_comment(comment_id):
+    CommentService.remove_comment_by_id(comment_id)
+    return '{ "state": "ok" }'

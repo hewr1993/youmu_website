@@ -11,12 +11,15 @@ class MongoClient(object):
         self.db = pymongo.Connection(host, port)["youmu"]
         # self.db.authenticate(username, password)
         self.user_col = self.db["user"]
+        self.admin_col = self.db["admin_user"]
         self.video_col = self.db["video"]
+        self.video_file_col = self.db["video_file"]
         self.video_trash_col = self.db["video_trash"]
         self.video_like_col = self.db["video_like"]
         self.comment_col = self.db["comment"]
         self.comment_trash_col = self.db["comment_trash"]
         self.comment_floor_ctrl_col = self.db["floor_ctrl"]
+        self.inc_id_ctrl_col = self.db["inc_id_ctrl"]
 
     # ABOUT USER
 
@@ -38,7 +41,29 @@ class MongoClient(object):
             user_dict
         )
 
+    def check_admin(self, user_id):
+        return self.admin_col.find_one({ "id": user_id }) is not None
+
     # ABOUT VIDEO
+
+    def assign_video_id(self):
+        tmp = self.inc_id_ctrl_col.find_and_modify(
+            query = { "type": "video_id" },
+            update = { "$inc": { "video_id": 1 } },
+            new = True,
+            upsert = True
+        )
+        return str(tmp["video_id"])
+
+    def get_video_file_name(self, video_id):
+        d = self.video_file_col.find_one({"video_id": video_id })
+        if d is None:
+            return ""
+        return d["file_name"]
+
+    def insert_video(self, video, file_name):
+        self.video_col.insert(video)
+        self.video_file_col.insert( { "video_id": video["video_id"], "file_name": file_name } )
 
     def get_video_by_id(self, video_id):
         return self.video_col.find_one({"video_id": video_id})
@@ -58,6 +83,8 @@ class MongoClient(object):
             { "video_id": id },
             { "$inc": { "play_count": 1 } }
         )
+
+    # ABOUT LIKE
 
     def create_like_info(self, user_id, video_id):
         self.video_like_col.insert(
@@ -129,4 +156,13 @@ class MongoClient(object):
         })[offset : size]
 
     def remove_comment_by_id(self, comment_id):
-        d = self.comment_col
+        d = self.comment_col.find({ "comment_id": comment_id })
+        for each in d:
+            each.pop("_id")
+            self.comment_trash_col.insert(each)
+        d = self.comment_col.find_and_modify(
+            query = { "comment_id": comment_id },
+            remove = True
+        )
+
+

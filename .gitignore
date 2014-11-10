@@ -1,4 +1,5 @@
-youmu/static/uploads/*
+youmu/static/uploads/avatar/*
+youmu/static/uploads/videos/*
 
 *.egg-info
 *.log

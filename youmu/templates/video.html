@@ -25,7 +25,7 @@
 			<div class="row">
 				<input type="hidden" value="{{ video_id }}" id="video_id"/>
 				<h1>{{video.title}}</h1>
-				<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup='{}' width="100%">
+				<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover == '' ? 'http://placehold.it/1000x1000&amp;text=Thumbnail' : video.cover}}" data-setup='{}' width="100%">
 					<source src="" id="playboxUrl" type="video/mp4" />
 					<p class="vjs-no-js">
 					To view this video please enable JavaScript, and consider upgrading to a web browser
