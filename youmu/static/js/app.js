@@ -115,9 +115,6 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
-	$http.get("/api/video/" + $("#video_id").val() + "/_like/_me").success(function(data, status) {
-		$scope.melike = data.like == "yes";
-	});
 	$scope.refreshCommentBox = function() {
 		$http.get("/api/comment/video/" + $("#video_id").val()).success(
 			function(data, status) {
@@ -132,19 +129,25 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.refreshCommentBox();
 	$rootScope.$on('logined', function() {
 		$scope.user_id = UserService.getID();
+		$scope.refreshLike = function() {
+			$http.get("/api/video/" + $("#video_id").val() + "/_like/_me").success(function(data, status) {
+				$scope.melike = data.like == "yes";
+			});
+			$http.get("/api/video/" + $("#video_id").val() + "/_like").success(
+				function(data, status) {
+					$scope.video.like = data.total;
+				}
+			).error(
+				function(data, status) {
+					alertInfo(data + "<br>Code:" + status);
+				}
+			);
+		};
+		$scope.refreshLike();
 		$scope.likeVideo = function() {
 			$http.post("/api/video/" + $("#video_id").val() + "/_like").success(
 				function(data, status) {
-					$scope.melike = data.like == "yes";
-					$http.get("/api/video/" + $("#video_id").val() + "/_like").success(
-						function(data, status) {
-							$scope.video.like = data.total;
-						}
-					).error(
-						function(data, status) {
-							alertInfo(data + "<br>Code:" + status);
-						}
-					);
+					$scope.refreshLike();
 				}
 			).error(
 				function(data, status) {
@@ -170,8 +173,16 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			);
 		});
-		$scope.delComment = function(floor) {
-			alertInfo("没有删除API<br>" + floor + "楼<br>" + "video_id:" + $("#video_id").val());
+		$scope.delComment = function(comment_id) {
+			$http.delete("/api/comment/" + comment_id).success(
+				function(data, status) {
+					$scope.refreshCommentBox();
+				}
+			).error(
+				function(data, status) {
+					alertInfo(data + "<br>Code:" + status);
+				}
+			);
 		};
 	});
 };
