@@ -78,6 +78,8 @@ def upload_video():
     if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
         os.remove(fname)
         return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+    fname = str(fname)
+    fname = fname[fname.find("/"):]
     postBody = request.form
     obj = Video(owner_id = current_user.id,
         title = postBody["title"],
