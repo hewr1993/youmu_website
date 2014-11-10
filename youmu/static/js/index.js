@@ -7,10 +7,10 @@ $(window).load(function() {
     console.log(navpos.top);
     $(window).bind('scroll', function() {
         if ($(window).scrollTop() > navpos.top) {
-            $('.navbar').addClass('fixed');
+            $('.navbar').addClass('navbar-fixed');
         }
         else {
-            $('.navbar').removeClass('fixed');
+            $('.navbar').removeClass('navbar-fixed');
         }
     }); 
 });
