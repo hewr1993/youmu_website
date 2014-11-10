@@ -20,7 +20,7 @@ video = Blueprint("video", __name__, url_prefix = "/api/video")
 @video.route("/", methods = ["GET"])
 def get_video_list():
     videos = VideoService.get_video_list()
-    videos = [video.to_dict() for video in videos]
+    videos = [video.to_rich_dict() for video in videos]
     return json.dumps(videos, ensure_ascii = False)
 
 
@@ -29,7 +29,7 @@ def get_video_by_id(video_id):
     v = VideoService.get_video_by_id(video_id)
     if v:
         if v.valid(current_user.id):
-            v = v.to_dict()
+            v = v.to_rich_dict()
         else:
             v = None
     return json.dumps(v, ensure_ascii = False)

@@ -39,6 +39,12 @@ class Video(object):
         }
         return dic
 
+    def to_rich_dict(self):
+        dic = self.to_dict()
+        user = mongo.get_user_by_id(self.owner_id)
+        dic["owner_name"] = user.name
+        dic["owner_avatar"] = user.avatar
+
     def valid(self, user_id):
         if mongo.check_admin(user_id):
             return True

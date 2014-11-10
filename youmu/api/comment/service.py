@@ -8,7 +8,6 @@ class CommentService(object):
 
     @staticmethod
     def mto(item):
-        print item
         return Comment(
             item.get("comment_id"),
             item.get("user_id"),
@@ -41,6 +40,11 @@ class CommentService(object):
         return [CommentService.mto(item) for item in mongo.get_comment_by_user_id(user_id, offset, size, reverse)]
 
     @staticmethod
-    def remove_comment_by_id(comment_id):
+    def remove_comment_by_id(comment_id, current_id, is_admin = False):
+        d = mongo.get_comment_by_comment_id(comment_id)
+        if d is None:
+            return False
+        if (not is_admin) and (CommentService.mto(d).user_id != current_id):
+            return False
         mongo.remove_comment_by_id(comment_id)
         return True
