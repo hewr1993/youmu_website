@@ -55,6 +55,12 @@ class MongoClient(object):
         )
         return int(tmp["video_id"])
 
+    def get_video_file_name(self, video_id):
+        d = self.video_file_col.find_one({"video_id": video_id })
+        if d is None:
+            return ""
+        return d["file_name"]
+
     def insert_video(self, video, file_name):
         self.video_col.insert(video)
         self.video_file_col.insert( { "video_id": video["video_id"], "file_name": file_name } )
