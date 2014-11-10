@@ -11,6 +11,7 @@ class MongoClient(object):
         self.db = pymongo.Connection(host, port)["youmu"]
         # self.db.authenticate(username, password)
         self.user_col = self.db["user"]
+        self.admin_col = self.db["admin_user"]
         self.video_col = self.db["video"]
         self.video_trash_col = self.db["video_trash"]
         self.video_like_col = self.db["video_like"]
