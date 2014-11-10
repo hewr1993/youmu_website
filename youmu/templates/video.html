@@ -25,7 +25,7 @@
 			<div class="row">
 				<input type="hidden" value="{{ video_id }}" id="video_id"/>
 				<h1>{{video.title}}</h1>
-				<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup='{}' width="100%">
+				<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover == '' ? 'http://placehold.it/1000x1000&amp;text=Thumbnail' : video.cover}}" data-setup='{}' width="100%">
 					<source src="" id="playboxUrl" type="video/mp4" />
 					<p class="vjs-no-js">
 					To view this video please enable JavaScript, and consider upgrading to a web browser
@@ -39,9 +39,9 @@
 
 			<div class="row">
 				<div class="video-data">
-					<a href="/user/ampersand" class="small-4 columns uploader">
+					<a href="#" class="small-4 columns uploader">
 						<span class="label">上传人</span>
-						<span class="data">{{video.id}}</span>
+						<span class="data">{{video.owner_name}}</span>
 					</a>
 					<a class="small-4 columns likes-count" ng-click="likeVideo()">
 						<span class="label">点赞</span>
@@ -90,7 +90,7 @@
 										ng-click="delComment(comment.floor)"
 										style="cursor:pointer;">
 									</i>
-									<a href="#">{{comment.user_id}}</a>
+									<a href="#">{{comment.user_name}}</a>
 								</div>
 								<div class="small-9 columns content">
 									{{comment.content}}
