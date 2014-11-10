@@ -46,12 +46,12 @@ def ban_video(video_id):
 
 
 @video.route("/<video_id>/_enable", methods = ["POST"])
-def hide_video(video_id):
+def show_video(video_id):
     VideoService.hide_video(video_id, current_user.id, op = False)
 
 
 @video.route("/<video_id>/_unban", methods = ["POST"])
-def ban_video(video_id):
+def unban_video(video_id):
     VideoService.ban_video(video, current_user.is_admin(), op = False)
 
 
