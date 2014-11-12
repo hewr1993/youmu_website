@@ -123,6 +123,14 @@ html {
   .credits:last-child {
     margin-right: 0; }
 
+.video-main-container, .video-player-container, .video-data, .video-description-container {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .video-main-container:last-child, .video-player-container:last-child, .video-data:last-child, .video-description-container:last-child {
+    margin-right: 0; }
+
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
   position: relative;
