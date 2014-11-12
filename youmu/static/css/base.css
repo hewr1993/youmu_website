@@ -170,6 +170,7 @@ html {
     opacity: 0.7; }
 
 .navbar {
+  z-index: 9999;
   float: left;
   display: block;
   margin-right: 2.35765%;
