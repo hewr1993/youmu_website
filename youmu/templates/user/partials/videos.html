@@ -12,8 +12,11 @@
 				</div>
 			</a>
 			<div class="panel">
-				<button class="warning">禁用</button>
-				{{video.title}}
+				{{video.title}}<br>
+				<button class="warning" ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
+				<button class="success" ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
+				<button class="alert" ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
+				<button class="success" ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
 			</div>
 		</div>
 	</div>

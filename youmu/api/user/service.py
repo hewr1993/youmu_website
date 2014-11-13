@@ -9,6 +9,16 @@ from youmu.clients.tunetclient import tunet_login
 class UserService(object):
 
     @staticmethod
+    def mto(temp):
+        return User(
+            id = temp.get("id"),
+            mid = str(temp.get("_id")),
+            name = temp.get("name"),
+            avatar = temp.get("avatar"),
+            disabled = temp.get("disabled")
+        )
+
+    @staticmethod
     def is_valid_id(id):
         try:
             id = str(id)
@@ -21,22 +31,18 @@ class UserService(object):
         temp = mongo.get_user_by_id(id)
         if not temp:
             return None
-        obj = User(
-            id = temp.get("id"),
-            mid = str(temp.get("_id")),
-            name = temp.get("name"),
-            avatar = temp.get("avatar"),
-        )
+        obj = UserService.mto(temp)
         return obj
 
     @staticmethod
-    def create_user(id, name, avatar):
+    def create_user(id, name, avatar, disabled):
         if mongo.has_user_id(id):
             return None
         mongo.insert_user({
             "id": id,
             "name": name,
-            "avatar": avatar
+            "avatar": avatar,
+            "disabled": False
         })
 
     @staticmethod
@@ -52,7 +58,8 @@ class UserService(object):
             UserService.create_user(
                 id = tunet_user["id"],
                 name = tunet_user["name"],
-                avatar = ""
+                avatar = "",
+                disabled = False
             )
         user = UserService.load_user_by_id(tunet_user["id"])
         return user
@@ -71,7 +78,21 @@ class UserService(object):
         return "ok"
 
     @staticmethod
+    def disable(user_id, state = True):
+        if not user_id:
+            return False
+        if not mongo.has_user_id(user_id):
+            return False
+        mongo.disable_user(user_id, state)
+        return True
+
+    @staticmethod
     def transform_admin(user_id):
         mongo.transform_admin(user_id)
 
-
+    @staticmethod
+    def list_users(offset, size):
+        return {
+            "total": mongo.count_users(),
+            "result": [UserService.mto(u) for u in mongo.list_users(offset, size)]
+        }

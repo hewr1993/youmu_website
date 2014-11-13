@@ -17,8 +17,8 @@ def general_query():
     order_by = request.args.get('order_by', "upload_time")
     reverse = request.args.get('reverse', 0) > 0
     res = VideoListService.general_get(offset, size, order_by, reverse,
-                                       show_banned = current_user.is_admin(),
-                                       show_disabled = current_user.is_admin())
+                                       show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
+                                       show_disabled = (not current_user.is_anonymous()) and current_user.is_admin())
     res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
 
@@ -29,7 +29,7 @@ def query_on_owner(owner_id):
     order_by = request.args.get('order_by', "upload_time")
     reverse = request.args.get('reverse', 0) > 0
     res = VideoListService.get_with_owner(owner_id, offset, size, order_by, reverse,
-                                          show_banned = current_user.is_admin(),
+                                          show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
                                           show_disabled = current_user.id == owner_id)
     res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
@@ -41,7 +41,7 @@ def query_on_title(title):
     order_by = request.args.get('order_by', "upload_time")
     reverse = request.args.get('reverse', 0) > 0
     res = VideoListService.query_on_title(title, offset, size, order_by, reverse,
-                                          show_banned = current_user.is_admin(),
+                                          show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
                                           show_disabled = current_user.is_admin())
     res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)

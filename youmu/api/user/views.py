@@ -66,7 +66,7 @@ def logout():
 def me():
     if current_user.is_anonymous():
         return ""
-    return json.dumps(current_user.to_dict(), ensure_ascii = False)
+    return json.dumps(UserService.load_user_by_id(current_user.id).to_dict(), ensure_ascii = False)
 
 @user.route("/_me", methods = ["PUT"])
 def update_me():
@@ -87,3 +87,27 @@ def update_me():
         avatar = ""
     msg = UserService.update(current_user.id, name, avatar)
     return json.dumps({ "state": msg })
+
+@user.route("/<user_id>/_disable", methods = ["POST"])
+def disable_user(user_id):
+    if not current_user.is_admin():
+        return '{ "state": "need admin" }'
+    res = UserService.disable(user_id, True)
+    return json.dumps({ "state": "ok" if res else "failed" })
+
+@user.route("/<user_id>/_enable", methods = ["POST"])
+def enable_user(user_id):
+    if not current_user.is_admin():
+        return '{ "state": "need admin" }'
+    res = UserService.disable(user_id, False)
+    return json.dumps({ "state": "ok" if res else "failed" })
+
+@user.route("/", methods = ["GET"])
+def list_users():
+    if not current_user.is_admin():
+        return '{ "state": "need admin" }'
+    offset = request.args.get('offset', 0)
+    size = request.args.get('size', 10)
+    raw = UserService.list_users(offset, size)
+    raw["result"] = [u.to_dict() for u in raw["result"]]
+    return json.dumps(raw, ensure_ascii = False)
