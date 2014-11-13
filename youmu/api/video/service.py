@@ -75,11 +75,13 @@ class VideoService(object):
     def hide_video(video_id, user_id, op = False):
         v = VideoService.get_video_by_id(video_id)
         if v.owner_id != user_id:
-            return
+            return False
         mongo.hide_video(video_id, op)
+        return True
 
     @staticmethod
     def ban_video(video_id, is_admin, op = False):
         if not is_admin:
-            return
+            return False
         mongo.ban_video(video_id, op)
+        return True

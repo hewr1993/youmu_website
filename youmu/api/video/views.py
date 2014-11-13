@@ -6,6 +6,7 @@ from flask import (Blueprint, render_template, current_app, request,
 from flask.ext.login import (login_required, current_user, login_user, logout_user, confirm_login)
 from youmu.models.video import Video
 from .service import VideoService
+from youmu.api.videolist.service import VideoListService
 
 import json
 import time
@@ -19,7 +20,9 @@ video = Blueprint("video", __name__, url_prefix = "/api/video")
 
 @video.route("/", methods = ["GET"])
 def get_video_list():
-    videos = VideoService.get_video_list()
+    videos = VideoListService.general_get(offset = 0, size = 10, order_by = "upload_time", reverse = True,
+                                       show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
+                                       show_disabled = (not current_user.is_anonymous()) and current_user.is_admin())
     videos = [video.to_rich_dict() for video in videos]
     return json.dumps(videos, ensure_ascii = False)
 
@@ -37,26 +40,26 @@ def get_video_by_id(video_id):
 
 @video.route("/<video_id>/_disable", methods = ["POST"])
 def hide_video(video_id):
-    VideoService.hide_video(video_id, current_user.id, op = True)
-    return json.dumps({"state":"success"})
+    res = VideoService.hide_video(video_id, current_user.id, op = True)
+    return json.dumps({"state":"success" if res else "failed"})
 
 
 @video.route("/<video_id>/_ban", methods = ["POST"])
 def ban_video(video_id):
-    VideoService.ban_video(video, current_user.is_admin(), op = True)
-    return json.dumps({"state":"success"})
+    res = VideoService.ban_video(video_id, (not current_user.is_anonymous()) and current_user.is_admin(), op = True)
+    return json.dumps({"state":"success" if res else "failed"})
 
 
 @video.route("/<video_id>/_enable", methods = ["POST"])
 def show_video(video_id):
-    VideoService.hide_video(video_id, current_user.id, op = False)
-    return json.dumps({"state":"success"})
+    res = VideoService.hide_video(video_id, current_user.id, op = False)
+    return json.dumps({"state":"success" if res else "failed"})
 
 
 @video.route("/<video_id>/_unban", methods = ["POST"])
 def unban_video(video_id):
-    VideoService.ban_video(video, current_user.is_admin(), op = False)
-    return json.dumps({"state":"success"})
+    res = VideoService.ban_video(video_id, (not current_user.is_anonymous()) and current_user.is_admin(), op = False)
+    return json.dumps({"state":"success" if res else "failed"})
 
 
 @video.route("/<video_id>/_play", methods = ["POST"])
