@@ -1,3 +1,7 @@
+.video-main-container, .video-player-container, .video-data, .video-description-container {
+    @include span-columns(12);
+}
+
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
     position: relative;

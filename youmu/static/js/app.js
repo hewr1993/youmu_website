@@ -1,6 +1,6 @@
 angular.module('youmuApp', ['mm.foundation'])
 	.service('UserService', function() {
-		var id = "", name = "";
+		var id = "", name = "", avatar = "", admin = false;
 		return {
 			getID: function() {
 				return id;
@@ -8,9 +8,17 @@ angular.module('youmuApp', ['mm.foundation'])
 			getName: function() {
 				return name;
 			},
-			setUser: function(_id, _name) {
+			getAvatar: function() {
+				return avatar;
+			},
+			isAdmin: function() {
+				return admin;
+			},
+			setUser: function(_id, _name, _avatar, _admin) {
 				id = _id;
 				name = _name;
+				avatar = _avatar;
+				admin = _admin;
 			},
 			isLogin: function() {
 				return id.length > 0;
@@ -37,9 +45,11 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 		$http.get("/api/user/_me").success(
 			function(data, status){
 				if (data.hasOwnProperty("id")) {
-					UserService.setUser(data.id, data.name);
+					UserService.setUser(data.id, data.name, data.avatar, data.admin);
 					$scope.user_id = UserService.getID();
 					$scope.username = UserService.getName();
+					$scope.avatar = UserService.getAvatar();
+					$scope.isAdmin = UserService.isAdmin();
 					$scope.logout = function() {
 						$http.post("/api/user/_logout").success(		
 							function(data, status) {
@@ -133,6 +143,7 @@ var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.refreshCommentBox();
 	$rootScope.$on('logined', function() {
 		$scope.user_id = UserService.getID();
+		$scope.isAdmin = UserService.isAdmin();
 		$scope.refreshLike = function() {
 			$http.get("/api/video/" + $("#video_id").val() + "/_like/_me").success(function(data, status) {
 				$scope.melike = data.like == "yes";
@@ -198,8 +209,8 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.username = UserService.getName();
 		$scope.user_id = UserService.getID();
 		$scope.get_videos = function(){
-			//$http.get("/api/videolist/").success(
-			$http.get("/api/videolist/owner/" + $scope.user_id).success(
+			if (UserService.isAdmin()) url = "/api/video/"; else url = "/api/videolist/owner/" + $scope.user_id; 
+			$http.get(url).success(
 				function(data, status) {
 					$scope.videos = [];
 					for (var i = 0; i < data.length; ++i) {

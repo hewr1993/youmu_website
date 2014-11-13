@@ -22,8 +22,8 @@
     <body class="video">
         <div class="main">
             {% include 'partials/topbar.html' %}
-            <div ng-controller="videoDataCtrl">
-                <div class="row">
+            <div class="video-main-container" ng-controller="videoDataCtrl">
+                <div class="video-player-container">
                     <input type="hidden" value="{{ video_id }}" id="video_id"/>
                     <h1>{{video.title}}</h1>
                     <video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup='{}' width="100%">
@@ -38,25 +38,23 @@
                     </script>
                 </div>
 
-                <div class="row">
-                    <div class="video-data">
-                        <a href="#" class="small-4 columns uploader">
-                            <span class="label">上传人</span>
-                            <span class="data">{{video.owner_name}}</span>
-                        </a>
-                        <a class="small-4 columns likes-count" ng-click="likeVideo()">
-                            <span class="label">点赞</span>
-                            <span class="data">{{video.like}}</span>
-                            <span class="data" ng-show="melike">（您赞过了）</span>
-                        </a>
-                        <div class="small-4 columns views-count">
-                            <span class="label">观看</span>
-                            <span class="data">{{video.play_count}}</span>
-                        </div>
+                <div class="video-data">
+                    <a href="#" class="small-4 columns uploader">
+                        <span class="label">上传人</span>
+                        <span class="data">{{video.owner_name}}</span>
+                    </a>
+                    <a class="small-4 columns likes-count" ng-click="likeVideo()">
+                        <span class="label">点赞</span>
+                        <span class="data">{{video.like}}</span>
+                        <span class="data" ng-show="melike">（您赞过了）</span>
+                    </a>
+                    <div class="small-4 columns views-count">
+                        <span class="label">观看</span>
+                        <span class="data">{{video.play_count}}</span>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="video-description-container">
                     <fieldset>
                         <legend>视频信息</legend>
                         <div class="medium-3 large-2 columns time">{{video.upload_time | date}}</div>
@@ -64,20 +62,6 @@
 						<div class="medium-1 large-1 columns right avatar"><img ng-src="{{video.owner_avatar}}" style="width:100%" /></div>
                     </fieldset>
                 </div>
-
-                <!--div class="row">
-                    <div class="comments">
-                    <ul class="comments-list">
-                    <li class="comment-item">
-                    <div class="author"><a href='/u/ampersand'>ampersand</a></div>
-                    <div class="time">2014/10/30 6:32 AM</div>
-                    <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                    </li>
-                    </ul>
-                    </div>
-                    </div-->
 
                     <div class="row">
                         <fieldset>
@@ -94,7 +78,7 @@
 													<tr>
 														<td>
 															<i class="fi-x" 
-															   ng-show="comment.user_id == user_id" 
+															   ng-show="comment.user_id == user_id || isAdmin" 
 															   ng-click="delComment(comment.comment_id)"
 															   style="cursor:pointer;">
 															</i>
@@ -115,7 +99,8 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <form class="custom" id="commentForm" data-abide="ajax">
+
+                                <form class="comment-form custom" id="commentForm" data-abide="ajax">
 									<fieldset>
 										<legend>不吐不快</legend>
 										<input type="text" id="commentContent" placeholder="请输入你的评论..." required />
@@ -123,10 +108,11 @@
 										<button type="submit" id="commentButton">吐槽</button>
 									</fieldset>
                                 </form>
+
                             </div>
                         </fieldset>
                     </div>
-        </div>
+            </div>
         </div>
 
     </body>
