@@ -1,12 +1,14 @@
 @import 'base';
 
-@import 'smallest';
+@media screen and (max-width: 480px) {
+    @import 'smallest';
+}
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 767px) {
     @import 'small';
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) and (max-width: 1000px) {
     @import 'regular';
 }
 
