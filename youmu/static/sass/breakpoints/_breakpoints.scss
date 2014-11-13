@@ -1,0 +1,15 @@
+@import 'base';
+
+@import 'smallest';
+
+@media screen and (min-width: 768px) {
+    @import 'small';
+}
+
+@media screen and (min-width: 1000px) {
+    @import 'regular';
+}
+
+@media screen and (min-width: 1001px) {
+    @import 'large';
+}
