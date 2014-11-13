@@ -208,6 +208,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 	$rootScope.$on('logined', function() {
 		$scope.username = UserService.getName();
 		$scope.user_id = UserService.getID();
+		$scope.isAdmin = UserService.isAdmin();
 		$scope.get_videos = function(){
 			if (UserService.isAdmin()) url = "/api/video/"; else url = "/api/videolist/owner/" + $scope.user_id; 
 			$http.get(url).success(
@@ -219,6 +220,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 						$scope.videos.push(item);
 					};
 				}
+				//"owner_name":"曼联第四","description":"如题","tags":[],"banned":false,"play_count":16,"owner_avatar":"/static/uploads/images/u1lkdXl_blueberry_chrome.jpg","disabled":false,"upload_time":"2014-11-11 01:48:20","like":1,"title":"膜拜badpoet","video_id":"8","cover":"/static/uploads/images/uxa5m3R_save_5000_214503_1e-8.jpg","length":0,"owner_id":"hwr12","videoUrl":"/videos/8"} 
 			).error(
 				function(data, status) {
 					alertInfo("获取上传视频列表失败<br>Code:" + status);
@@ -226,6 +228,50 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 		$scope.get_videos();
+		$scope.DisableVideo = function(id) {
+			$http.post("/api/video/" + id + "/_disable").success(
+				function(data, status) {
+					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+		$scope.EnableVideo = function(id) {
+			$http.post("/api/video/" + id + "/_enable").success(
+				function(data, status) {
+					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+		$scope.BanVideo = function(id) {
+			$http.post("/api/video/" + id + "/_ban").success(
+				function(data, status) {
+					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+		$scope.UnbanVideo = function(id) {
+			$http.post("/api/video/" + id + "/_unban").success(
+				function(data, status) {
+					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");
 			$("#modifyProfileForm").ajaxSubmit({

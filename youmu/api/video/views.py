@@ -38,21 +38,25 @@ def get_video_by_id(video_id):
 @video.route("/<video_id>/_disable", methods = ["POST"])
 def hide_video(video_id):
     VideoService.hide_video(video_id, current_user.id, op = True)
+    return json.dumps({"state":"success"})
 
 
 @video.route("/<video_id>/_ban", methods = ["POST"])
 def ban_video(video_id):
     VideoService.ban_video(video, current_user.is_admin(), op = True)
+    return json.dumps({"state":"success"})
 
 
 @video.route("/<video_id>/_enable", methods = ["POST"])
 def show_video(video_id):
     VideoService.hide_video(video_id, current_user.id, op = False)
+    return json.dumps({"state":"success"})
 
 
 @video.route("/<video_id>/_unban", methods = ["POST"])
 def unban_video(video_id):
     VideoService.ban_video(video, current_user.is_admin(), op = False)
+    return json.dumps({"state":"success"})
 
 
 @video.route("/<video_id>/_play", methods = ["POST"])
