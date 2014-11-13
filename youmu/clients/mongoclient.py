@@ -32,6 +32,12 @@ class MongoClient(object):
     def get_user_by_mid(self, user_mongo_id):
         return self.user_col.find_one({"_id": ObjectId(user_mongo_id)})
 
+    def list_users(self, offset = 0, size = 10):
+        return self.user_col.find()[offset : size]
+
+    def count_users(self):
+        return self.user_col.find().count()
+
     def insert_user(self, user_dict):
         self.user_col.insert(user_dict)
 
@@ -49,6 +55,12 @@ class MongoClient(object):
 
     def check_admin(self, user_id):
         return self.admin_col.find_one({ "id": user_id }) is not None
+
+    def disable_user(self, user_id, state = True):
+        self.user_col.update(
+            { "id": user_id },
+            { "$set": { "disabled": state } }
+        )
 
     # ABOUT VIDEO
 

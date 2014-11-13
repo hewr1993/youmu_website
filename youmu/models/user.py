@@ -5,11 +5,12 @@ from youmu.clients import mongo
 
 class User(object):
 
-    def __init__(self, id = "", mid = "", name = "", avatar = "", password = ""):
+    def __init__(self, id = "", mid = "", name = "", avatar = "", password = "", disabled = False):
         self.id = id
         self.mid = mid
         self.name = name
         self.avatar = avatar if len(avatar) > 0 else "/static/img/human-head-with-question-mark.jpg"
+        self.disabled = disabled
 
     def is_authenticated(self):
         return True
@@ -34,6 +35,7 @@ class User(object):
             "id": self.id,
             "name": self.name,
             "avatar": self.avatar,
-            "admin": self.is_admin()
+            "admin": self.is_admin(),
+            "disabled": self.disabled
         }
         return dic
