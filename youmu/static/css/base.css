@@ -264,6 +264,19 @@ footer {
   .video-list:last-child {
     margin-right: 0; }
 
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .video-list-item {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+    position: relative; }
+    .video-list-item:last-child {
+      margin-right: 0; }
+    .video-list-item:nth-child(3n) {
+      margin-right: 0; }
+ }
+
 @media screen and (min-width: 768px) {
   .video-list-item {
     float: left;
