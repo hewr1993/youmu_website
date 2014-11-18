@@ -4,7 +4,10 @@ $( document ).ready(function() {
 
 $(window).load(function() {
     var navpos = $('.navbar').offset();
-    console.log(navpos.top);
+    $(window).bind('resize', function() {
+        navpos = $('.navbar').offset();
+    });
+
     $(window).bind('scroll', function() {
         if ($(window).scrollTop() > navpos.top) {
             $('.navbar').addClass('navbar-fixed');
