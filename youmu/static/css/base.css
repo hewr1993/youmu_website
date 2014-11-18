@@ -265,6 +265,17 @@ footer {
     margin-right: 0; }
 
 @media screen and (max-width: 480px) {
+  .masthead {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    .masthead:last-child {
+      margin-right: 0; }
+    .masthead .logo {
+      max-height: 228px; }
+
   .navbar .logo {
     display: none; }
   .navbar .button {
@@ -322,6 +333,17 @@ footer {
  }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
+  .masthead {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+    margin-left: 25.58941%; }
+    .masthead:last-child {
+      margin-right: 0; }
+    .masthead .logo {
+      max-height: 239px; }
+
   .video-list-item {
     float: left;
     display: block;

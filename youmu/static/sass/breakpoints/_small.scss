@@ -1,3 +1,12 @@
+.masthead {
+    @include span-columns(6);
+    @include shift(3);
+
+    .logo {
+        max-height: 239px;
+    }
+}
+
 .video-list-item {
     @include span-columns(4);
     &:nth-child(3n) {
