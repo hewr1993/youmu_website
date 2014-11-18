@@ -21,7 +21,7 @@
             <div class="video-list">
                 <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
                     <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                        <div class='video-thumbnail' style="background-image: url(http://placehold.it/660x411)"></div>
+                        <div class='video-thumbnail' style="background-image: url('{{video.cover}}')"></div>
 
                         <div class="video-data-container-area">
                             <div class="video-data-area">
