@@ -1,0 +1,42 @@
+.navbar {
+    .logo {
+        display: none;
+    }
+
+    .button {
+        padding-left:  5px;
+        padding-right: 5px;
+    }
+
+    .login {
+        @include span-columns(3);
+        @include shift(1);
+        margin-right: 0;
+    }
+
+    .logout {
+        @include span-columns(4);
+    }
+
+    .user, .logout-button {
+        @include span-columns(2 of 4);
+    }
+
+    .user {
+        padding-top: 14px;
+        padding-bottom: 15px;
+        text-align: right;
+    }
+
+    .search-area {
+        @include span-columns(8 of 12);
+
+        input {
+            @include span-columns(5 of 8);
+            margin-right: 0;
+        }
+        .button {
+            @include span-columns(3 of 8);
+        }
+    }
+}

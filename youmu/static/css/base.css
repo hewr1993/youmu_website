@@ -264,6 +264,63 @@ footer {
   .video-list:last-child {
     margin-right: 0; }
 
+@media screen and (max-width: 480px) {
+  .navbar .logo {
+    display: none; }
+  .navbar .button {
+    padding-left: 5px;
+    padding-right: 5px; }
+  .navbar .login {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%;
+    margin-left: 8.5298%;
+    margin-right: 0; }
+    .navbar .login:last-child {
+      margin-right: 0; }
+  .navbar .logout {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .navbar .logout:last-child {
+      margin-right: 0; }
+  .navbar .user, .navbar .logout-button {
+    float: left;
+    display: block;
+    margin-right: 7.42297%;
+    width: 46.28851%; }
+    .navbar .user:last-child, .navbar .logout-button:last-child {
+      margin-right: 0; }
+  .navbar .user {
+    padding-top: 14px;
+    padding-bottom: 15px;
+    text-align: right; }
+  .navbar .search-area {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%; }
+    .navbar .search-area:last-child {
+      margin-right: 0; }
+    .navbar .search-area input {
+      float: left;
+      display: block;
+      margin-right: 3.57866%;
+      width: 61.158%;
+      margin-right: 0; }
+      .navbar .search-area input:last-child {
+        margin-right: 0; }
+    .navbar .search-area .button {
+      float: left;
+      display: block;
+      margin-right: 3.57866%;
+      width: 35.26334%; }
+      .navbar .search-area .button:last-child {
+        margin-right: 0; }
+ }
+
 @media screen and (min-width: 481px) and (max-width: 767px) {
   .video-list-item {
     float: left;
