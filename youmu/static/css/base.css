@@ -330,6 +330,18 @@ footer {
       width: 35.26334%; }
       .navbar .search-area .button:last-child {
         margin-right: 0; }
+
+  .video-list-item {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+    position: relative;
+    margin-bottom: 10px; }
+    .video-list-item:last-child {
+      margin-right: 0; }
+    .video-list-item:nth-child(2n) {
+      margin-right: 0; }
  }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
