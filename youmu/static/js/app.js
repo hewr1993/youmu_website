@@ -273,7 +273,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 
-				$scope.transform = function(){
+		$scope.transform = function(){
 			$http.get("/api/user/_transform").success(
 				function(data, status) {
 					alertInfo("转变身份成功");
@@ -300,12 +300,14 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 
 		if ($scope.isAdmin){
 			$scope.getUsers();
+			
 		};
 
 		$scope.EnableUser = function(user_id){
 			$http.post("/api/user/" + user_id + "/_enable").success(
 				function(data, status) {
 					alertInfo("解禁成功");
+					$scope.getUsers();
 				}
 			).error(
 				function(data, status) {
@@ -318,6 +320,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			$http.post("/api/user/" + user_id + "/_disable").success(
 				function(data, status) {
 					alertInfo("屏蔽成功");
+					$scope.getUsers();
 				}
 			).error(
 				function(data, status) {
