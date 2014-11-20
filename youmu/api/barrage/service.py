@@ -42,4 +42,3 @@ class BarrageService(object):
             temp += unicode(e.to_xml())
         temp += "</i>"
         return temp
-
