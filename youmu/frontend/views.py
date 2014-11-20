@@ -50,3 +50,7 @@ def player():
 def to_my_area():
     return render_template('user/index.html')
 
+@frontend.route('/live/')
+def live():
+    return render_template('live.html')
+
