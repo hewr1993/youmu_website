@@ -272,6 +272,51 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			);
 		};
+
+		$scope.getUsers = function(){
+			$http.get("/api/user").success(
+				function(data, status) {
+					$scope.users = data.result;
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+					$scope.users = [];
+				}
+			);
+		};
+
+		if ($scope.isAdmin){
+			$scope.getUsers();
+			
+		};
+
+		$scope.EnableUser = function(user_id){
+			$http.post("/api/user/" + user_id + "/_enable").success(
+				function(data, status) {
+					alertInfo("解禁成功");
+					$scope.getUsers();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+
+		$scope.DisableUser = function(user_id){
+			$http.post("/api/user/" + user_id + "/_disable").success(
+				function(data, status) {
+					alertInfo("屏蔽成功");
+					$scope.getUsers();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");
 			$("#modifyProfileForm").ajaxSubmit({
