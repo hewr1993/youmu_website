@@ -1,5 +1,7 @@
 __author__ = 'badpoet'
 
+from datetime import datetime
+
 class Barrage(object):
 
     def __init__(self, video_id, user_id, content, position, mode, size, color, pool, stamp):
@@ -25,3 +27,17 @@ class Barrage(object):
             "pool": self.pool,
             "stamp": self.stamp
         }
+
+    def to_xml(self):
+        p = ",".join([
+            str(self.position),
+            str(self.mode),
+            str(self.size),
+            str(self.color),
+            str((self.stamp - datetime(1970, 1, 1, 8)).total_seconds()),
+            str(self.pool),
+            str(self.user_id),
+            str(0)
+        ])
+        return '<d p="' + p + '">' + self.content + '</d>'
+

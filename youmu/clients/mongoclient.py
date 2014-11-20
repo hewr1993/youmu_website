@@ -24,6 +24,7 @@ class MongoClient(object):
         self.comment_trash_col = self.db["comment_trash"]
         self.comment_floor_ctrl_col = self.db["floor_ctrl"]
         self.inc_id_ctrl_col = self.db["inc_id_ctrl"]
+        self.barrage_col = self.db["barrage"]
 
     # ABOUT USER
 
@@ -201,5 +202,13 @@ class MongoClient(object):
             query = { "comment_id": comment_id },
             remove = True
         )
+
+    # about comment
+
+    def insert_barrage(self, barrage_dict):
+        self.barrage_col.insert(barrage_dict)
+
+    def get_barrage_by_video(self, video_id):
+        return self.barrage_col.find({ "video_id": video_id })
 
 

@@ -10,16 +10,19 @@ from api.user.views import user
 from api.video.views import video
 from api.videolist.views import video_list
 from api.comment.views import comment
+from api.barrage.views import barrage
 
 from api.user.service import UserService
 from api.video.service import VideoService
+
 
 DEFAULT_BLUEPRINTS = [
     frontend,
     user,
     video,
     video_list,
-    comment
+    comment,
+    barrage
 ]
 
 def create_app(config = None, app_name = None, blueprints = None):
