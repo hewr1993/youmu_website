@@ -3,8 +3,10 @@
 		<dl class="sub-nav">
 			<dd data-magellan-arrival="profile"><a href="#profile">个人资料</a></dd>
 			<dd data-magellan-arrival="videos"><a href="#videos">视频管理</a></dd>
+			<dd data-magellan-arrival="users" ng-show="isAdmin"><a href="#users">用户管理</a></dd>
 		</dl>
 	</div>
+	<button ng-click="transform();">转为管理员</button>
 	<a name="profile"></a><hr><h3 data-magellan-destination="profile">个人资料</h3>
 	<div class="row">
 		<div class="small-12 small-centered columns">
@@ -16,5 +18,13 @@
 		<div class="small-12 small-centered columns">
 			{% include 'user/partials/videos.html' %}
 		</div>
+	</div>
+	<div class="row" ng-show="isAdmin">
+	<a name="users"></a><hr><h3 data-magellan-destination="users">用户管理</h3>
+	<div class="row">
+		<div class="small-12 small-centered columns">
+			{% include 'user/partials/users.html' %}
+		</div>
+	</div>
 	</div>
 </section>
