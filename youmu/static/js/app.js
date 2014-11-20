@@ -324,6 +324,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				url: "/api/user/_me", 
 				success: function(data) {
 					location.reload();
+					$("#modifyProfileButton").removeAttr("disabled");
 				},
 				error: function(e) {
 					$("#modifyProfileButton").removeAttr("disabled");
