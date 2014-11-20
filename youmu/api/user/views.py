@@ -83,7 +83,8 @@ def update_me():
             return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
         pname = str(pname)
         avatar = pname[pname.find("/"):]
-    except:
+    except Exception, e:
+        print e
         avatar = ""
     msg = UserService.update(current_user.id, name, avatar)
     return json.dumps({ "state": msg })
