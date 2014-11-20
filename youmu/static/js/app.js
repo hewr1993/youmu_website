@@ -273,18 +273,6 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 
-		$scope.transform = function(){
-			$http.get("/api/user/_transform").success(
-				function(data, status) {
-					alertInfo("转变身份成功");
-				}
-			).error(
-				function(data, status) {
-					alertInfo("服务器繁忙，稍后再试");
-				}
-			);
-		};
-
 		$scope.getUsers = function(){
 			$http.get("/api/user").success(
 				function(data, status) {
