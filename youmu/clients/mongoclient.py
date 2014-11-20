@@ -7,9 +7,13 @@ from youmu.config import DefaultConfig
 
 class MongoClient(object):
 
-    def __init__(self, host = DefaultConfig.MONGO_HOST, port = DefaultConfig.MONGO_PORT):
+    def __init__(self,
+                 host = DefaultConfig.MONGO_HOST,
+                 port = DefaultConfig.MONGO_PORT,
+                 username = DefaultConfig.MONGO_USERNAME,
+                 password = DefaultConfig.MONGO_PASSWORD):
         self.db = pymongo.Connection(host, port)["youmu"]
-        # self.db.authenticate(username, password)
+        self.db.authenticate(username, password)
         self.user_col = self.db["user"]
         self.admin_col = self.db["admin_user"]
         self.video_col = self.db["video"]

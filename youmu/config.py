@@ -18,8 +18,10 @@ class BaseConfig(object):
     # ../../config.py
     PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-    MONGO_HOST = "106.186.121.57"
+    MONGO_HOST = "166.111.206.70"
     MONGO_PORT = 30017
+    MONGO_USERNAME = "admin"
+    MONGO_PASSWORD = "stoorz123!@#"
 
     DEBUG = False
     TESTING = False
