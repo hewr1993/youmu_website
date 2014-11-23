@@ -1,5 +1,4 @@
 youmu/static/uploads/images/*
-youmu/static/uploads/videos/*
 
 *.egg-info
 *.log
