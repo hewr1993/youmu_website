@@ -31,3 +31,10 @@ header, .main {
 .credits {
     @include span-columns(12);
 }
+
+.content {
+    background-color: $navbar-background-color;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+}
