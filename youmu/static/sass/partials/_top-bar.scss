@@ -12,6 +12,7 @@
     .logo {
         @include span-columns(1);
 
+        text-align: center;
         img {
             max-height: 49px;
         }
