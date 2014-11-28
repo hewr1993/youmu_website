@@ -1,16 +1,29 @@
 footer {
-    margin: 50px 0 0 0;
-    padding: 20px;
+    margin: 0;
+    padding: 50px;
 
     border-top: 1px solid #777;
-    background-color: rgba(#555, 0.5);
+    background-color: rgba(#171a1b, 0.8);
 
     .footer-wrap {
         @include outer-container();
     }
 
-    .logo {
-        @include span-columns(1);
+    .logo, .copyright {
+        @include span-columns(12);
+        text-align: center;
+    }
+
+    .copyright {
+        color: #2f3233;
+        font-weight: bold;
+        margin-top: 20px;
+        font-size: 12px;
+        font-family: $sans-serif-stack;
+    }
+
+    .logo img {
+        max-height: 70px;
     }
 }
 
