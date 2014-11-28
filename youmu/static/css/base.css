@@ -232,7 +232,8 @@ footer {
 .video-list-item {
   margin-bottom: 20px;
   position: relative;
-  background-color: black; }
+  background-color: black;
+  background-image: url('/static/img/placeholder660x411.jpeg'); }
   .video-list-item .video-link:hover .video-thumbnail {
     box-shadow: 0 0 20px #333; }
   .video-list-item .video-thumbnail {
