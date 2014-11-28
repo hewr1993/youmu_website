@@ -19,15 +19,13 @@
     padding-bottom: 91px;   // height of navbar
 }
 
-.notification {
-    background-color: $blue;
-    color: white;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    @include span-columns(8);
-    @include shift(2);
+.video-list-length {
+    color: #90989b;
+    font-size: ms(2);
+    font-style: italic;
+    margin-bottom: 50px;
+    text-align: center;
+    @include span-columns(12);
 }
 
 .credits {
