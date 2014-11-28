@@ -3,7 +3,7 @@
     @include span-columns(12);
     margin-right: 0;
 
-    background-color: rgba(white, 0.5);
+    background-color: $navbar-background-color;
 
     transition: all 0.3s ease;
 
@@ -68,5 +68,5 @@
     position: fixed;
     @include outer-container();
     z-index: 100;
-    background-color: rgba(white, 0.9);
+    background-color: rgba(#EEF, 0.98);
 }
