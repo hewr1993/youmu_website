@@ -6,9 +6,6 @@ html {
     margin-bottom: 20px;
     position: relative;
 
-    background-color: black;    // Overridden by image
-    background-image: url('/static/img/placeholder660x411.jpeg');
-
     .video-link:hover {
         // TODO
         .video-thumbnail {
@@ -27,6 +24,8 @@ html {
         background-position: center center;
 
         transition: all 0.2s ease;
+
+        background-color: black;    // Overridden by image
     }
 
     .video-data-container-area {
@@ -51,4 +50,5 @@ html {
 .video-list {
     @include span-columns(12);
     margin-right: 0;
+    padding: 0 20px;
 }

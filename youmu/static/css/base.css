@@ -250,9 +250,7 @@ html {
 
 .video-list-item {
   margin-bottom: 20px;
-  position: relative;
-  background-color: black;
-  background-image: url('/static/img/placeholder660x411.jpeg'); }
+  position: relative; }
   .video-list-item .video-link:hover .video-thumbnail {
     box-shadow: 0 0 20px #333; }
   .video-list-item .video-thumbnail {
@@ -262,7 +260,8 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    transition: all 0.2s ease; }
+    transition: all 0.2s ease;
+    background-color: black; }
   .video-list-item .video-data-container-area {
     position: absolute;
     bottom: 0;
@@ -280,7 +279,8 @@ html {
   display: block;
   margin-right: 2.35765%;
   width: 100%;
-  margin-right: 0; }
+  margin-right: 0;
+  padding: 0 20px; }
   .video-list:last-child {
     margin-right: 0; }
 
@@ -289,12 +289,16 @@ html {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 65.88078%;
-    margin-left: 17.05961%; }
+    width: 100%;
+    margin-right: 0;
+    margin: 70px 0; }
     .masthead:last-child {
       margin-right: 0; }
     .masthead .logo {
       max-height: 228px; }
+
+  .video-list-length {
+    font-size: 1.61803em; }
 
   .navbar .logo {
     display: none; }
@@ -355,13 +359,14 @@ html {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 48.82117%;
+    width: 100%;
+    margin-right: 0;
     position: relative;
     margin-bottom: 10px; }
     .video-list-item:last-child {
       margin-right: 0; }
-    .video-list-item:nth-child(2n) {
-      margin-right: 0; }
+    .video-list-item .video-data-area {
+      padding: 10px 20px; }
  }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
@@ -380,12 +385,14 @@ html {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 31.76157%;
+    width: 48.82117%;
     position: relative; }
     .video-list-item:last-child {
       margin-right: 0; }
-    .video-list-item:nth-child(3n) {
+    .video-list-item:nth-child(2n) {
       margin-right: 0; }
+    .video-list-item .video-data-area {
+      padding: 10px 20px; }
 
   .navbar .logo {
     float: left;

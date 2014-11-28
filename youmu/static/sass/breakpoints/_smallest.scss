@@ -1,10 +1,15 @@
 .masthead {
-    @include span-columns(8);
-    @include shift(2);
+    @include span-columns(12);
+    margin-right: 0;
+    margin: 70px 0;
 
     .logo {
         max-height: 228px;
     }
+}
+
+.video-list-length {
+    font-size: ms(1);
 }
 
 .navbar {
@@ -51,10 +56,12 @@
 }
 
 .video-list-item {
-    @include span-columns(6);
-    &:nth-child(2n) {
-        margin-right: 0;
-    }
+    @include span-columns(12);
+    margin-right: 0;
     position: relative;
     margin-bottom: 10px;
+
+    .video-data-area {
+        padding: 10px 20px;
+    }
 }

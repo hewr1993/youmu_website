@@ -8,11 +8,15 @@
 }
 
 .video-list-item {
-    @include span-columns(4);
-    &:nth-child(3n) {
+    @include span-columns(6);
+    &:nth-child(2n) {
         margin-right: 0;
     }
     position: relative;
+
+    .video-data-area {
+        padding: 10px 20px;
+    }
 }
 
 .navbar {
