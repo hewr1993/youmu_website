@@ -13,6 +13,10 @@ header, .main {
     @include shift(4);
 
     text-align: center;
+
+    .logo {
+        max-width: 300px;
+    }
 }
 
 .masthead-expanded {

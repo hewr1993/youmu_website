@@ -34,6 +34,8 @@ header, .main {
   text-align: center; }
   .masthead:last-child {
     margin-right: 0; }
+  .masthead .logo {
+    max-width: 300px; }
 
 .masthead-expanded {
   padding-bottom: 91px; }
