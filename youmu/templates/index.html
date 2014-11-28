@@ -5,34 +5,38 @@
         {% include 'partials/head.html' %}
 	</head>
     <body class="index" data-stellar-background-ratio="0.5">
-        <div class="main" ng-controller="videoStoreCtrl">
 
-            <header>
-                <div class="masthead">
-                    <img class="logo" src="/static/img/youmu-circle.png">
-                </div>
-                {% include 'partials/topbar.html' %}
-            </header>
+        <header>
+            <div class="masthead">
+                <img class="logo" src="/static/img/youmu-circle.png">
+            </div>
+            {% include 'partials/topbar.html' %}
+        </header>
 
-                <div class="video-list-length notification">
+        <div class="content">
+
+            <div class="main" ng-controller="videoStoreCtrl">
+                <div class="video-list-length">
                     找到{{videos.length}}个视频
                 </div>
 
-            <div class="video-list">
-                <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
-                    <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                        <div class='video-thumbnail' style="background-image: url('{{video.cover}}')"></div>
+                <div class="video-list">
+                    <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
+                        <a class="video-link" href="{{video.videoUrl}}" target="_blank">
+                            <div class='video-thumbnail' style="background-image: url('{{video.cover}}')"></div>
 
-                        <div class="video-data-container-area">
-                            <div class="video-data-area">
-                                <h5 class="video-title">{{video.title}}</h5>
-                                <h6 class="video-play-count subheader">播放数：{{video.play_count}}</h6>
+                            <div class="video-data-container-area">
+                                <div class="video-data-area">
+                                    <h5 class="video-title">{{video.title}}</h5>
+                                    <h6 class="video-play-count subheader">播放数：{{video.play_count}}</h6>
+                                </div>
                             </div>
-                        </div>
 
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </body>
 
