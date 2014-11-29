@@ -42,8 +42,17 @@ html {
         padding: $gutter;
     }
 
-    .video-title, .video-play-count, .video-description {
+    .video-title, .video-details {
         color: white;
+    }
+
+    .video-details {
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+
+        div {
+            display: inline-block;
+        }
     }
 }
 

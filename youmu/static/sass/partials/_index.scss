@@ -42,3 +42,24 @@ header, .main {
     padding-bottom: 50px;
     margin-top: 50px;
 }
+
+.video-uploader, .video-play-count, .video-likes-count {
+    &:before {
+        font-family: FontAwesome;
+        opacity: 0.7;
+        margin: 0 0.5em;
+    }
+}
+
+.video-uploader:before {
+    content: "\f007";
+    margin-left: 0;
+}
+
+.video-play-count:before {
+    content: "\f06e";
+}
+
+.video-likes-count:before {
+    content: "\f164";
+}
