@@ -7,10 +7,10 @@ html {
     position: relative;
 
     .video-link:hover {
-        // TODO
         .video-thumbnail {
             box-shadow: 0 0 20px #333;
-            // background-size: 300%;
+            filter: none;
+            -webkit-filter: grayscale(0);
         }
     }
 
@@ -26,6 +26,10 @@ html {
         transition: all 0.2s ease;
 
         background-color: black;    // Overridden by image
+
+        filter: url(/static/img/filters.svg#grayscale); /* Firefox 3.5+ */
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
     }
 
     .video-data-container-area {
