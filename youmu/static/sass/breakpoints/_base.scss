@@ -7,21 +7,33 @@ html {
     position: relative;
 
     .video-link:hover {
+        box-shadow: 0 0 20px #333;
         .video-thumbnail {
-            box-shadow: 0 0 20px #333;
             filter: none;
             -webkit-filter: grayscale(0);
         }
     }
 
-    .video-thumbnail {
+    .video-link {
         display: block;
-        padding-top: 62.5%;
         width: 100%;
-        
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+        position: relative;
+        height: 0;
+        padding: 56.25% 0 0 0;
+        overflow: hidden;
+        transition: all 0.2s ease;
+    }
+
+    .video-thumbnail {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
 
         transition: all 0.2s ease;
 
