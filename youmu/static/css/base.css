@@ -67,6 +67,21 @@ header, .main {
   padding-bottom: 50px;
   margin-top: 50px; }
 
+.video-uploader:before, .video-play-count:before, .video-likes-count:before {
+  font-family: FontAwesome;
+  opacity: 0.7;
+  margin: 0 0.5em; }
+
+.video-uploader:before {
+  content: "\f007";
+  margin-left: 0; }
+
+.video-play-count:before {
+  content: "\f06e"; }
+
+.video-likes-count:before {
+  content: "\f164"; }
+
 .video-main-container, .video-player-container, .video-data, .video-description-container {
   float: left;
   display: block;
@@ -252,7 +267,9 @@ html {
   margin-bottom: 20px;
   position: relative; }
   .video-list-item .video-link:hover .video-thumbnail {
-    box-shadow: 0 0 20px #333; }
+    box-shadow: 0 0 20px #333;
+    filter: none;
+    -webkit-filter: grayscale(0); }
   .video-list-item .video-thumbnail {
     display: block;
     padding-top: 62.5%;
@@ -261,7 +278,14 @@ html {
     background-repeat: no-repeat;
     background-position: center center;
     transition: all 0.2s ease;
-    background-color: black; }
+    background-color: black;
+    -webkit-filter: url(/static/img/filters.svg#grayscale);
+    filter: url(/static/img/filters.svg#grayscale);
+    /* Firefox 3.5+ */
+    filter: gray;
+    /* IE6-9 */
+    -webkit-filter: grayscale(1);
+    /* Google Chrome, Safari 6+ & Opera 15+ */ }
   .video-list-item .video-data-container-area {
     position: absolute;
     bottom: 0;
@@ -271,8 +295,13 @@ html {
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 50%); }
   .video-list-item .video-data-area {
     padding: 1.618em; }
-  .video-list-item .video-title, .video-list-item .video-play-count, .video-list-item .video-description {
+  .video-list-item .video-title, .video-list-item .video-details {
     color: white; }
+  .video-list-item .video-details {
+    opacity: 0.6;
+    letter-spacing: 0.05em; }
+    .video-list-item .video-details div {
+      display: inline-block; }
 
 .video-list {
   float: left;
@@ -478,7 +507,7 @@ html {
     .video-list .first:last-child {
       margin-right: 0; }
     .video-list .first .video-title {
-      font-size: 3em; }
+      font-size: 2.61803em; }
   .video-list .second, .video-list .third {
     float: left;
     display: block;
@@ -488,6 +517,6 @@ html {
     .video-list .second:last-child, .video-list .third:last-child {
       margin-right: 0; }
     .video-list .second .video-title, .video-list .third .video-title {
-      font-size: 2em; }
+      font-size: 1.61803em; }
  }
 
