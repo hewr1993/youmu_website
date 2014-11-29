@@ -28,7 +28,11 @@
                             <div class="video-data-container-area">
                                 <div class="video-data-area">
                                     <h5 class="video-title">{{video.title}}</h5>
-                                    <h6 class="video-play-count subheader">播放数：{{video.play_count}}</h6>
+                                    <div class="video-details">
+                                        <div class="video-uploader">{{video.owner_name}}</div>
+                                        <div class="video-play-count">{{video.play_count}}</div>
+                                        <div class="video-likes-count">{{video.like}}</div>
+                                    </div>
                                 </div>
                             </div>
 
