@@ -38,6 +38,8 @@ def work_on_user(user_id):
 
 @comment.route("/<comment_id>", methods = ["DELETE"])
 def delete_comment(comment_id):
+    if (current_user.is_anonymous()):
+        return '{ "state": "failed" }'
     if CommentService.remove_comment_by_id(comment_id, current_user.id, current_user.is_admin()):
         return '{ "state": "ok" }'
     else:
