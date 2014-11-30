@@ -55,7 +55,7 @@ html {
     }
 
     .video-data-area {
-        padding: $gutter;
+        padding: $gutter / 2;
     }
 
     .video-title, .video-details {
@@ -63,8 +63,13 @@ html {
         text-shadow: 0 0 3px #444;
     }
 
+    .video-title {
+        font-size: ms(0);
+    }
+
     .video-details {
         letter-spacing: 0.05em;
+        font-size: 12px;
 
         div {
             display: inline-block;

@@ -4,19 +4,23 @@
         margin-right: 0;
     }
     position: relative;
-
-
-    .video-title {
-        font-size: 1.5em;
-    }
 }
 
 .video-list {
+    .first, .second, .third {
+        .video-data-area {
+            padding: $gutter;
+        }
+    }
+
     .first {
         @include span-columns(8);
 
         .video-title {
             font-size: ms(2);
+        }
+        .video-details {
+            font-size: ms(0);
         }
     }
 
