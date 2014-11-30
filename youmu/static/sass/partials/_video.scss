@@ -24,9 +24,14 @@
     font-size: 2em;
     padding: 30px;
     color: white;
+
+    display: table-cell;
 }
 
 .video-data {
+    display: table;
+    table-layout: fixed;
+
     .label {
         display: none;
     }
