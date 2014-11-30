@@ -311,7 +311,8 @@ html {
     color: white;
     text-shadow: 0 0 3px #444; }
   .video-list-item .video-title {
-    font-size: 1em; }
+    font-size: 1em;
+    font-weight: bold; }
   .video-list-item .video-details {
     letter-spacing: 0.05em;
     font-size: 12px; }
