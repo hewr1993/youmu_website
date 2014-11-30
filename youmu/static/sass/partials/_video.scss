@@ -44,10 +44,6 @@
             font-family: FontAwesome;
             opacity: 0.7;
         }
-
-        &:hover, &:active, &:focus {
-            background-color: lighten($blue, 10);
-        }
     }
 
     .likes-count {
