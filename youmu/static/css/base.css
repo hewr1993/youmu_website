@@ -107,20 +107,23 @@ header, .main {
     display: block;
     width: 100%;
     font-size: 1.61803em;
-    padding: 30px;
-    color: white; }
+    padding: 30px; }
     .video-stats .views-count:before, .video-stats .likes-count:before {
       font-family: FontAwesome;
-      opacity: 0.7;
+      opacity: 0.6;
       margin-right: 10px; }
   .video-stats .likes-count {
-    background-color: #43ac6a; }
+    background-color: #43ac6a;
+    color: #183e26;
+    transition: 0.2s all ease; }
     .video-stats .likes-count:before {
       content: "\f164"; }
     .video-stats .likes-count:hover, .video-stats .likes-count:active, .video-stats .likes-count:focus {
-      background-color: #61c185; }
+      background-color: #26633d;
+      color: #FFE; }
   .video-stats .views-count {
-    background-color: #f04124; }
+    background-color: #f04124;
+    color: #731708; }
     .video-stats .views-count:before {
       content: "\f06e"; }
 
