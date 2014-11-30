@@ -2,6 +2,10 @@
     @include span-columns(12);
 }
 
+.video-main-container {
+    margin-top: 50px;
+}
+
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
     position: relative;
