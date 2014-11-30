@@ -25,7 +25,6 @@
             <div class="video-main-container">
                 <div class="video-player-container">
                     <input type="hidden" value="{{ video_id }}" id="video_id"/>
-                    <h1>{{video.title}}</h1>
                     <video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup='{}' width="100%">
                         <source src="" id="playboxUrl" type="video/mp4" />
                         <p class="vjs-no-js">
@@ -38,58 +37,57 @@
                     </script>
                 </div>
 
+                <div class="video-meta">
+                    <h1 class="video-title">{{video.title}}</h1>
+                    <div class="video-upload-time">{{video.upload_time | date}}</div>
+                    <div class="video-description">{{video.description}}</div>
+                </div>
+
                 <div class="video-data">
                     <div class="uploader">
                         <span class="label">上传人</span>
+                        <img class="avatar" ng-src="{{video.owner_avatar}}"/>
                         <span class="data">{{video.owner_name}}</span>
+                    </div>
+                    <div class="views-count">
+                        <span class="label">观看</span>
+                        <span class="data">{{video.play_count}}</span>
                     </div>
                     <a class="likes-count" ng-click="likeVideo()">
                         <span class="label">点赞</span>
                         <span class="data">{{video.like}}</span>
                         <span class="data" ng-show="melike">（您赞过了）</span>
                     </a>
-                    <div class="views-count">
-                        <span class="label">观看</span>
-                        <span class="data">{{video.play_count}}</span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="content">
-            <div class="main">
-                <div class="video-description-container">
-                    <h2>视频信息</h2>
-                    <div class="time">{{video.upload_time | date}}</div>
-                    <div class="description">{{video.description}}</div>
-                    <div class="avatar"><img ng-src="{{video.owner_avatar}}"/></div>
-                </div>
+            <div class="main comments-container">
+                <h2>评论</h2>
+                <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
+                    <li class="comment-item">
+                        <div class="comment-user-avatar"><img ng-src="{{video.owner_avatar}}" /></div>
+                        <i class="fi-x" 
+                            ng-show="comment.user_id == user_id || isAdmin" 
+                            ng-click="delComment(comment.comment_id)"
+                            style="cursor:pointer;">
+                        </i>
+                        <div class="comment-user-name">{{comment.user_name}}</div>
+                        <div class="comment-content">{{comment.content}}</div>
+                        <div class="time">{{comment.reply_time}}&nbsp;</div>
+                        <div class="comment-floor-num">{{comment.floor}}</div>
+                    </li>
+                </ul>
 
-                <div class="comments-container">
-                    <h2>评论</h2>
-                    <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
-                        <li class="comment-item">
-                            <div class="comment-user-avatar"><img ng-src="{{comment.user_avatar}}" /></div>
-                            <i class="fi-x" 
-                                ng-show="comment.user_id == user_id || isAdmin" 
-                                ng-click="delComment(comment.comment_id)"
-                                style="cursor:pointer;">
-                            </i>
-                            <div class="comment-user-name">{{comment.user_name}}</div>
-                            <div class="comment-content">{{comment.content}}</div>
-                            <div class="time">{{comment.reply_time}}&nbsp;</div>
-                            <div class="comment-floor-num">{{comment.floor}}</div>
-                        </li>
-                    </ul>
-
-                    <form class="comment-form custom" id="commentForm" data-abide="ajax">
-                        <fieldset>
-                            <legend>不吐不快</legend>
-                            <input type="text" id="commentContent" placeholder="请输入你的评论..." required />
-                            <small class="error">评论不能为空</small> 
-                            <button type="submit" id="commentButton">吐槽</button>
-                        </fieldset>
-                    </form>
+                <form class="comment-form custom" id="commentForm" data-abide="ajax">
+                    <fieldset>
+                        <legend>不吐不快</legend>
+                        <input type="text" id="commentContent" placeholder="请输入你的评论..." required />
+                        <small class="error">评论不能为空</small> 
+                        <button type="submit" id="commentButton">吐槽</button>
+                    </fieldset>
+                </form>
 
                 </div>
             </div>
