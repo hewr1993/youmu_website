@@ -37,28 +37,34 @@
                     </script>
                 </div>
 
-                <div class="video-meta">
-                    <h1 class="video-title">{{video.title}}</h1>
-                    <div class="video-upload-time">{{video.upload_time | date}}</div>
-                    <div class="video-description">{{video.description}}</div>
+                <div class="video-info">
+                    <div class="video-meta">
+                        <div class="video-header">
+                            <div class="video-avatar">
+                                <img class="avatar" src="/static/img/placeholder200x200.jpeg" />
+                            </div>
+                            <div class="video-byline">
+                                <h1 class="video-title">{{video.title}}</h1>
+                                <div class="video-owner-name">{{video.owner_name}}</div>
+                                <div class="video-upload-time">{{video.upload_time | date}}</div>
+                            </div>
+                        </div>
+                        <div class="video-description">{{video.description}}</div>
+                    </div>
+
+                    <div class="video-stats">
+                        <div class="views-count">
+                            <span class="label">观看</span>
+                            <span class="data">{{video.play_count}}</span>
+                        </div>
+                        <a class="likes-count" ng-click="likeVideo()">
+                            <span class="label">点赞</span>
+                            <span class="data">{{video.like}}</span>
+                            <span class="data" ng-show="melike">（您赞过了）</span>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="video-data">
-                    <div class="uploader">
-                        <span class="label">上传人</span>
-                        <img class="avatar" ng-src="{{video.owner_avatar}}"/>
-                        <span class="data">{{video.owner_name}}</span>
-                    </div>
-                    <div class="views-count">
-                        <span class="label">观看</span>
-                        <span class="data">{{video.play_count}}</span>
-                    </div>
-                    <a class="likes-count" ng-click="likeVideo()">
-                        <span class="label">点赞</span>
-                        <span class="data">{{video.like}}</span>
-                        <span class="data" ng-show="melike">（您赞过了）</span>
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -67,7 +73,7 @@
                 <h2>评论</h2>
                 <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
                     <li class="comment-item">
-                        <div class="comment-user-avatar"><img ng-src="{{video.owner_avatar}}" /></div>
+                        <div class="comment-user-avatar"><img src="/static/img/placeholder200x200.jpeg" /></div>
                         <i class="fi-x" 
                             ng-show="comment.user_id == user_id || isAdmin" 
                             ng-click="delComment(comment.comment_id)"
@@ -89,7 +95,6 @@
                     </fieldset>
                 </form>
 
-                </div>
             </div>
         </div>
 
