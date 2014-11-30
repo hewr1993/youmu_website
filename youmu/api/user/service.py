@@ -73,7 +73,6 @@ class UserService(object):
         data = mongo.get_user_by_id(user_id)
         data["name"] = name
         data["avatar"] = avatar
-        print data
         mongo.update_user(data)
         return "ok"
 
