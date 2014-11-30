@@ -73,7 +73,7 @@
                 <h2>评论</h2>
                 <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
                     <li class="comment-item">
-                        <div class="comment-user-avatar"><img ng-src="{{video.owner_avatar}}" /></div>
+                        <div class="comment-user-avatar"><img ng-src="{{comment.user_avatar}} /></div>
                         <i class="fi-x" 
                             ng-show="comment.user_id == user_id || isAdmin" 
                             ng-click="delComment(comment.comment_id)"
