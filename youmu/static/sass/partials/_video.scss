@@ -1,4 +1,4 @@
-.video-main-container, .video-player-container, .video-data, .video-description-container {
+.video-main-container, .video-player-container, .video-meta, .video-data, .video-description {
     @include span-columns(12);
 }
 
@@ -26,6 +26,16 @@
     color: white;
 
     display: table-cell;
+    vertical-align: middle;
+
+    &:before {
+        font-family: FontAwesome;
+        opacity: 0.7;
+    }
+
+    &:before, .avatar {
+        margin-right: 10px;
+    }
 }
 
 .video-data {
@@ -39,10 +49,8 @@
     .uploader {
         background-color: $blue;
 
-        &:before {
-            content: "\f007";
-            font-family: FontAwesome;
-            opacity: 0.7;
+        .avatar {
+            max-height: 50px;
         }
     }
 
@@ -51,8 +59,6 @@
 
         &:before {
             content: "\f164";
-            font-family: FontAwesome;
-            opacity: 0.7;
         }
 
         &:hover, &:active, &:focus {
@@ -65,9 +71,32 @@
         
         &:before {
             content: "\f06e";
-            font-family: FontAwesome;
-            opacity: 0.7;
         }
     }
 }
 
+.video-meta {
+    padding: $gutter * 2;
+    background-color: $navbar-background-color;
+}
+
+.video-title, .video-upload-time {
+    display: inline-block;
+}
+
+.video-upload-time {
+    padding-left: $gutter;
+    color: #77777F;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.video-title {
+    font-weight: bold;
+    font-size: ms(2);
+    margin: 0;
+}
+
+.video-description {
+    margin-top: 30px;
+}
