@@ -41,7 +41,7 @@
                     <div class="video-meta">
                         <div class="video-header">
                             <div class="video-avatar">
-                                <img class="avatar" src="/static/img/placeholder200x200.jpeg" />
+                                <img class="avatar" ng-src="{{video.owner_avatar}}" />
                             </div>
                             <div class="video-byline">
                                 <h1 class="video-title">{{video.title}}</h1>
@@ -73,7 +73,7 @@
                 <h2>评论</h2>
                 <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
                     <li class="comment-item">
-                        <div class="comment-user-avatar"><img src="/static/img/placeholder200x200.jpeg" /></div>
+                        <div class="comment-user-avatar"><img ng-src="{{video.owner_avatar}}" /></div>
                         <i class="fi-x" 
                             ng-show="comment.user_id == user_id || isAdmin" 
                             ng-click="delComment(comment.comment_id)"
