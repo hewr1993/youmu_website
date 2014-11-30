@@ -82,13 +82,50 @@ header, .main {
 .video-likes-count:before {
   content: "\f164"; }
 
-.video-main-container, .video-player-container, .video-data, .video-description-container {
+.video-main-container, .video-player-container {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 100%; }
-  .video-main-container:last-child, .video-player-container:last-child, .video-data:last-child, .video-description-container:last-child {
+  .video-main-container:last-child, .video-player-container:last-child {
     margin-right: 0; }
+
+.video-info {
+  display: table;
+  table-layout: fixed;
+  width: 100%; }
+
+.video-meta, .video-stats {
+  display: table-cell; }
+
+.video-stats {
+  vertical-align: top;
+  width: 25%; }
+  .video-stats .label {
+    display: none; }
+  .video-stats .views-count, .video-stats .likes-count {
+    display: block;
+    width: 100%;
+    font-size: 1.61803em;
+    padding: 30px;
+    color: white; }
+    .video-stats .views-count:before, .video-stats .likes-count:before {
+      font-family: FontAwesome;
+      opacity: 0.7;
+      margin-right: 10px; }
+  .video-stats .likes-count {
+    background-color: #43ac6a; }
+    .video-stats .likes-count:before {
+      content: "\f164"; }
+    .video-stats .likes-count:hover, .video-stats .likes-count:active, .video-stats .likes-count:focus {
+      background-color: #61c185; }
+  .video-stats .views-count {
+    background-color: #f04124; }
+    .video-stats .views-count:before {
+      content: "\f06e"; }
+
+.video-main-container {
+  margin-top: 50px; }
 
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
 #playbox {
@@ -104,37 +141,46 @@ header, .main {
     height: 100%;
     border: none; }
 
-.video-data .uploader, .video-data .likes-count, .video-data .views-count {
-  font-size: 2em;
-  padding: 30px;
-  color: white;
-  display: table-cell; }
+.video-meta {
+  padding: 3.236em;
+  background-color: rgba(204, 204, 221, 0.8); }
+  .video-meta .avatar {
+    height: 80px;
+    border: 3px solid #EEEEFF;
+    background-color: #EEEEFF; }
 
-.video-data {
+.video-header {
   display: table;
-  table-layout: fixed; }
-  .video-data .label {
-    display: none; }
-  .video-data .uploader {
-    background-color: #008cba; }
-    .video-data .uploader:before {
-      content: "\f007";
-      font-family: FontAwesome;
-      opacity: 0.7; }
-  .video-data .likes-count {
-    background-color: #43ac6a; }
-    .video-data .likes-count:before {
-      content: "\f164";
-      font-family: FontAwesome;
-      opacity: 0.7; }
-    .video-data .likes-count:hover, .video-data .likes-count:active, .video-data .likes-count:focus {
-      background-color: #61c185; }
-  .video-data .views-count {
-    background-color: #f04124; }
-    .video-data .views-count:before {
-      content: "\f06e";
-      font-family: FontAwesome;
-      opacity: 0.7; }
+  width: 100%; }
+  .video-header .video-avatar, .video-header .video-byline {
+    display: table-cell;
+    vertical-align: middle; }
+  .video-header .video-avatar {
+    width: 100px;
+    padding-right: 1.618em; }
+
+.video-owner-name, .video-upload-time {
+  display: inline-block;
+  font-weight: bold; }
+
+.video-owner-name {
+  padding-left: 5px; }
+
+.video-upload-time {
+  padding-left: 1.618em;
+  color: #77777F;
+  font-size: 12px; }
+
+.video-title {
+  font-weight: bold;
+  font-size: 2.61803em;
+  margin: 0 0 10px 0; }
+
+.video-owner-name, .video-description {
+  color: #3B3B40; }
+
+.video-description {
+  margin-top: 30px; }
 
 .navbar {
   z-index: 9999;
@@ -229,8 +275,12 @@ header, .main {
     display: table;
     clear: both; }
 
+.comments-container {
+  padding: 0 1.618em; }
+
 .comments-list {
-  list-style-type: none; }
+  list-style-type: none;
+  margin-left: 0; }
 
 footer {
   margin: 0;
