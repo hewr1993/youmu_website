@@ -1,60 +1,39 @@
-.video-main-container, .video-player-container, .video-meta, .video-data, .video-description {
+.video-main-container, .video-player-container {
     @include span-columns(12);
 }
 
-.video-main-container {
-    margin-top: 50px;
-}
-
-/* Fluid video iframes by Thierry Koblentz via A List Apart. */
-#playbox {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-
-    background-color: black;
-
-    iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-}
-
-.video-data .uploader, .video-data .likes-count, .video-data .views-count {
-    font-size: 2em;
-    padding: 30px;
-    color: white;
-
-    display: table-cell;
-    vertical-align: middle;
-
-    &:before {
-        font-family: FontAwesome;
-        opacity: 0.7;
-    }
-
-    &:before, .avatar {
-        margin-right: 10px;
-    }
-}
-
-.video-data {
+.video-info {
     display: table;
     table-layout: fixed;
+    width: 100%;
+}
+
+.video-meta, .video-stats {
+    display: table-cell;
+}
+
+.video-meta {
+}
+
+.video-stats {
+    vertical-align: top;
+    width: 25%;
 
     .label {
         display: none;
     }
 
-    .uploader {
-        background-color: $blue;
+    .views-count, .likes-count {
+        display: block;
+        width: 100%;
+        font-size: ms(1);
+        padding: 30px;
+        color: white;
 
-        .avatar {
-            max-height: 50px;
+        &:before {
+            font-family: FontAwesome;
+            opacity: 0.7;
+            margin-right: 10px;
         }
     }
 
@@ -79,26 +58,76 @@
     }
 }
 
+.video-main-container {
+    margin-top: 50px;
+}
+
+/* Fluid video iframes by Thierry Koblentz via A List Apart. */
+#playbox {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    background-color: black;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
 .video-meta {
     padding: $gutter * 2;
     background-color: $navbar-background-color;
+
+    .avatar {
+        max-height: 80px;
+        border: 3px solid #EEEEFF;
+    }
 }
 
-.video-title, .video-upload-time {
+.video-header {
+    display: table;
+    width: 100%;
+
+    .video-avatar, .video-byline {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .video-avatar {
+        width: 100px;
+        padding-right: $gutter;
+    }
+}
+
+.video-owner-name, .video-upload-time {
     display: inline-block;
+    font-weight: bold;
+}
+
+.video-owner-name {
+    padding-left: 5px;
 }
 
 .video-upload-time {
     padding-left: $gutter;
     color: #77777F;
-    font-weight: bold;
     font-size: 12px;
 }
 
 .video-title {
     font-weight: bold;
     font-size: ms(2);
-    margin: 0;
+    margin: 0 0 10px 0;
+}
+
+.video-owner-name, .video-description {
+    color: #3B3B40;
 }
 
 .video-description {
