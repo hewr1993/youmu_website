@@ -512,8 +512,6 @@ html {
     .video-list-item:nth-child(4n+3) {
       margin-right: 0; }
 
-  .video-list .first .video-data-area, .video-list .second .video-data-area, .video-list .third .video-data-area {
-    padding: 1.618em; }
   .video-list .first {
     float: left;
     display: block;
@@ -525,6 +523,8 @@ html {
       font-size: 2.61803em; }
     .video-list .first .video-details {
       font-size: 1em; }
+    .video-list .first .video-data-area {
+      padding: 1.618em; }
   .video-list .second, .video-list .third {
     float: left;
     display: block;
@@ -535,6 +535,8 @@ html {
       margin-right: 0; }
     .video-list .second .video-title, .video-list .third .video-title {
       font-size: 1.61803em; }
+    .video-list .second .video-data-area, .video-list .third .video-data-area {
+      padding: 1.2135em; }
   .video-list .second {
     margin-bottom: 0.809em; }
  }

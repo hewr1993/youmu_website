@@ -7,12 +7,6 @@
 }
 
 .video-list {
-    .first, .second, .third {
-        .video-data-area {
-            padding: $gutter;
-        }
-    }
-
     .first {
         @include span-columns(8);
 
@@ -22,6 +16,10 @@
         .video-details {
             font-size: ms(0);
         }
+
+        .video-data-area {
+            padding: $gutter;
+        }
     }
 
     .second, .third {
@@ -30,6 +28,10 @@
 
         .video-title {
             font-size: ms(1);
+        }
+
+        .video-data-area {
+            padding: $gutter * 0.75;
         }
     }
 
