@@ -77,7 +77,7 @@
                             <div class="byline">
                                 <div class="username">{{comment.user_name}}</div>
                                 <div class="time">{{comment.reply_time}}</div>
-                                <div class="comment-floor-num">{{comment.floor}}</div>
+                                <a class="comment-floor-num" name="comment-{{comment.floor}}" href="#comment-{{comment.floor}}">{{comment.floor}}</a>
                             </div>
                             <a class="comment-del-button" ng-show="comment.user_id == user_id || isAdmin" ng-click="delComment(comment.comment_id)">删除评论</a>
                         </div>
