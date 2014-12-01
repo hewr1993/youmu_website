@@ -31,3 +31,16 @@
         }
     }
 }
+
+.video-meta, .video-stats {
+    @include span-columns(12);
+}
+
+.video-stats {
+    display: table;
+    table-layout: fixed;
+    .views-count, .likes-count {
+        display: table-cell;
+        width: 50%;
+    }
+}

@@ -3,19 +3,10 @@
 }
 
 .video-info {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
-
-.video-meta, .video-stats {
-    display: table-cell;
+    @include span-columns(12);
 }
 
 .video-stats {
-    vertical-align: top;
-    width: 25%;
-
     .label {
         display: none;
     }
