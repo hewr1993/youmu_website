@@ -71,8 +71,8 @@
         <div class="content">
             <div class="main comments-container">
                 <h2 class="main-subheader">评论</h2>
-                <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
-                    <li class="comment-item">
+                <ul class="comments-list">
+                    <li class="comment-item" ng-repeat="comment in comments | orderBy: 'floor'">
                         <div class="comment-header">
                             <div class="comment-avatar"><img class="avatar" src="/static/img/placeholder200x200.jpeg" /></div>
                             <div class="byline">
