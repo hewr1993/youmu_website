@@ -239,14 +239,16 @@ header, .main {
   .navbar .login-logout-area {
     text-align: right;
     width: 50%; }
-    .navbar .login-logout-area .user {
-      margin-right: 1.618em; }
+  .navbar .user {
+    margin: 0 1.618em 0 0.809em; }
   .navbar .search-button .label:before {
     content: "\f002"; }
   .navbar .login-button .label:before {
     content: "\f090"; }
   .navbar .logout-button .label:before {
     content: "\f08b"; }
+  .navbar .navbar-avatar .avatar {
+    height: 49px; }
 
 .navbar-fixed {
   position: fixed;
@@ -320,6 +322,31 @@ header, .main {
   .comment-form textarea {
     resize: none;
     height: 7em; }
+
+.admin-sections {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  padding: 0 3.236em; }
+  .admin-sections:last-child {
+    margin-right: 0; }
+
+.admin-profile {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .admin-profile:last-child {
+    margin-right: 0; }
+
+.admin-videos, .admin-users {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .admin-videos:last-child, .admin-users:last-child {
+    margin-right: 0; }
 
 footer {
   margin: 0;
@@ -436,7 +463,7 @@ html {
   .video-list-length {
     font-size: 1.61803em; }
 
-  .navbar .logo {
+  .navbar .logo, .navbar .avatar {
     display: none; }
   .navbar .button {
     padding-left: 15px;
@@ -448,7 +475,7 @@ html {
   .navbar .login-logout-area {
     width: 40%; }
   .navbar .user {
-    margin-right: 1px; }
+    margin: 0 0.809em 0 0; }
 
   .video-list-item {
     float: left;
@@ -555,6 +582,8 @@ html {
     padding-right: 15px; }
   .navbar .search-area input {
     width: 50%; }
+  .navbar .user {
+    margin: 0 0.809em; }
 
   .video-meta, .video-stats {
     float: left;
