@@ -5,8 +5,14 @@
         {% include 'partials/head.html' %}
 	</head>
 	<body>
+        <div class="main">
         {% include 'partials/topbar.html' %}
-		{% include 'user/partials/tabs.html' %}
+        </div>
+        <div class="content">
+            <div class="main">
+            {% include 'user/partials/tabs.html' %}
+            </div>
+        </div>
 		{% include 'partials/foot.html' %}
 		<script src="/static/js/foundation/foundation.magellan.js"></script>
 	</body>
