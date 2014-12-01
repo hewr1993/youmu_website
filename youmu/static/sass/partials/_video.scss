@@ -43,12 +43,26 @@
         transition: 0.2s all ease;
 
         &:before {
-            content: "\f164";
+            content: "\f087";
         }
 
         &:hover, &:active, &:focus {
             background-color: darken($green, 20);
             color: #FFE;
+        }
+    }
+
+    .has-liked {
+        background-color: darken($green, 20);
+        color: #FFE;
+
+        &:before {
+            content: "\f164";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: $green;
+            color: darken($green, 30);
         }
     }
 

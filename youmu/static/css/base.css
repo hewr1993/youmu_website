@@ -118,10 +118,18 @@ header, .main {
     color: #183e26;
     transition: 0.2s all ease; }
     .video-stats .likes-count:before {
-      content: "\f164"; }
+      content: "\f087"; }
     .video-stats .likes-count:hover, .video-stats .likes-count:active, .video-stats .likes-count:focus {
       background-color: #26633d;
       color: #FFE; }
+  .video-stats .has-liked {
+    background-color: #26633d;
+    color: #FFE; }
+    .video-stats .has-liked:before {
+      content: "\f164"; }
+    .video-stats .has-liked:hover, .video-stats .has-liked:active, .video-stats .has-liked:focus {
+      background-color: #43ac6a;
+      color: #183e26; }
   .video-stats .views-count {
     background-color: #f04124;
     color: #731708; }

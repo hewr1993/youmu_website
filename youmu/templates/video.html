@@ -57,10 +57,9 @@
                             <span class="label">观看</span>
                             <span class="data">{{video.play_count}}</span>
                         </div>
-                        <a class="likes-count" ng-click="likeVideo()">
+                        <a class="likes-count" ng-class="{true: 'has-liked', false: 'has-not-liked'}[melike]" ng-click="likeVideo()">
                             <span class="label">点赞</span>
                             <span class="data">{{video.like}}</span>
-                            <span class="data" ng-show="melike">（您赞过了）</span>
                         </a>
                     </div>
                 </div>
