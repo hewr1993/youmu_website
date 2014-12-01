@@ -221,6 +221,17 @@ header, .main {
     margin: 0; }
   .navbar .login {
     margin-right: 0; }
+  .navbar .label {
+    font-size: 0;
+    padding: 0;
+    background: none; }
+    .navbar .label:before {
+      visibility: visible;
+      font-family: "FontAwesome";
+      font-size: 18px; }
+  .navbar .button {
+    padding-left: 18px;
+    padding-right: 18px; }
   .navbar .search-area {
     width: 50%; }
     .navbar .search-area input, .navbar .search-area a {
@@ -233,6 +244,12 @@ header, .main {
     width: 50%; }
     .navbar .login-logout-area .user {
       margin-right: 1.618em; }
+  .navbar .search-button .label:before {
+    content: "\f002"; }
+  .navbar .login-button .label:before {
+    content: "\f090"; }
+  .navbar .logout-button .label:before {
+    content: "\f08b"; }
 
 .navbar-fixed {
   position: fixed;

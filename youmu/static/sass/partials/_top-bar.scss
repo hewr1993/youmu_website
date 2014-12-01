@@ -31,6 +31,22 @@
         margin-right: 0;
     }
 
+    .label {
+        font-size: 0;
+        padding: 0;
+        background: none;
+        &:before {
+            visibility: visible;
+            font-family: "FontAwesome";
+            font-size: 18px;
+        }
+    }
+
+    .button {
+        padding-left:  18px;
+        padding-right: 18px;
+    }
+
     .search-area {
         width: 50%;
         input, a {
@@ -41,6 +57,7 @@
             width: 50%;
             height: 49px;
         }
+
     }
 
     .login-logout-area {
@@ -50,6 +67,18 @@
         .user {
             margin-right: $gutter;
         }
+    }
+
+    .search-button .label:before {
+        content: "\f002";
+    }
+
+    .login-button .label:before {
+        content: "\f090";
+    }
+
+    .logout-button .label:before {
+        content: "\f08b";
     }
 }
 

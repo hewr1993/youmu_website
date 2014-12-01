@@ -7,17 +7,17 @@
 
     <div class="search-area">
         <input type="text" placeholder="视频信息">
-        <a href="#" class="button">搜索</a>
+        <a href="#" class="button search-button"><span class="label">搜索</span></a>
     </div>
 
     <div class="login-logout-area">
         <div class="login" ng-hide="isLogin"> <!-- 登录后，隐藏 -->
-            <a href="#" class="button login-button" data-reveal-id="loginModal">登录</a>
+            <a href="#" class="button login-button" data-reveal-id="loginModal"><div class="label">登录</div></a>
         </div>
 
         <div class="logout" ng-show="isLogin"> <!-- 登录后，出现 -->
             <a class="user" href="/user/">{{username}}</a>    <!--需要在登录时指定-->
-            <a href="#" class="button logout-button" ng-click="logout();">登出</a>
+            <a href="#" class="button logout-button" ng-click="logout();"><div class="label">登出</div></a>
         </div>
     </div>
 
