@@ -285,17 +285,18 @@ header, .main {
 .comments-container {
   padding: 0 3.236em; }
 
+.comments-list {
+  list-style-type: none;
+  margin: 0; }
+
 .comments-list, .comment-form {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 48.82117%; }
+  width: 48.82117%;
+  margin-left: 25.58941%; }
   .comments-list:last-child, .comment-form:last-child {
     margin-right: 0; }
-
-.comments-list {
-  list-style-type: none;
-  margin-left: 0; }
 
 .comment-item {
   float: left;
@@ -308,6 +309,8 @@ header, .main {
     margin-right: 0; }
   .comment-item .avatar {
     height: 50px; }
+  .comment-item:first-child {
+    padding-top: 0; }
 
 .comment-del-button {
   visibility: hidden; }
@@ -333,6 +336,12 @@ header, .main {
 
 .comment-floor-num:before {
   content: "#"; }
+
+.comment-form {
+  padding-top: 1.618em; }
+  .comment-form textarea {
+    resize: none;
+    height: 7em; }
 
 footer {
   margin: 0;

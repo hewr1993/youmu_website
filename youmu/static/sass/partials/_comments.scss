@@ -2,13 +2,14 @@
     padding: 0 $gutter * 2;
 }
 
-.comments-list, .comment-form {
-    @include span-columns(6);
-}
-
 .comments-list {
     list-style-type: none;
-    margin-left: 0;
+    margin: 0;
+}
+
+.comments-list, .comment-form {
+    @include span-columns(6);
+    @include shift(3);
 }
 
 .comment-item {
@@ -19,6 +20,10 @@
 
     padding: $gutter 0;
     border-bottom: 1px solid #77777F;
+
+    &:first-child {
+        padding-top: 0;
+    }
 }
 
 .comment-del-button {
@@ -54,5 +59,13 @@
     @extend .time;
     &:before {
         content: "#";
+    }
+}
+
+.comment-form {
+    padding-top: $gutter;
+    textarea {
+        resize: none;
+        height: 7em;
     }
 }
