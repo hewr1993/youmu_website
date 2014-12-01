@@ -2,8 +2,57 @@
     padding: 0 $gutter * 2;
 }
 
+.comments-list, .comment-form {
+    @include span-columns(6);
+}
+
 .comments-list {
     list-style-type: none;
     margin-left: 0;
 }
 
+.comment-item {
+    @include span-columns(12);
+    .avatar {
+        height: 50px;
+    }
+
+    padding: $gutter 0;
+    border-bottom: 1px solid #77777F;
+}
+
+.comment-del-button {
+    visibility: hidden;
+    &:before {
+        visibility: visible;
+        font-family: FontAwesome;
+        content: "\f1f8";
+    }
+}
+
+.comment-header {
+    margin-bottom: $gutter / 2;
+}
+
+.comment-avatar, .comment-item .byline {
+    display: inline-block;
+}
+
+.comment-avatar {
+    padding-right: $gutter / 2;
+}
+
+.comment-item .time, .comment-del-button {
+    padding-left: $gutter / 2;
+}
+
+.comment-content {
+    color: $main-text-color;
+}
+
+.comment-floor-num {
+    @extend .time;
+    &:before {
+        content: "#";
+    }
+}

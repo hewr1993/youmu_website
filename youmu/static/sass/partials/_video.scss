@@ -103,7 +103,7 @@
     display: table;
     width: 100%;
 
-    .video-avatar, .video-byline {
+    .video-avatar, .byline {
         display: table-cell;
         vertical-align: middle;
     }
@@ -114,31 +114,31 @@
     }
 }
 
-.video-owner-name, .video-upload-time {
+.username, .time {
     display: inline-block;
     font-weight: bold;
 }
 
-.video-owner-name {
+.username {
     padding-left: 5px;
 }
 
-.video-upload-time {
+.time {
     padding-left: $gutter;
     color: #77777F;
     font-size: 12px;
 }
 
-.video-title {
+.title {
     font-weight: bold;
     font-size: ms(2);
     margin: 0 0 10px 0;
 }
 
-.video-owner-name, .video-description {
-    color: #3B3B40;
+.username, .description {
+    color: $main-text-color;
 }
 
-.video-description {
+.description {
     margin-top: 30px;
 }

@@ -40,17 +40,18 @@ header, .main {
 .masthead-expanded {
   padding-bottom: 91px; }
 
-.video-list-length {
+.main-subheader {
   color: #90989b;
   font-size: 2.61803em;
   font-style: italic;
+  margin: 0;
   margin-bottom: 50px;
   text-align: center;
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 100%; }
-  .video-list-length:last-child {
+  .main-subheader:last-child {
     margin-right: 0; }
 
 .credits {
@@ -158,34 +159,34 @@ header, .main {
 .video-header {
   display: table;
   width: 100%; }
-  .video-header .video-avatar, .video-header .video-byline {
+  .video-header .video-avatar, .video-header .byline {
     display: table-cell;
     vertical-align: middle; }
   .video-header .video-avatar {
     width: 100px;
     padding-right: 1.618em; }
 
-.video-owner-name, .video-upload-time {
+.username, .time, .comment-floor-num {
   display: inline-block;
   font-weight: bold; }
 
-.video-owner-name {
+.username {
   padding-left: 5px; }
 
-.video-upload-time {
+.time, .comment-floor-num {
   padding-left: 1.618em;
   color: #77777F;
   font-size: 12px; }
 
-.video-title {
+.title {
   font-weight: bold;
   font-size: 2.61803em;
   margin: 0 0 10px 0; }
 
-.video-owner-name, .video-description {
+.username, .description {
   color: #3B3B40; }
 
-.video-description {
+.description {
   margin-top: 30px; }
 
 .navbar {
@@ -282,11 +283,56 @@ header, .main {
     clear: both; }
 
 .comments-container {
-  padding: 0 1.618em; }
+  padding: 0 3.236em; }
+
+.comments-list, .comment-form {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .comments-list:last-child, .comment-form:last-child {
+    margin-right: 0; }
 
 .comments-list {
   list-style-type: none;
   margin-left: 0; }
+
+.comment-item {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  padding: 1.618em 0;
+  border-bottom: 1px solid #77777F; }
+  .comment-item:last-child {
+    margin-right: 0; }
+  .comment-item .avatar {
+    height: 50px; }
+
+.comment-del-button {
+  visibility: hidden; }
+  .comment-del-button:before {
+    visibility: visible;
+    font-family: FontAwesome;
+    content: "\f1f8"; }
+
+.comment-header {
+  margin-bottom: 0.809em; }
+
+.comment-avatar, .comment-item .byline {
+  display: inline-block; }
+
+.comment-avatar {
+  padding-right: 0.809em; }
+
+.comment-item .time, .comment-item .comment-floor-num, .comment-del-button {
+  padding-left: 0.809em; }
+
+.comment-content {
+  color: #3B3B40; }
+
+.comment-floor-num:before {
+  content: "#"; }
 
 footer {
   margin: 0;
