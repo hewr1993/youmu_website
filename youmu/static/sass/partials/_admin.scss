@@ -1,0 +1,12 @@
+.admin-sections {
+    @include span-columns(12);
+    padding: 0 $gutter * 2;
+}
+
+.admin-profile {
+    @include span-columns(6);
+}
+
+.admin-videos, .admin-users {
+    @include span-columns(12);
+}
