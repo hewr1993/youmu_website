@@ -41,7 +41,7 @@
                     <div class="video-meta">
                         <div class="video-header">
                             <div class="video-avatar">
-                                <img class="avatar" src="/static/img/placeholder200x200.jpeg" />
+                                <img class="avatar" ng-src="{{video.owner_avatar}}" />
                             </div>
                             <div class="byline">
                                 <h1 class="title">{{video.title}}</h1>
@@ -73,7 +73,7 @@
                 <ul class="comments-list">
                     <li class="comment-item" ng-repeat="comment in comments | orderBy: 'floor'">
                         <div class="comment-header">
-                            <div class="comment-avatar"><img class="avatar" src="/static/img/placeholder200x200.jpeg" /></div>
+                            <div class="comment-avatar"><img class="avatar" ng-src="{{comment.user_avatar}}" /></div>
                             <div class="byline">
                                 <div class="username">{{comment.user_name}}</div>
                                 <div class="time">{{comment.reply_time}}</div>

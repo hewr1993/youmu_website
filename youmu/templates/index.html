@@ -23,58 +23,7 @@
                 <div class="video-list">
                     <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
                         <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                            <img class='video-thumbnail' src="http://lorempixel.com/632/400/" />
-
-                            <div class="video-data-container-area">
-                                <div class="video-data-area">
-                                    <h5 class="video-title">{{video.title}}</h5>
-                                    <div class="video-details">
-                                        <div class="video-uploader">{{video.owner_name}}</div>
-                                        <div class="video-play-count">{{video.play_count}}</div>
-                                        <div class="video-likes-count">{{video.like}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </a>
-                    </div>
-                    <div class="video-list-item" ng-class="{third: $index==0}" ng-repeat="video in videos">
-                        <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                            <img class='video-thumbnail' src="http://lorempixel.com/632/400/" />
-
-                            <div class="video-data-container-area">
-                                <div class="video-data-area">
-                                    <h5 class="video-title">{{video.title}}</h5>
-                                    <div class="video-details">
-                                        <div class="video-uploader">{{video.owner_name}}</div>
-                                        <div class="video-play-count">{{video.play_count}}</div>
-                                        <div class="video-likes-count">{{video.like}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </a>
-                    </div>
-                    <div class="video-list-item" ng-repeat="video in videos">
-                        <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                            <img class='video-thumbnail' src="http://lorempixel.com/632/400/" />
-
-                            <div class="video-data-container-area">
-                                <div class="video-data-area">
-                                    <h5 class="video-title">{{video.title}}</h5>
-                                    <div class="video-details">
-                                        <div class="video-uploader">{{video.owner_name}}</div>
-                                        <div class="video-play-count">{{video.play_count}}</div>
-                                        <div class="video-likes-count">{{video.like}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </a>
-                    </div>
-                    <div class="video-list-item" ng-repeat="video in videos">
-                        <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                            <img class='video-thumbnail' src="http://lorempixel.com/632/400/" />
+                            <img class='video-thumbnail' src="{{video.cover}}" />
 
                             <div class="video-data-container-area">
                                 <div class="video-data-area">
