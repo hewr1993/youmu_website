@@ -43,7 +43,7 @@
 }
 
 .comment-item .time, .comment-del-button {
-    padding-left: $gutter / 2;
+    margin-left: $gutter / 2;
 }
 
 .comment-content {
@@ -51,7 +51,10 @@
 }
 
 .comment-floor-num {
-    @extend .time;
+    margin-left: $gutter / 2;
+    color: $blue;
+    font-size: 12px;
+    font-weight: bold;
     &:before {
         content: "#";
     }

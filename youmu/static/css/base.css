@@ -171,15 +171,15 @@ header, .main {
     width: 100px;
     padding-right: 1.618em; }
 
-.username, .time, .comment-floor-num {
+.username, .time {
   display: inline-block;
   font-weight: bold; }
 
 .username {
   padding-left: 5px; }
 
-.time, .comment-floor-num {
-  padding-left: 1.618em;
+.time {
+  margin-left: 1.618em;
   color: #77777F;
   font-size: 12px; }
 
@@ -301,14 +301,19 @@ header, .main {
 .comment-avatar {
   padding-right: 0.809em; }
 
-.comment-item .time, .comment-item .comment-floor-num, .comment-del-button {
-  padding-left: 0.809em; }
+.comment-item .time, .comment-del-button {
+  margin-left: 0.809em; }
 
 .comment-content {
   color: #3B3B40; }
 
-.comment-floor-num:before {
-  content: "#"; }
+.comment-floor-num {
+  margin-left: 0.809em;
+  color: #008cba;
+  font-size: 12px;
+  font-weight: bold; }
+  .comment-floor-num:before {
+    content: "#"; }
 
 .comment-form {
   padding-top: 1.618em; }
@@ -495,20 +500,20 @@ html {
     padding: 0; }
     .video-info .video-avatar:last-child {
       margin-right: 0; }
-  .video-info .username, .video-info .time, .video-info .comment-floor-num {
+  .video-info .username, .video-info .time {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%;
     padding: 0; }
-    .video-info .username:last-child, .video-info .time:last-child, .video-info .comment-floor-num:last-child {
+    .video-info .username:last-child, .video-info .time:last-child {
       margin-right: 0; }
   .video-info .username {
     text-align: left; }
-  .video-info .time, .video-info .comment-floor-num {
+  .video-info .time {
     text-align: right; }
 
-  .comment-item .username, .comment-item .time, .comment-item .comment-floor-num {
+  .comment-item .username, .comment-item .time {
     display: block;
     float: left;
     display: block;
@@ -516,7 +521,7 @@ html {
     width: 100%;
     padding: 0;
     text-align: left; }
-    .comment-item .username:last-child, .comment-item .time:last-child, .comment-item .comment-floor-num:last-child {
+    .comment-item .username:last-child, .comment-item .time:last-child {
       margin-right: 0; }
  }
 
