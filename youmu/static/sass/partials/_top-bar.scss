@@ -63,10 +63,10 @@
     .login-logout-area {
         text-align: right;
         width: 50%;
+    }
 
-        .user {
-            margin-right: $gutter;
-        }
+    .user {
+        margin: 0 $gutter 0 $gutter / 2;
     }
 
     .search-button .label:before {
@@ -79,6 +79,10 @@
 
     .logout-button .label:before {
         content: "\f08b";
+    }
+
+    .navbar-avatar .avatar {
+        height: 49px;
     }
 }
 

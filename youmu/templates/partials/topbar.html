@@ -16,6 +16,9 @@
         </div>
 
         <div class="logout" ng-show="isLogin"> <!-- 登录后，出现 -->
+            <span class="navbar-avatar">
+                <img class="avatar" ng-src="{{avatar}}"/>
+            </span>
             <a class="user" href="/user/">{{username}}</a>    <!--需要在登录时指定-->
             <a href="#" class="button logout-button" ng-click="logout();"><div class="label">登出</div></a>
         </div>

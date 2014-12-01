@@ -13,7 +13,7 @@
 }
 
 .navbar {
-    .logo {
+    .logo, .avatar {
         display: none;
     }
 
@@ -34,7 +34,7 @@
     }
 
     .user {
-        margin-right: 1px;
+        margin: 0 $gutter / 2 0 0;
     }
 }
 
