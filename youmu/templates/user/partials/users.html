@@ -1,7 +1,4 @@
-<div class="panel callout radius">
-	<h6>共有{{users.length}}个用户</h6>
-</div>
-<div class="panel">
+<div>共有{{users.length}}个用户</div>
 <table>
 	<thead>
 		<tr>
@@ -10,14 +7,14 @@
 			<th>屏蔽/解禁</th>
 		</tr>
 	</thead>
-	<div>
-	<!--div ng-repeat="user in users"-->
-		<tr ng-repeat="user in users">
-			<td>{{user.id}}</td>
-			<td>{{user.name}}</td>
-			<td><button ng-click="EnableUser(user.id);" ng-show="user.disabled">解禁</button>
-				<button ng-click="DisableUser(user.id);" ng-hide="user.disabled">屏蔽</button></td>
-		</tr>
-	<!--/div-->
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>
+                <button ng-click="EnableUser(user.id);" ng-show="user.disabled">解禁</button>
+                <button ng-click="DisableUser(user.id);" ng-hide="user.disabled">屏蔽</button>
+            </td>
+        </tr>
+    </tbody>
 </table>
-</div>

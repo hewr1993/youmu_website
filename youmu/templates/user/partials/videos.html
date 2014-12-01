@@ -1,26 +1,20 @@
-<div class="panel callout radius">
-	<h6>共上传{{videos.length}}个视频</h6>
-	<a href="#" data-reveal-id="uploadVideoModal" class="radius button">上传新视频</a>
-</div>
-<div class="large-8 columns">
-	<div class="row">
-		<div class="small-4 columns" ng-repeat="video in videos">
-			<!-- TODO：根据最新设计修改 -->
-			<a href="{{video.videoUrl}}" target="_blank">
-				<div style="height:258px; line-height:258px;">
-					<img ng-src="{{video.cover}}">
-				</div>
-			</a>
-			<div class="panel">
-				{{video.title}}<br>
-				<button class="warning" ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
-				<button class="success" ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
-				<button class="alert" ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
-				<button class="success" ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
-			</div>
-		</div>
-	</div>
-</div>
+<div>共上传{{videos.length}}个视频</div>
+<a href="#" data-reveal-id="uploadVideoModal" class="button">上传新视频</a>
+
+<ul class="video-list">
+    <li class="video-list-item" ng-repeat="video in videos">
+        <!-- TODO：根据最新设计修改 -->
+        <a href="{{video.videoUrl}}" target="_blank">
+            <img ng-src="{{video.cover}}">
+        </a>
+        <div class="title">{{video.title}}</div>
+        <button ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
+        <button ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
+        <button ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
+        <button ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
+    </li>
+</ul>
+
 <div id="uploadVideoModal" class="reveal-modal" data-reveal>
 	<form class="custom" id="uploadVideoForm" data-abide="ajax">
 		<!--<form action="/api/video/upload" method="post" enctype="multipart/form-data">-->
