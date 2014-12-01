@@ -190,84 +190,41 @@ header, .main {
   margin-top: 30px; }
 
 .navbar {
-  z-index: 9999;
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 100%;
-  margin-right: 0;
+  z-index: 9999;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
   background-color: rgba(204, 204, 221, 0.8);
   transition: all 0.3s ease;
   padding: 20px; }
   .navbar:last-child {
     margin-right: 0; }
+  .navbar .logo, .navbar .search-area, .navbar .login-logout-area {
+    display: table-cell; }
   .navbar .logo {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 6.17215%;
-    text-align: center; }
-    .navbar .logo:last-child {
-      margin-right: 0; }
+    width: 75px; }
     .navbar .logo img {
-      max-height: 49px; }
-  .navbar .button {
-    margin: 0;
-    width: 100%; }
+      height: 49px; }
+  .navbar input, .navbar .button {
+    margin: 0; }
   .navbar .login {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%;
-    margin-left: 17.05961%;
     margin-right: 0; }
-    .navbar .login:last-child {
-      margin-right: 0; }
-  .navbar .logout {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%; }
-    .navbar .logout:last-child {
-      margin-right: 0; }
-  .navbar .user, .navbar .logout-button {
-    float: left;
-    display: block;
-    margin-right: 7.42297%;
-    width: 46.28851%; }
-    .navbar .user:last-child, .navbar .logout-button:last-child {
-      margin-right: 0; }
-  .navbar .user {
-    padding-top: 14px;
-    padding-bottom: 15px;
-    text-align: right; }
   .navbar .search-area {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 57.35098%; }
-    .navbar .search-area:last-child {
-      margin-right: 0; }
+    width: 50%; }
+    .navbar .search-area input, .navbar .search-area a {
+      display: inline-block; }
     .navbar .search-area input {
-      height: 49px;
-      float: left;
-      display: block;
-      margin-right: 4.11092%;
-      width: 70.25402%;
-      margin: 0; }
-      .navbar .search-area input:last-child {
-        margin-right: 0; }
-    .navbar .search-area .button {
-      margin: 0;
-      float: left;
-      display: block;
-      margin-right: 4.11092%;
-      width: 25.63506%;
-      background-color: #f04124; }
-      .navbar .search-area .button:last-child {
-        margin-right: 0; }
-      .navbar .search-area .button:hover {
-        background-color: #d32a0e; }
+      width: 50%;
+      height: 49px; }
+  .navbar .login-logout-area {
+    text-align: right;
+    width: 50%; }
+    .navbar .login-logout-area .user {
+      margin-right: 1.618em; }
 
 .navbar-fixed {
   position: fixed;
@@ -276,7 +233,10 @@ header, .main {
   margin-right: auto;
   z-index: 100;
   background-color: rgba(238, 238, 255, 0.98);
-  box-shadow: 0 0 20px #99A; }
+  box-shadow: 0 0 20px #99A;
+  display: table;
+  table-layout: fixed;
+  width: 100%; }
   .navbar-fixed:after {
     content: "";
     display: table;
@@ -461,57 +421,16 @@ html {
   .navbar .logo {
     display: none; }
   .navbar .button {
-    padding-left: 5px;
-    padding-right: 5px; }
-  .navbar .login {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 23.23176%;
-    margin-left: 8.5298%;
-    margin-right: 0; }
-    .navbar .login:last-child {
-      margin-right: 0; }
-  .navbar .logout {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%; }
-    .navbar .logout:last-child {
-      margin-right: 0; }
-  .navbar .user, .navbar .logout-button {
-    float: left;
-    display: block;
-    margin-right: 7.42297%;
-    width: 46.28851%; }
-    .navbar .user:last-child, .navbar .logout-button:last-child {
-      margin-right: 0; }
-  .navbar .user {
-    padding-top: 14px;
-    padding-bottom: 15px;
-    text-align: right; }
+    padding-left: 15px;
+    padding-right: 15px; }
   .navbar .search-area {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 65.88078%; }
-    .navbar .search-area:last-child {
-      margin-right: 0; }
+    width: 60%; }
     .navbar .search-area input {
-      float: left;
-      display: block;
-      margin-right: 3.57866%;
-      width: 61.158%;
-      margin-right: 0; }
-      .navbar .search-area input:last-child {
-        margin-right: 0; }
-    .navbar .search-area .button {
-      float: left;
-      display: block;
-      margin-right: 3.57866%;
-      width: 35.26334%; }
-      .navbar .search-area .button:last-child {
-        margin-right: 0; }
+      width: 60%; }
+  .navbar .login-logout-area {
+    width: 40%; }
+  .navbar .user {
+    margin-right: 1px; }
 
   .video-list-item {
     float: left;
@@ -552,66 +471,11 @@ html {
     .video-list-item .video-data-area {
       padding: 10px 20px; }
 
-  .navbar .logo {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%;
-    margin-right: 0; }
-    .navbar .logo:last-child {
-      margin-right: 0; }
   .navbar .button {
-    padding-left: 5px;
-    padding-right: 5px; }
-  .navbar .login {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%;
-    margin-left: 8.5298%;
-    margin-right: 0; }
-    .navbar .login:last-child {
-      margin-right: 0; }
-  .navbar .logout {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%; }
-    .navbar .logout:last-child {
-      margin-right: 0; }
-  .navbar .user, .navbar .logout-button {
-    float: left;
-    display: block;
-    margin-right: 7.42297%;
-    width: 46.28851%; }
-    .navbar .user:last-child, .navbar .logout-button:last-child {
-      margin-right: 0; }
-  .navbar .user {
-    padding-top: 14px;
-    padding-bottom: 15px;
-    text-align: right; }
-  .navbar .search-area {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 57.35098%; }
-    .navbar .search-area:last-child {
-      margin-right: 0; }
-    .navbar .search-area input {
-      float: left;
-      display: block;
-      margin-right: 4.11092%;
-      width: 70.25402%;
-      margin-right: 0; }
-      .navbar .search-area input:last-child {
-        margin-right: 0; }
-    .navbar .search-area .button {
-      float: left;
-      display: block;
-      margin-right: 4.11092%;
-      width: 25.63506%; }
-      .navbar .search-area .button:last-child {
-        margin-right: 0; }
+    padding-left: 15px;
+    padding-right: 15px; }
+  .navbar .search-area input {
+    width: 50%; }
  }
 
 @media screen and (min-width: 768px) {
@@ -653,5 +517,12 @@ html {
       padding: 1.2135em; }
   .video-list .second {
     margin-bottom: 0.809em; }
+
+  .navbar .search-area input {
+    width: 60%; }
  }
 
+@media screen and (min-width: 1001px) {
+  .navbar .search-area input {
+    width: 75%; }
+ }

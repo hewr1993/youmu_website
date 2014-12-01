@@ -20,45 +20,14 @@
 }
 
 .navbar {
-    .logo {
-        @include span-columns(2);
-        margin-right: 0;
-    }
-
     .button {
-        padding-left:  5px;
-        padding-right: 5px;
-    }
-
-    .login {
-        @include span-columns(2);
-        @include shift(1);
-        margin-right: 0;
-    }
-
-    .logout {
-        @include span-columns(4);
-    }
-
-    .user, .logout-button {
-        @include span-columns(2 of 4);
-    }
-
-    .user {
-        padding-top: 14px;
-        padding-bottom: 15px;
-        text-align: right;
+        padding-left:  15px;
+        padding-right: 15px;
     }
 
     .search-area {
-        @include span-columns(7 of 12);
-
         input {
-            @include span-columns(5 of 7);
-            margin-right: 0;
-        }
-        .button {
-            @include span-columns(2 of 7);
+            width: 50%;
         }
     }
 }
