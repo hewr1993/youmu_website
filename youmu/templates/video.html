@@ -43,13 +43,13 @@
                             <div class="video-avatar">
                                 <img class="avatar" src="/static/img/placeholder200x200.jpeg" />
                             </div>
-                            <div class="video-byline">
-                                <h1 class="video-title">{{video.title}}</h1>
-                                <div class="video-owner-name">{{video.owner_name}}</div>
-                                <div class="video-upload-time">{{video.upload_time | date}}</div>
+                            <div class="byline">
+                                <h1 class="title">{{video.title}}</h1>
+                                <div class="username">{{video.owner_name}}</div>
+                                <div class="time">{{video.upload_time | date}}</div>
                             </div>
                         </div>
-                        <div class="video-description">{{video.description}}</div>
+                        <div class="description">{{video.description}}</div>
                     </div>
 
                     <div class="video-stats">
@@ -73,16 +73,16 @@
                 <h2 class="main-subheader">评论</h2>
                 <ul class="comments-list" ng-repeat="comment in comments | orderBy: 'floor'">
                     <li class="comment-item">
-                        <div class="comment-user-avatar"><img class="avatar" src="/static/img/placeholder200x200.jpeg" /></div>
-                        <i class="fi-x" 
-                            ng-show="comment.user_id == user_id || isAdmin" 
-                            ng-click="delComment(comment.comment_id)"
-                            style="cursor:pointer;">
-                        </i>
-                        <div class="comment-user-name">{{comment.user_name}}</div>
+                        <div class="comment-header">
+                            <div class="comment-avatar"><img class="avatar" src="/static/img/placeholder200x200.jpeg" /></div>
+                            <div class="byline">
+                                <div class="username">{{comment.user_name}}</div>
+                                <div class="time">{{comment.reply_time}}</div>
+                                <div class="comment-floor-num">{{comment.floor}}</div>
+                            </div>
+                            <a class="comment-del-button" ng-show="comment.user_id == user_id || isAdmin" ng-click="delComment(comment.comment_id)">删除评论</a>
+                        </div>
                         <div class="comment-content">{{comment.content}}</div>
-                        <div class="time">{{comment.reply_time}}</div>
-                        <div class="comment-floor-num">{{comment.floor}}</div>
                     </li>
                 </ul>
 
