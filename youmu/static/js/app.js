@@ -209,6 +209,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.username = UserService.getName();
 		$scope.user_id = UserService.getID();
 		$scope.isAdmin = UserService.isAdmin();
+		$scope.avatar = UserService.getAvatar();
 		$scope.get_videos = function(){
 			if (UserService.isAdmin()) url = "/api/video/"; else url = "/api/videolist/owner/" + $scope.user_id; 
 			$http.get(url).success(
