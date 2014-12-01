@@ -60,3 +60,8 @@
     vertical-align: top;
     width: 25%;
 }
+
+.comments-list, .comment-form {
+    @include span-columns(8);
+    @include shift(2);
+}

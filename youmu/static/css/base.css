@@ -271,15 +271,6 @@ header, .main {
   list-style-type: none;
   margin: 0; }
 
-.comments-list, .comment-form {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%;
-  margin-left: 25.58941%; }
-  .comments-list:last-child, .comment-form:last-child {
-    margin-right: 0; }
-
 .comment-item {
   float: left;
   display: block;
@@ -467,6 +458,25 @@ html {
     .video-list-item .video-data-area {
       padding: 10px 20px; }
 
+  .byline {
+    padding: 20px 0; }
+
+  .title {
+    padding-bottom: 20px; }
+
+  .comment-avatar, .video-avatar, .byline, .title {
+    display: block;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%;
+    text-align: center; }
+    .comment-avatar:last-child, .video-avatar:last-child, .byline:last-child, .title:last-child {
+      margin-right: 0; }
+
+  .comment-avatar, .video-avatar {
+    padding: 0; }
+
   .video-info .video-header {
     display: block;
     float: left;
@@ -475,17 +485,16 @@ html {
     width: 100%; }
     .video-info .video-header:last-child {
       margin-right: 0; }
-  .video-info .video-avatar, .video-info .byline, .video-info .title {
+  .video-info .video-avatar {
     display: block;
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 100%;
-    text-align: center; }
-    .video-info .video-avatar:last-child, .video-info .byline:last-child, .video-info .title:last-child {
-      margin-right: 0; }
-  .video-info .video-avatar {
+    text-align: center;
     padding: 0; }
+    .video-info .video-avatar:last-child {
+      margin-right: 0; }
   .video-info .username, .video-info .time, .video-info .comment-floor-num {
     float: left;
     display: block;
@@ -498,10 +507,17 @@ html {
     text-align: left; }
   .video-info .time, .video-info .comment-floor-num {
     text-align: right; }
-  .video-info .byline {
-    padding: 20px 0; }
-  .video-info .title {
-    padding-bottom: 20px; }
+
+  .comment-item .username, .comment-item .time, .comment-item .comment-floor-num {
+    display: block;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%;
+    padding: 0;
+    text-align: left; }
+    .comment-item .username:last-child, .comment-item .time:last-child, .comment-item .comment-floor-num:last-child {
+      margin-right: 0; }
  }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
@@ -605,9 +621,27 @@ html {
   .video-stats {
     vertical-align: top;
     width: 25%; }
+
+  .comments-list, .comment-form {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    margin-left: 17.05961%; }
+    .comments-list:last-child, .comment-form:last-child {
+      margin-right: 0; }
  }
 
 @media screen and (min-width: 1001px) {
   .navbar .search-area input {
     width: 75%; }
+
+  .comments-list, .comment-form {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+    margin-left: 25.58941%; }
+    .comments-list:last-child, .comment-form:last-child {
+      margin-right: 0; }
  }
