@@ -251,6 +251,24 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			);
 		};
+		$scope.ToggleVideoEnableDisable = function(id) {
+			$http.get("/api/video/" + id).success(
+				function(data, status) {
+                    $scope.get_videos();
+                    if(data.disabled) {
+                        $scope.EnableVideo(id);
+                    }
+                    else {
+                        $scope.DisableVideo(id);
+                    }
+                    $scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
 		$scope.BanVideo = function(id) {
 			$http.post("/api/video/" + id + "/_ban").success(
 				function(data, status) {
@@ -266,6 +284,24 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			$http.post("/api/video/" + id + "/_unban").success(
 				function(data, status) {
 					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+		$scope.ToggleVideoBanUnban = function(id) {
+			$http.get("/api/video/" + id).success(
+				function(data, status) {
+                    $scope.get_videos();
+                    if(data.banned) {
+                        $scope.UnbanVideo(id);
+                    }
+                    else {
+                        $scope.BanVideo(id);
+                    }
+                    $scope.get_videos();
 				}
 			).error(
 				function(data, status) {
