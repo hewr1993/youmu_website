@@ -365,6 +365,24 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 
+        $scope.ToggleUserEnableDisable = function(user_id){
+			$http.get("/api/user/" + user_id).success(
+				function(data, status) {
+                    if(data.disabled) {
+                        $scope.EnableUser(user_id);
+                    }
+                    else {
+                        $scope.DisableUser(user_id);
+                    }
+					$scope.getUsers();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+        }
+
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");
 			$("#modifyProfileForm").ajaxSubmit({
