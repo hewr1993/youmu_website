@@ -1,13 +1,16 @@
-<div>共上传{{videos.length}}个视频</div>
+<div class="videos-list-length">共上传{{videos.length}}个视频</div>
 <a href="#" data-reveal-id="uploadVideoModal" class="button">上传新视频</a>
 
 <ul class="video-list">
     <li class="video-list-item" ng-repeat="video in videos">
-        <!-- TODO：根据最新设计修改 -->
         <a href="{{video.videoUrl}}" target="_blank">
             <img ng-src="{{video.cover}}">
         </a>
-        <div class="title">{{video.title}}</div>
+        <a href="{{video.videoUrl}}" target="_blank">
+            <div class="title">{{video.title}}</div>
+        </a>
+        <button ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
+        <button ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
         <button ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
         <button ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
         <button ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
