@@ -43,8 +43,8 @@
 .video-stats {
     display: table;
     table-layout: fixed;
-    .views-count, .likes-count {
+    .video-stat {
         display: table-cell;
-        width: 50%;
+        width: 33.33333%;
     }
 }

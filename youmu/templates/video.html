@@ -53,13 +53,17 @@
                     </div>
 
                     <div class="video-stats">
-                        <div class="views-count">
+                        <div class="video-stat views-count">
                             <span class="label">观看</span>
                             <span class="data">{{video.play_count}}</span>
                         </div>
-                        <a class="likes-count" ng-class="{true: 'has-liked', false: 'has-not-liked'}[melike]" ng-click="likeVideo()">
+                        <a class="video-stat likes-count" ng-class="{true: 'has-liked', false: 'has-not-liked'}[melike]" ng-click="likeVideo()">
                             <span class="label">点赞</span>
                             <span class="data">{{video.like}}</span>
+                        </a>
+                        <a class="video-stat comments-count" href="#comments">
+                            <span class="label">评论</span>
+                            <span class="data">{{video.comments_count}}</span>
                         </a>
                     </div>
                 </div>

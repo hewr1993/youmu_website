@@ -11,7 +11,7 @@
         display: none;
     }
 
-    .views-count, .likes-count {
+    .video-stat {
         display: block;
         width: 100%;
         font-size: ms(1);
@@ -22,13 +22,13 @@
             opacity: 0.6;
             margin-right: 10px;
         }
+
+        transition: 0.2s all ease;
     }
 
     .likes-count {
         background-color: $green;
         color: darken($green, 30);
-
-        transition: 0.2s all ease;
 
         &:before {
             content: "\f087";
@@ -60,6 +60,20 @@
         
         &:before {
             content: "\f06e";
+        }
+    }
+
+    .comments-count {
+        background-color: $blue;
+        color: darken($blue, 30);
+        
+        &:before {
+            content: "\f0e5";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: darken($blue, 20);
+            color: #FFE;
         }
     }
 }

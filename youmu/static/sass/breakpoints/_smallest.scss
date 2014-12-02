@@ -91,6 +91,7 @@
 
     .time {
         text-align: right;
+        margin-left: 0;
     }
 }
 
@@ -100,5 +101,6 @@
         @include span-columns(12);
         padding: 0;
         text-align: left;
+        margin-left: 0;
     }
 }
