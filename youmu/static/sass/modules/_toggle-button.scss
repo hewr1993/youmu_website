@@ -1,0 +1,25 @@
+.toggle {
+    font-size: 0px;
+    background-color: transparent;
+    transition: 0.2s ease all;
+    padding: 0;
+
+    &:hover, &:active, &:focus {
+        background-color: transparent;
+        text-shadow: 0 1px 2px $main-text-color;
+    }
+
+    &:before {
+        font-family: FontAwesome;
+        font-size: 40px;
+    }
+}
+
+.toggle-on:before {
+    content: "\f205";
+}
+
+.toggle-off:before {
+    content: "\f204";
+}
+
