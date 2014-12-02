@@ -348,6 +348,9 @@ header, .main {
   .admin-videos:last-child, .admin-users:last-child {
     margin-right: 0; }
 
+.profile-avatar .avatar {
+  height: 100px; }
+
 footer {
   margin: 0;
   padding: 50px;

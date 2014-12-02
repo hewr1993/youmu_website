@@ -10,3 +10,7 @@
 .admin-videos, .admin-users {
     @include span-columns(12);
 }
+
+.profile-avatar .avatar {
+    height: 100px;
+}
