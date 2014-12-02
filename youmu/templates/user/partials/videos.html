@@ -9,12 +9,10 @@
         <a href="{{video.videoUrl}}" target="_blank">
             <div class="title">{{video.title}}</div>
         </a>
-        <button ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
-        <button ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
-        <button ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
-        <button ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
-        <button ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
-        <button ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
+        <div class="video-controls">
+            <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
+            <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);" ng-show="isAdmin">toggle ban/unban</button>
+        </div>
     </li>
 </ul>
 
