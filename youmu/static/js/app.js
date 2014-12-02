@@ -219,9 +219,15 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			$http.get(url).success(
 				function(data, status) {
 					$scope.videos = [];
-					for (var i = 0; i < data.length; ++i) {
-						item = data[i];
-						item.videoUrl = "/videos/" + item.video_id;
+                    for (var i = 0; i < data.length; ++i) {
+                        item = data[i];
+                        item.videoUrl = "/videos/" + item.video_id;
+                        $http.get("/api/comment/video/" + item.video_id).success(
+                            function(data, status) {
+                                item.comments = data;
+                                item.commentsLen = data.length;
+                            }
+                        );
 						$scope.videos.push(item);
 					};
 				}
@@ -233,6 +239,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 		$scope.get_videos();
+
 		$scope.DisableVideo = function(id) {
 			$http.post("/api/video/" + id + "/_disable").success(
 				function(data, status) {
