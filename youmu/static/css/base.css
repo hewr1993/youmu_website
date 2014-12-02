@@ -332,24 +332,50 @@ header, .main {
   .admin-sections:last-child {
     margin-right: 0; }
 
-.admin-profile {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%; }
-  .admin-profile:last-child {
-    margin-right: 0; }
+.admin-section {
+  margin-bottom: 3.236em; }
 
-.admin-videos, .admin-users {
+.admin-profile, .admin-videos, .admin-users {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 100%; }
-  .admin-videos:last-child, .admin-users:last-child {
+  .admin-profile:last-child, .admin-videos:last-child, .admin-users:last-child {
     margin-right: 0; }
 
 .profile-avatar .avatar {
   height: 100px; }
+
+label {
+  cursor: default; }
+
+.profile-form {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .profile-form:last-child {
+    margin-right: 0; }
+  .profile-form .fields-area, .profile-form .submit-button-area, .profile-form .username-fieldset, .profile-form .avatar-area {
+    float: left;
+    display: block;
+    margin-right: 4.82916%;
+    width: 100%; }
+    .profile-form .fields-area:last-child, .profile-form .submit-button-area:last-child, .profile-form .username-fieldset:last-child, .profile-form .avatar-area:last-child {
+      margin-right: 0; }
+  .profile-form .avatar-area {
+    display: table;
+    table-layout: fixed;
+    width: 100%; }
+    .profile-form .avatar-area .current-avatar-display, .profile-form .avatar-area .avatar-upload-fieldset {
+      display: table-cell;
+      vertical-align: middle; }
+    .profile-form .avatar-area .current-avatar-display {
+      width: 150px;
+      padding-left: 0.809em; }
+
+.submit-button-area {
+  margin-top: 1.618em; }
 
 footer {
   margin: 0;

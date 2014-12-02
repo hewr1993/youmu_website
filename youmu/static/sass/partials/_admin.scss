@@ -3,14 +3,46 @@
     padding: 0 $gutter * 2;
 }
 
-.admin-profile {
-    @include span-columns(6);
+.admin-section {
+    margin-bottom: $gutter * 2;
 }
 
-.admin-videos, .admin-users {
+.admin-profile, .admin-videos, .admin-users {
     @include span-columns(12);
 }
 
 .profile-avatar .avatar {
     height: 100px;
+}
+
+label {
+    cursor: default;
+}
+
+.profile-form {
+    @include span-columns(6);
+
+    .fields-area, .submit-button-area, .username-fieldset, .avatar-area {
+        @include span-columns(6 of 6);
+    }
+
+    .avatar-area {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+
+        .current-avatar-display, .avatar-upload-fieldset {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .current-avatar-display {
+            width: 150px;
+            padding-left: $gutter / 2;
+        }
+    }
+}
+
+.submit-button-area {
+    margin-top: $gutter;
 }

@@ -6,15 +6,15 @@
 			<dd data-magellan-arrival="users" ng-show="isAdmin"><a href="#users">用户管理</a></dd>
 		</dl>
 		</div>-->
-    <div class="admin-profile">
+    <div class="admin-section admin-profile">
         <h3 data-magellan-destination="profile">个人资料</h3>
         {% include 'user/partials/profile.html' %}
     </div>
-    <div class="admin-videos">
+    <div class="admin-section admin-videos">
         <h3 data-magellan-destination="videos">视频管理</h3>
         {% include 'user/partials/videos.html' %}
     </div>
-    <div class="admin-users" ng-show="isAdmin">
+    <div class="admin-section admin-users" ng-show="isAdmin">
         <h3 data-magellan-destination="users">用户管理</h3>
         {% include 'user/partials/users.html' %}
     </div>

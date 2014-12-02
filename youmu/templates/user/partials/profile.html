@@ -1,12 +1,26 @@
-<form class="custom" id="modifyProfileForm" data-abide="ajax">
-    <label>用户名</label>
-    <input type="text" name="name" value="{{username}}" />
+<form class="custom profile-form" id="modifyProfileForm" data-abide="ajax">
+    <div class="fields-area">
+        <fieldset class="username-fieldset">
+            <label>用户名</label>
+            <input type="text" name="name" value="{{username}}" />
+        </fieldset>
 
-    <label>头像</label>
-    <div class="profile-avatar">
-        <img class="avatar" ng-src="{{avatar}}"/>
+        <div class="avatar-area">
+            <div class="current-avatar-display">
+                <label>头像</label>
+                <div class="profile-avatar">
+                    <img class="avatar" ng-src="{{avatar}}"/>
+                </div>
+            </div>
+
+            <fieldset class="avatar-upload-fieldset">
+                <label>上传新头像</label>
+                <input type="file" name="avatar" />
+            </fieldset>
+        </div>
     </div>
-    <input type="file" name="avatar" />
 
-    <button type="submit" id="modifyProfileButton">确认修改</button>
+    <div class="submit-button-area">
+        <button type="submit" id="modifyProfileButton">确认修改</button>
+    </div>
 </form>
