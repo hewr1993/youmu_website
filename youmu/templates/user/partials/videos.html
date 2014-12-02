@@ -9,6 +9,11 @@
         <a href="{{video.videoUrl}}" target="_blank">
             <div class="title">{{video.title}}</div>
         </a>
+        <div class="video-stats">
+            <div class="views-count">{{video.play_count}}</div>
+            <div class="likes-count">{{video.like}}</div>
+            <div class="comments-count"><a href="{{video.videoUrl}}#comments">{{video.commentsLen}}</a></div>
+        </div>
         <div class="video-controls">
             <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
             <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);" ng-show="isAdmin">toggle ban/unban</button>
