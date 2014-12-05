@@ -93,13 +93,16 @@ label {
         content: "\f007";
     }
 
-    .video-stat {
+    .video-control-area, .video-stat {
         font-size: 12px;
+        background-color: transparent;
+        color: $main-text-color;
+    }
+
+    .video-stat {
         display: inline-block;
         padding: 0;
         width: auto;
-        background-color: transparent;
-        color: $main-text-color;
         margin-right: 1em;
     }
 
@@ -136,6 +139,13 @@ label {
             display: table-cell;
             vertical-align: middle;
         }
+    }
+
+    .video-ban-notify-area:before {
+        font-family: "FontAwesome";
+        content: "\f05e";
+        opacity: 0.8;
+        margin-right: 10px;
     }
 }
 

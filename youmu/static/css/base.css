@@ -431,13 +431,14 @@ label {
     content: "\f073"; }
 .admin-videos .video-owner-name:before {
   content: "\f007"; }
-.admin-videos .video-stat {
+.admin-videos .video-control-area, .admin-videos .video-stat {
   font-size: 12px;
+  background-color: transparent;
+  color: #3B3B40; }
+.admin-videos .video-stat {
   display: inline-block;
   padding: 0;
   width: auto;
-  background-color: transparent;
-  color: #3B3B40;
   margin-right: 1em; }
 .admin-videos .likes-count:hover {
   background-color: transparent;
@@ -458,6 +459,11 @@ label {
   .admin-videos .video-control-area label, .admin-videos .video-control-area button {
     display: table-cell;
     vertical-align: middle; }
+.admin-videos .video-ban-notify-area:before {
+  font-family: "FontAwesome";
+  content: "\f05e";
+  opacity: 0.8;
+  margin-right: 10px; }
 
 .admin-videos .video-list-item, .user-list-item {
   display: table;
