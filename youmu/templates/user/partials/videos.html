@@ -1,22 +1,29 @@
-<div class="videos-list-length">共上传{{videos.length}}个视频</div>
+<!-- <div class="videos-list-length">共上传{{videos.length}}个视频</div> -->
 <a href="#" data-reveal-id="uploadVideoModal" class="button">上传新视频</a>
 
 <ul class="video-list">
     <li class="video-list-item" ng-repeat="video in videos">
-        <a href="{{video.videoUrl}}" target="_blank">
-            <img ng-src="{{video.cover}}">
-        </a>
-        <a href="{{video.videoUrl}}" target="_blank">
-            <div class="title">{{video.title}}</div>
-        </a>
-        <div class="video-stats">
-            <div class="views-count">{{video.play_count}}</div>
-            <div class="likes-count">{{video.like}}</div>
-            <div class="comments-count"><a href="{{video.videoUrl}}#comments">{{video.commentsLen}}</a></div>
+        <div class="video-header">
+            <div class="video-cover">
+                <a href="{{video.videoUrl}}" target="_blank"><img ng-src="{{video.cover}}"></a>
+            </div>
+            <div class="title video-title">
+                <a href="{{video.videoUrl}}" target="_blank">{{video.title}}</a>
+            </div>
         </div>
-        <div class="video-controls">
-            <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
-            <button class="toggle" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);" ng-show="isAdmin">toggle ban/unban</button>
+        <div class="video-info">
+            <div class="time video-upload-time">{{video.upload_time}}</div>
+            <div class="video-stats">
+                <div class="views-count">{{video.play_count}}</div>
+                <div class="likes-count">{{video.like}}</div>
+                <div class="comments-count"><a href="{{video.videoUrl}}#comments">{{video.commentsLen}}</a></div>
+            </div>
+            <div class="video-controls">
+                <label for="video-disable-{{video.video_id}}">屏蔽？</label>
+                <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
+                <label for="video-disable-{{video.video_id}}">和谐？</label>
+                <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
+            </div>
         </div>
     </li>
 </ul>
