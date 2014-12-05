@@ -118,29 +118,6 @@ label {
         }
     }
 
-    .video-controls label {
-        display: inline-block;
-        padding-right: 1em;
-    }
-
-    .video-controls button {
-        margin: 0;
-    }
-
-    .toggle:before {
-        font-size: 20px;
-    }
-
-    .video-control-area {
-        display: table;
-        margin-bottom: 0.5em;
-
-        label, button {
-            display: table-cell;
-            vertical-align: middle;
-        }
-    }
-
     .video-ban-notify-area:before {
         font-family: "FontAwesome";
         content: "\f05e";
@@ -162,6 +139,29 @@ label {
     }
 }
 
+.admin-videos .video-control-area, .admin-users .user-control-area {
+    display: table;
+    margin-bottom: 0.5em;
+
+    label, button {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    button {
+        margin: 0;
+    }
+
+    label {
+        display: inline-block;
+        padding-right: 1em;
+    }
+
+    .toggle:before {
+        font-size: 20px;
+    }
+}
+
 // Users section
 
 .users-list {
@@ -172,15 +172,20 @@ label {
 }
 
 .user-list-item {
+    .user-avatar, .user-id, .user-controls {
+        display: table-cell;
+    }
+
     .user-avatar {
         width: 100px;
         img {
-            width: 50px;
+            width: 40px;
         }
     }
 
-    .user-avatar, .user-id, .user-controls {
-        display: table-cell;
+    .user-id {
+        width: 35%;
+        color: $main-text-color;
     }
 }
 

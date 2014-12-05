@@ -446,19 +446,6 @@ label {
 .admin-videos .comments-count:hover, .admin-videos .comments-count:active, .admin-videos .comments-count:focus {
   background-color: transparent;
   color: #3B3B40; }
-.admin-videos .video-controls label {
-  display: inline-block;
-  padding-right: 1em; }
-.admin-videos .video-controls button {
-  margin: 0; }
-.admin-videos .toggle:before {
-  font-size: 20px; }
-.admin-videos .video-control-area {
-  display: table;
-  margin-bottom: 0.5em; }
-  .admin-videos .video-control-area label, .admin-videos .video-control-area button {
-    display: table-cell;
-    vertical-align: middle; }
 .admin-videos .video-ban-notify-area:before {
   font-family: "FontAwesome";
   content: "\f05e";
@@ -474,17 +461,34 @@ label {
   .admin-videos .video-list-item:last-child, .user-list-item:last-child {
     border-bottom: none; }
 
+.admin-videos .video-control-area, .admin-users .user-control-area {
+  display: table;
+  margin-bottom: 0.5em; }
+  .admin-videos .video-control-area label, .admin-videos .video-control-area button, .admin-users .user-control-area label, .admin-users .user-control-area button {
+    display: table-cell;
+    vertical-align: middle; }
+  .admin-videos .video-control-area button, .admin-users .user-control-area button {
+    margin: 0; }
+  .admin-videos .video-control-area label, .admin-users .user-control-area label {
+    display: inline-block;
+    padding-right: 1em; }
+  .admin-videos .video-control-area .toggle:before, .admin-users .user-control-area .toggle:before {
+    font-size: 20px; }
+
 .users-list {
   margin: 0; }
   .users-list li {
     list-style-type: none; }
 
+.user-list-item .user-avatar, .user-list-item .user-id, .user-list-item .user-controls {
+  display: table-cell; }
 .user-list-item .user-avatar {
   width: 100px; }
   .user-list-item .user-avatar img {
-    width: 50px; }
-.user-list-item .user-avatar, .user-list-item .user-id, .user-list-item .user-controls {
-  display: table-cell; }
+    width: 40px; }
+.user-list-item .user-id {
+  width: 35%;
+  color: #3B3B40; }
 
 footer {
   margin: 0;
