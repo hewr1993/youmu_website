@@ -407,6 +407,66 @@ label {
 .submit-button-area {
   margin-top: 1.618em; }
 
+.admin-videos .video-list {
+  padding: 0;
+  margin: 0; }
+.admin-videos .video-list-item {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 2em 0;
+  border-bottom: 1px solid rgba(204, 204, 221, 0.8); }
+  .admin-videos .video-list-item:last-child {
+    border-bottom: none; }
+.admin-videos .video-cover, .admin-videos .video-title, .admin-videos .video-info {
+  display: table-cell;
+  vertical-align: top; }
+.admin-videos .video-cover {
+  width: 100px; }
+  .admin-videos .video-cover img {
+    width: 70px; }
+.admin-videos .video-title {
+  width: 35%;
+  padding: 0 1em; }
+  .admin-videos .video-title a {
+    text-shadow: none; }
+.admin-videos .video-stats {
+  padding-bottom: 1em; }
+.admin-videos .video-upload-time {
+  margin-left: 0;
+  font-weight: normal; }
+  .admin-videos .video-upload-time:before {
+    content: "\f073"; }
+.admin-videos .video-owner-name:before {
+  content: "\f007"; }
+.admin-videos .video-stat {
+  font-size: 12px;
+  display: inline-block;
+  padding: 0;
+  width: auto;
+  background-color: transparent;
+  color: #3B3B40;
+  margin-right: 1em; }
+.admin-videos .likes-count:hover {
+  background-color: transparent;
+  color: #3B3B40; }
+.admin-videos .comments-count:hover, .admin-videos .comments-count:active, .admin-videos .comments-count:focus {
+  background-color: transparent;
+  color: #3B3B40; }
+.admin-videos .video-controls label {
+  display: inline-block;
+  padding-right: 1em; }
+.admin-videos .video-controls button {
+  margin: 0; }
+.admin-videos .toggle:before {
+  font-size: 20px; }
+.admin-videos .video-control-area {
+  display: table;
+  margin-bottom: 0.5em; }
+  .admin-videos .video-control-area label, .admin-videos .video-control-area button {
+    display: table-cell;
+    vertical-align: middle; }
+
 footer {
   margin: 0;
   padding: 50px;

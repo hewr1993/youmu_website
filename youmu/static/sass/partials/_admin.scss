@@ -46,3 +46,108 @@ label {
 .submit-button-area {
     margin-top: $gutter;
 }
+
+// Videos section
+
+.admin-videos {
+    .video-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .video-list-item {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+
+        padding: 2em 0;
+
+        border-bottom: 1px solid rgba(#CCD, 0.8);
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .video-cover, .video-title, .video-info {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .video-cover {
+        width: 100px;
+        img {
+            width: 70px;
+        }
+    }
+
+    .video-title {
+        width: 35%;
+        padding: 0 1em;
+
+        a {
+            text-shadow: none;
+        }
+    }
+
+    .video-stats {
+        padding-bottom: 1em;
+    }
+
+    .video-upload-time {
+        margin-left: 0;
+        font-weight: normal;
+
+        &:before {
+            content: "\f073";
+        }
+    }
+
+    .video-owner-name:before {
+        content: "\f007";
+    }
+
+    .video-stat {
+        font-size: 12px;
+        display: inline-block;
+        padding: 0;
+        width: auto;
+        background-color: transparent;
+        color: $main-text-color;
+        margin-right: 1em;
+    }
+
+    .likes-count:hover {
+        background-color: transparent;
+        color: $main-text-color;
+    }
+
+    .comments-count {
+        &:hover, &:active, &:focus {
+            background-color: transparent;
+            color: $main-text-color;
+        }
+    }
+
+    .video-controls label {
+        display: inline-block;
+        padding-right: 1em;
+    }
+
+    .video-controls button {
+        margin: 0;
+    }
+
+    .toggle:before {
+        font-size: 20px;
+    }
+
+    .video-control-area {
+        display: table;
+        margin-bottom: 0.5em;
+
+        label, button {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}
