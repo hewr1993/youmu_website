@@ -22,7 +22,7 @@
                     <label for="video-disable-{{video.video_id}}">保密</label>
                     <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
                 </div>
-                <div class="video-control-area video-disable-area" ng-show="isAdmin">
+                <div class="video-control-area video-ban-area" ng-show="isAdmin">
                     <label for="video-disable-{{video.video_id}}">屏蔽</label>
                     <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
                 </div>
