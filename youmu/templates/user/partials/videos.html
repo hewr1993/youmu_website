@@ -18,7 +18,7 @@
                 <div class="video-stat comments-count">{{video.commentsLen}}</div>
             </div>
             <div class="video-controls">
-                <div class="video-control-area video-disable-area">
+                <div class="video-control-area video-disable-area" ng-show="video.owner_id == user_id">
                     <label for="video-disable-{{video.video_id}}">保密</label>
                     <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
                 </div>
