@@ -18,14 +18,18 @@
                 <div class="video-stat comments-count">{{video.commentsLen}}</div>
             </div>
             <div class="video-controls">
-                <div class="video-control-area video-disable-area">
-                    <label for="video-disable-{{video.video_id}}">保密？</label>
-                    <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
-                </div>
-                <div class="video-control-area video-disable-area" ng-show="isAdmin">
-                    <label for="video-disable-{{video.video_id}}">和谐？</label>
-                    <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
-                </div>
+                <!-- <div class="video-control-area video-disable-area"> -->
+                <!--     <label for="video-disable-{{video.video_id}}">保密？</label> -->
+                <!--     <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button> -->
+                <!-- </div> -->
+                <!-- <div class="video-control-area video-disable-area" ng-show="isAdmin"> -->
+                <!--     <label for="video-disable-{{video.video_id}}">和谐？</label> -->
+                <!--     <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button> -->
+                <!-- </div> -->
+        <button ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
+        <button ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
+        <button ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
+        <button ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
             </div>
         </div>
     </li>
