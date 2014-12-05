@@ -12,7 +12,7 @@
         <div class="video-info">
             <div class="video-stats">
                 <div class="video-stat time video-upload-time">{{video.upload_time}}</div>
-                <div class="video-stat video-owner-name">{{video.owner_name}}</div>
+                <div class="video-stat video-owner-name" ng-show="isAdmin">{{video.owner_name}}</div>
                 <div class="video-stat views-count">{{video.play_count}}</div>
                 <div class="video-stat likes-count">{{video.like}}</div>
                 <div class="video-stat comments-count">{{video.commentsLen}}</div>
@@ -22,7 +22,7 @@
                     <label for="video-disable-{{video.video_id}}">屏蔽？</label>
                     <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
                 </div>
-                <div class="video-control-area video-disable-area">
+                <div class="video-control-area video-disable-area" ng-show="isAdmin">
                     <label for="video-disable-{{video.video_id}}">和谐？</label>
                     <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
                 </div>
