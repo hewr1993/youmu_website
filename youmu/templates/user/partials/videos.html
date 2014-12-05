@@ -23,7 +23,7 @@
                     <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
                 </div>
                 <div class="video-control-area video-ban-area" ng-show="isAdmin">
-                    <label for="video-disable-{{video.video_id}}">屏蔽</label>
+                    <label for="video-ban-{{video.video_id}}">屏蔽</label>
                     <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
                 </div>
                 <div class="video-control-area video-ban-notify-area" ng-show="!isAdmin && video.banned">
