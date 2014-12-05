@@ -410,14 +410,6 @@ label {
 .admin-videos .video-list {
   padding: 0;
   margin: 0; }
-.admin-videos .video-list-item {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  padding: 2em 0;
-  border-bottom: 1px solid rgba(204, 204, 221, 0.8); }
-  .admin-videos .video-list-item:last-child {
-    border-bottom: none; }
 .admin-videos .video-cover, .admin-videos .video-title, .admin-videos .video-info {
   display: table-cell;
   vertical-align: top; }
@@ -466,6 +458,27 @@ label {
   .admin-videos .video-control-area label, .admin-videos .video-control-area button {
     display: table-cell;
     vertical-align: middle; }
+
+.admin-videos .video-list-item, .user-list-item {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 2em 0;
+  border-bottom: 1px solid rgba(204, 204, 221, 0.8); }
+  .admin-videos .video-list-item:last-child, .user-list-item:last-child {
+    border-bottom: none; }
+
+.users-list {
+  margin: 0; }
+  .users-list li {
+    list-style-type: none; }
+
+.user-list-item .user-avatar {
+  width: 100px; }
+  .user-list-item .user-avatar img {
+    width: 50px; }
+.user-list-item .user-avatar, .user-list-item .user-id, .user-list-item .user-controls {
+  display: table-cell; }
 
 footer {
   margin: 0;

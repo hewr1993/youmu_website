@@ -1,20 +1,12 @@
 <div>共有{{users.length}}个用户</div>
-<table class="users-table">
-	<thead>
-		<tr>
-			<th>用户ID</th>
-			<th>用户名</th>
-			<th>屏蔽/解禁</th>
-		</tr>
-	</thead>
-    <tbody>
-        <tr ng-repeat="user in users">
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>
-                <button ng-click="EnableUser(user.id);" ng-show="user.disabled">解禁</button>
-                <button ng-click="DisableUser(user.id);" ng-hide="user.disabled">屏蔽</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+<ul class="users-list">
+    <li class="user-list-item" ng-repeat="user in users | orderBy: 'id'">
+        <div class="user-avatar"><img class="avatar" src="{{user.avatar}}" /></div>
+        <div class="user-id">{{user.id}} ({{user.name}})</div>
+        <div class="user-controls">
+            <button ng-click="EnableUser(user.id);" ng-show="user.disabled">解禁</button>
+            <button ng-click="DisableUser(user.id);" ng-hide="user.disabled">屏蔽</button>
+        </div>
+    </li>
+</ul>
