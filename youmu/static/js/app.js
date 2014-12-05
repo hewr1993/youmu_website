@@ -383,6 +383,18 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
         }
 
+        $scope.ToggleUserIsAdmin = function(user_id){
+            $http.post("/api/user/" + user_id + "/_toggle-admin").success(
+                function(data, status) {
+                    $scope.getUsers();
+                }
+            ).error(
+                function(data, status) {
+                    alertInfo("服务器繁忙，稍后再试");
+                }
+            );
+        };
+
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");
 			$("#modifyProfileForm").ajaxSubmit({

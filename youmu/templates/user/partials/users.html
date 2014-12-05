@@ -9,6 +9,10 @@
                 <label for="user-disable-{{user.id}}">屏蔽</label>
                 <button class="toggle" name="user-disable-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.disabled]" ng-click="ToggleUserEnableDisable(user.id);">toggle enable/disable</button>
             </div>
+            <div class="user-control-area user-make-admin-area">
+                <label for="user-make-admin-{{user.id}}">设管理员</label>
+                <button class="toggle" name="user-make-admin-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.admin]" ng-click="ToggleUserIsAdmin(user.id);">toggle enable/disable</button>
+            </div>
         </div>
     </li>
 </ul>
