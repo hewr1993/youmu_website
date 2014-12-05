@@ -156,7 +156,7 @@ header, .main {
     content: "\f06e"; }
 .video-stats .comments-count {
   background-color: #008cba;
-  color: #001921; }
+  color: #002c3a; }
   .video-stats .comments-count:before {
     content: "\f0e5"; }
   .video-stats .comments-count:hover, .video-stats .comments-count:active, .video-stats .comments-count:focus {
