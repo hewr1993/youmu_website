@@ -106,3 +106,8 @@ def get_user(user_id):
     if current_user.is_anonymous() or not current_user.is_admin():
         return '{ "state": "need admin" }'
     return json.dumps(UserService.load_user_by_id(user_id).to_dict(), ensure_ascii = False)
+
+@user.route("/<user_id>/_toggle-admin", methods = ["POST"])
+def toggle_user_is_admin(user_id):
+    UserService.transform_admin(user_id)
+    return json.dumps({ "state": "ok" })
