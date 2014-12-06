@@ -36,7 +36,7 @@ var alertInfo = function(info) {
 	setTimeout(function() {
 		$("#alertModal").foundation("reveal", "close");
 	}, 3000);
-}
+};
 
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
@@ -120,7 +120,7 @@ var videoStoreCtrl = function ($scope, $http) {
 			item = data[i];
 			item.videoUrl = "/videos/" + item.video_id;
 			$scope.videos.push(item);
-		};
+		}
 	});
 };
 
@@ -229,7 +229,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
                             }
                         );
 						$scope.videos.push(item);
-					};
+					}
 				}
 				//"owner_name":"曼联第四","description":"如题","tags":[],"banned":false,"play_count":16,"owner_avatar":"/static/uploads/images/u1lkdXl_blueberry_chrome.jpg","disabled":false,"upload_time":"2014-11-11 01:48:20","like":1,"title":"膜拜badpoet","video_id":"8","cover":"/static/uploads/images/uxa5m3R_save_5000_214503_1e-8.jpg","length":0,"owner_id":"hwr12","videoUrl":"/videos/8"} 
 			).error(
@@ -336,8 +336,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 
 		if ($scope.isAdmin){
 			$scope.getUsers();
-			
-		};
+		}
 
 		$scope.EnableUser = function(user_id){
 			$http.post("/api/user/" + user_id + "/_enable").success(
@@ -381,7 +380,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 					alertInfo("服务器繁忙，稍后再试");
 				}
 			);
-        }
+        };
 
         $scope.ToggleUserIsAdmin = function(user_id){
             $http.post("/api/user/" + user_id + "/_toggle-admin").success(
