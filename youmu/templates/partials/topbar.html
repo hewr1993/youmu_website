@@ -6,8 +6,8 @@
     </div>
 
     <div class="search-area">
-        <input type="text" placeholder="视频信息">
-        <a href="#" class="button search-button"><span class="label">搜索</span></a>
+        <input type="text" placeholder="视频标题" ng-model="searchByTitleQuery">
+        <a class="button search-button" ng-click="searchByTitle(searchByTitleQuery);"><span class="label">搜索</span></a>
     </div>
 
     <div class="login-logout-area">

@@ -41,6 +41,24 @@ var alertInfo = function(info) {
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
+	$scope.searchByTitle = function(query) {
+        if(query !== undefined) {
+            $rootScope.videos = [];
+            $http.get("/api/videolist/title/" + query).success(
+                function(data, status){
+                    for (var i = 0; i < data.length; ++i) {
+                        item = data[i];
+                        item.videoUrl = "/videos/" + item.video_id;
+                        $rootScope.videos.push(item);
+                    }
+                }
+            ).error(
+                function(data, status){
+                    alertInfo("获取用户信息出错");
+                }
+            );
+        }
+    };
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
@@ -111,15 +129,15 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.checkLogin();
 };
 
-var videoStoreCtrl = function ($scope, $http) {
+var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
 	$http.get("/api/video/").success(function(data, status) {
-		$scope.videos = [];
+		$rootScope.videos = [];
 		for (var i = 0; i < data.length; ++i) {
 			item = data[i];
 			item.videoUrl = "/videos/" + item.video_id;
-			$scope.videos.push(item);
+			$rootScope.videos.push(item);
 		}
 	});
 };
