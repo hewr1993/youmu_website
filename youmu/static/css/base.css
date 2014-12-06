@@ -14,19 +14,25 @@ html {
   font-size: 0px;
   background-color: transparent;
   transition: 0.2s ease all;
-  padding: 0; }
+  padding: 0;
+  color: #334; }
   .toggle:hover, .toggle:active, .toggle:focus {
     background-color: transparent;
-    text-shadow: 0 1px 2px #3B3B40; }
+    color: #0079a1; }
   .toggle:before {
     font-family: FontAwesome;
-    font-size: 40px; }
+    font-size: 40px;
+    display: inline-block; }
 
 .toggle-on:before {
-  content: "\f205"; }
+  content: "\f205";
+  color: #0079a1; }
 
 .toggle-off:before {
-  content: "\f204"; }
+  content: "\f205";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg); }
 
 table {
   table-layout: fixed;
