@@ -422,15 +422,10 @@ label {
 .admin-videos .video-cover, .admin-videos .video-title, .admin-videos .video-info {
   display: table-cell;
   vertical-align: top; }
-.admin-videos .video-cover {
-  width: 100px; }
-  .admin-videos .video-cover img {
-    width: 70px; }
-.admin-videos .video-title {
-  width: 35%;
-  padding: 0 1em; }
-  .admin-videos .video-title a {
-    text-shadow: none; }
+.admin-videos .video-cover img {
+  width: 70px; }
+.admin-videos .video-title a {
+  text-shadow: none; }
 .admin-videos .video-stats {
   padding-bottom: 1em; }
 .admin-videos .video-upload-time {
@@ -492,6 +487,14 @@ label {
   .admin-videos .video-control-area .toggle:before, .admin-users .user-control-area .toggle:before {
     font-size: 20px; }
 
+.admin-videos .video-cover, .admin-users .user-avatar {
+  width: 100px;
+  text-align: center; }
+
+.admin-videos .video-title, .admin-users .user-id {
+  width: 35%;
+  padding: 0 2em; }
+
 .users-list {
   margin: 0; }
   .users-list li {
@@ -499,12 +502,9 @@ label {
 
 .user-list-item .user-avatar, .user-list-item .user-id, .user-list-item .user-controls {
   display: table-cell; }
-.user-list-item .user-avatar {
-  width: 100px; }
-  .user-list-item .user-avatar img {
-    width: 40px; }
+.user-list-item .user-avatar img {
+  width: 40px; }
 .user-list-item .user-id {
-  width: 35%;
   color: #3B3B40; }
 .user-list-item .user-disable-area label:before {
   content: "\f05e"; }

@@ -61,15 +61,12 @@ label {
     }
 
     .video-cover {
-        width: 100px;
         img {
             width: 70px;
         }
     }
 
     .video-title {
-        width: 35%;
-        padding: 0 1em;
 
         a {
             text-shadow: none;
@@ -176,6 +173,16 @@ label {
     }
 }
 
+.admin-videos .video-cover, .admin-users .user-avatar {
+    width: 100px;
+    text-align: center;
+}
+
+.admin-videos .video-title, .admin-users .user-id {
+    width: 35%;
+    padding: 0 2em;
+}
+
 // Users section
 
 .users-list {
@@ -191,14 +198,12 @@ label {
     }
 
     .user-avatar {
-        width: 100px;
         img {
             width: 40px;
         }
     }
 
     .user-id {
-        width: 35%;
         color: $main-text-color;
     }
 
