@@ -224,6 +224,9 @@ header, .main {
 .description {
   margin-top: 30px; }
 
+.vjs-poster {
+  background-color: black; }
+
 .navbar {
   float: left;
   display: block;
