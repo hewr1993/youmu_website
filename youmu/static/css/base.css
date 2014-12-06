@@ -446,11 +446,10 @@ label {
 .admin-videos .comments-count:hover, .admin-videos .comments-count:active, .admin-videos .comments-count:focus {
   background-color: transparent;
   color: #3B3B40; }
-.admin-videos .video-ban-notify-area:before {
-  font-family: "FontAwesome";
-  content: "\f05e";
-  opacity: 0.8;
-  margin-right: 10px; }
+.admin-videos .video-disable-area label:before {
+  content: "\f070"; }
+.admin-videos .video-ban-area label:before {
+  content: "\f05e"; }
 
 .admin-videos .video-list-item, .user-list-item {
   display: table;
@@ -472,6 +471,15 @@ label {
   .admin-videos .video-control-area label, .admin-users .user-control-area label {
     display: inline-block;
     padding-right: 1em; }
+  .admin-videos .video-control-area label:before, .admin-videos .video-control-area .video-ban-notify-area:before, .admin-users .user-control-area label:before, .admin-users .user-control-area .video-ban-notify-area:before {
+    font-family: "FontAwesome";
+    opacity: 0.8;
+    margin-right: 10px;
+    width: 1em;
+    display: inline-block;
+    text-align: center; }
+  .admin-videos .video-control-area .video-ban-notify-area:before, .admin-users .user-control-area .video-ban-notify-area:before {
+    content: "\f05e"; }
   .admin-videos .video-control-area .toggle:before, .admin-users .user-control-area .toggle:before {
     font-size: 20px; }
 
@@ -489,6 +497,10 @@ label {
 .user-list-item .user-id {
   width: 35%;
   color: #3B3B40; }
+.user-list-item .user-disable-area label:before {
+  content: "\f05e"; }
+.user-list-item .user-make-admin-area label:before {
+  content: "\f0e7"; }
 
 footer {
   margin: 0;

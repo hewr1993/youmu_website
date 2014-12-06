@@ -118,11 +118,12 @@ label {
         }
     }
 
-    .video-ban-notify-area:before {
-        font-family: "FontAwesome";
+    .video-disable-area label:before {
+        content: "\f070";
+    }
+
+    .video-ban-area label:before {
         content: "\f05e";
-        opacity: 0.8;
-        margin-right: 10px;
     }
 }
 
@@ -157,6 +158,19 @@ label {
         padding-right: 1em;
     }
 
+    label:before, .video-ban-notify-area:before {
+        font-family: "FontAwesome";
+        opacity: 0.8;
+        margin-right: 10px;
+        width: 1em;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .video-ban-notify-area:before {
+        content: "\f05e";
+    }
+
     .toggle:before {
         font-size: 20px;
     }
@@ -186,6 +200,14 @@ label {
     .user-id {
         width: 35%;
         color: $main-text-color;
+    }
+
+    .user-disable-area label:before {
+        content: "\f05e";
+    }
+
+    .user-make-admin-area label:before {
+        content: "\f0e7";
     }
 }
 
