@@ -42,7 +42,7 @@ class VideoListService(object):
                        show_banned = False, show_disabled = False):
         order_by = VideoListService.validate_order_by(order_by)
 
-        query = { "title": { "$regex": title } }
+        query = { "title": { "$regex": title, "$options": "i" } }
         if not show_disabled: query["disabled"] = False
         if not show_banned: query["banned"] = False
         return [VideoListService.mto(item) for item in mongo.get_ordered_video_list(
