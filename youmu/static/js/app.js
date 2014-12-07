@@ -42,22 +42,28 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
 	$scope.searchByTitle = function(query) {
-        if(query !== undefined) {
-            $rootScope.videos = [];
-            $http.get("/api/videolist/title/" + query).success(
-                function(data, status){
-                    for (var i = 0; i < data.length; ++i) {
-                        item = data[i];
-                        item.videoUrl = "/videos/" + item.video_id;
-                        $rootScope.videos.push(item);
-                    }
-                }
-            ).error(
-                function(data, status){
-                    alertInfo("获取用户信息出错");
-                }
-            );
+        var request;
+        var videos = [];
+        if(query === undefined || query === "") {
+            request = "/api/video/";
         }
+        else {
+            request = "/api/videolist/title/" + query;
+        }
+        $http.get(request).success(
+            function(data, status){
+                for (var i = 0; i < data.length; ++i) {
+                    item = data[i];
+                    item.videoUrl = "/videos/" + item.video_id;
+                    videos.push(item);
+                }
+                $rootScope.videos = videos;
+            }
+        ).error(
+            function(data, status){
+                alertInfo("获取视频信息出错");
+            }
+        );
     };
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
