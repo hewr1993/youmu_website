@@ -45,3 +45,10 @@ class VideoListService(object):
         query = { "title": { "$regex": title, "$options": "i" } }
         return VideoListService.return_query_res(query, offset, size,
                 order_by, reverse, show_banned, show_disabled)
+
+    @staticmethod
+    def query_on_description(description, offset=0, size=10, order_by="upload_time",
+                       reverse=False, show_banned=False, show_disabled=False):
+        query = { "description": { "$regex": description, "$options": "i" } }
+        return VideoListService.return_query_res(query, offset, size,
+                order_by, reverse, show_banned, show_disabled)
