@@ -111,3 +111,7 @@ def get_user(user_id):
 def toggle_user_is_admin(user_id):
     UserService.transform_admin(user_id)
     return json.dumps({ "state": "ok" })
+
+@user.route("/name/<user_name>", methods = ["GET"])
+def get_user_by_name(user_name):
+    return json.dumps(UserService.get_user_by_name(user_name).to_dict(), ensure_ascii = False)
