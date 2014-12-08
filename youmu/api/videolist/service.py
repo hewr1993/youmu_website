@@ -2,6 +2,7 @@ __author__ = 'badpoet'
 
 from youmu.models.video import Video
 from youmu.api.video.service import VideoService
+from youmu.api.user.service import UserService
 from youmu.clients import mongo
 
 class VideoListService(object):
@@ -36,6 +37,14 @@ class VideoListService(object):
     def get_with_owner(owner_id, offset=0, size=10, order_by="upload_time",
                        reverse=False, show_banned=False, show_disabled=False):
         query = { "owner_id": owner_id }
+        return VideoListService.return_query_res(query, offset, size,
+                order_by, reverse, show_banned, show_disabled)
+
+    @staticmethod
+    def query_on_owner_name(owner_name, offset=0, size=10, order_by="upload_time",
+                       reverse=False, show_banned=False, show_disabled=False):
+        user = UserService.get_user_by_name(owner_name);
+        query = { "owner_id": user.id }
         return VideoListService.return_query_res(query, offset, size,
                 order_by, reverse, show_banned, show_disabled)
 
