@@ -38,6 +38,30 @@ table {
   table-layout: fixed;
   width: 100%; }
 
+.video-tags .button {
+  padding: 0;
+  margin: 0; }
+
+.video-tags-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  .video-tags-list li {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 1em;
+    padding: 5px;
+    background-color: #3B3B40; }
+
+.remove-tag-button {
+  font-size: 0;
+  background-color: transparent; }
+  .remove-tag-button:hover, .remove-tag-button:active, .remove-tag-button:focus {
+    background-color: transparent; }
+  .remove-tag-button:before {
+    font-size: 12px;
+    content: "x"; }
+
 /* MODULES */
 body {
   background-image: url('/static/img/stone_lion_bw_overlay.jpg');
