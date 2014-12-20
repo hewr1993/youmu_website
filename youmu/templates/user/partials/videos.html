@@ -17,6 +17,12 @@
                 <div class="video-stat likes-count">{{video.like}}</div>
                 <!-- <div class="video-stat comments-count">{{video.commentsLen}}</div> -->
             </div>
+            <div class="video-tags">
+                <div class="label">标签</div>
+                <ul class="video-tags-list">
+                </ul>
+                <a class="button add-tag-button">添加</a>
+            </div>
             <div class="video-controls">
                 <div class="video-control-area video-disable-area" ng-show="video.owner_id == user_id">
                     <label for="video-disable-{{video.video_id}}">保密</label>
