@@ -102,7 +102,8 @@ def upload_video():
         UPLOAD_FOLDER = "youmu/static/uploads/videos/"
         ALLOWED_MIMETYPES = ("video/mp4")
         f = request.files["video"]
-        fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
+        fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
         f.save(fname)
         if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
             os.remove(fname)
@@ -116,7 +117,8 @@ def upload_video():
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
         ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
         f = request.files["cover"]
-        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
+        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
         f.save(pname)
         if mimetypes.guess_type(pname)[0] not in ALLOWED_MIMETYPES:
             os.remove(pname)

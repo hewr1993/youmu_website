@@ -3,17 +3,24 @@ __author__ = 'badpoet'
 import urllib
 import urllib2
 from BeautifulSoup import BeautifulSoup
+import json
 
 URL_LOGIN = "http://student.tsinghua.edu.cn/practiceLogin.do"
 
 
-def analyze_info(html):
-    soup = BeautifulSoup(html, fromEncoding = 'gbk')
-    something = soup.findAll('span', attrs = {'class': 'uportal-navi-user'})
-    if (len(something) < 4):
-        # TODO  some error
-        pass
-    return (something[1].text, something[2].text)
+def analyze_info(s):
+    # soup = BeautifulSoup(html, fromEncoding = 'gbk')
+    # something = soup.findAll('span', attrs = {'class': 'uportal-navi-user'})
+    # if (len(something) < 4):
+        # pass
+    # return (something[1].text, something[2].text)
+    print "yoyo"
+    obj = json.loads(s, "gbk")
+    print "heihei"
+    name = obj["realname"]
+    print name.encode("gbk")
+    id = obj["username"]
+    return (name, id)
 
 def tunet_login(username, password):
     data = (

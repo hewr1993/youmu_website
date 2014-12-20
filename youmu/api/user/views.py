@@ -11,6 +11,8 @@ import os
 import mimetypes
 from werkzeug.utils import secure_filename
 from tempfile import mktemp
+import random
+import string
 
 user = Blueprint("user", __name__, url_prefix = "/api/user")
 
@@ -73,7 +75,8 @@ def update_me():
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
         ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
         f = request.files["avatar"]
-        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        fname = f.filename.encode("ascii", "xmlcharrefreplace")
+        pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(fname)
         f.save(pname)
         if mimetypes.guess_type(pname)[0] not in ALLOWED_MIMETYPES:
             os.remove(pname)

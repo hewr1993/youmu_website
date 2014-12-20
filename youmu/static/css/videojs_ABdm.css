@@ -41,7 +41,7 @@
 }
 
 .vjs-default-skin .vjs-danmu-control {
-	width: 3.8em;
+	width: 20px;
 	cursor: pointer;
 	float: right;
 	font-size: 16px;
@@ -90,7 +90,7 @@
 }
 
 .vjs-default-skin .vjs-danmu-control {
-	width: 3.8em;
+	width: 20px;
 	cursor: pointer;
 	float: right;
 	font-size: 16px;
