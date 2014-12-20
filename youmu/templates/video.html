@@ -9,13 +9,17 @@
         <script src="/static/js/CommentCoreLibrary/BilibiliFormat.js"></script>
         <link href="/static/css/videojs_ABdm.css" rel="stylesheet">
         <script src="/static/js/videojs_ABdm.js"></script>
+        <link href="/static/css/videojs_dmbox.css" rel="stylesheet">
+        <script src="/static/js/videojs_dmbox.js"></script>
         <script src="/static/js/vendor/jquery.js"></script>
         <link href="/static/fonts/foundation-icons.css" rel="stylesheet">
 		<script>
 			$(document).ready(function(){
 				window.thevideojs = videojs("playbox");
 				thevideojs.ABP();
-				thevideojs.danmu.load("/static/comment.xml");
+				//thevideojs.danmu.load("/static/comment.xml");
+				thevideojs.danmu.load("/api/barrage/video/" + $("#video_id").val());
+				thevideojs.DMB();
 			});
 		</script>
     </head>
