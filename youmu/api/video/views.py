@@ -144,3 +144,7 @@ def upload_video():
 @video.route("/file/<video_id>/WAIMAIdi2fen0.5price")
 def get_file_name(video_id):
     return VideoService.get_file_name(video_id)
+
+@video.route("/_categories", methods = ["GET"])
+def get_categories():
+    return json.dumps({"categories": VideoService.get_categories()})

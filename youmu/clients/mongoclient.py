@@ -20,7 +20,7 @@ class MongoClient(object):
         self.video_file_col = self.db["video_file"]
         self.video_trash_col = self.db["video_trash"]
         self.video_like_col = self.db["video_like"]
-        self.video_cate_col = self.db["video_cate"]
+        self.video_cate_col = self.db["video_category"]
         self.comment_col = self.db["comment"]
         self.comment_trash_col = self.db["comment_trash"]
         self.comment_floor_ctrl_col = self.db["floor_ctrl"]
@@ -124,7 +124,8 @@ class MongoClient(object):
         )
 
     def get_video_categories(self):
-        return [e for e in self.video_cate_col.find()]
+        res = [e for e in self.video_cate_col.find()]
+        return res
 
     # ABOUT LIKE
 

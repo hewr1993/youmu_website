@@ -90,4 +90,5 @@ class VideoService(object):
 
     @staticmethod
     def get_categories():
-        return [e["name"] for e in mongo.get_video_categories()]
+        res = [e["name"] for e in mongo.get_video_categories()]
+        return res
