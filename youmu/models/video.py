@@ -9,7 +9,8 @@ class Video(object):
 
     def __init__(self, video_id = "", title = "", cover = "", description = "",
                  play_count = 0, like = 0, owner_id = "", disabled = False,
-                 banned = False, upload_time = "", length = 0, tags = ()):
+                 banned = False, upload_time = "", length = 0, tags = (),
+                 category = ""):
         self.video_id = unicode(video_id)
         self.title = title
         self.cover = cover if len(cover) > 0 else "http://placehold.it/1000x1000&amp;text=Thumbnail"
@@ -22,6 +23,7 @@ class Video(object):
         self.upload_time = upload_time
         self.length = int(length)
         self.tags = tags
+        self.category = category
 
     def to_dict(self):
         dic = {
@@ -36,7 +38,8 @@ class Video(object):
             "banned": self.banned,
             "upload_time": self.upload_time,
             "length": self.length,
-            "tags": self.tags
+            "tags": self.tags,
+            "category": self.category
         }
         return dic
 
