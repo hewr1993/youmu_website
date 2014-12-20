@@ -426,6 +426,11 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				success: function(data) {
 					location.reload();
 					$("#modifyProfileButton").removeAttr("disabled");
+                    data = JSON.parse(data);
+                    console.log(data.state);
+                    if(data.content === "name is taken") {
+                        console.log("用户名已有人使用");
+                    }
 				},
 				error: function(e) {
 					$("#modifyProfileButton").removeAttr("disabled");
