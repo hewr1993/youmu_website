@@ -45,71 +45,24 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
     searchId = "";
     keyword = "";
 
-    $scope.chooseType = function(type){
-        if (type === "id"){
-            searchId = $("#query").val();
-            $scope.query = "@" + $("#query").val() + " ";
-        }
-    };
-
     $scope.search = function() {
-        if (searchId === ""){
-            keyword = $("#query").val();
-        }
-        else {
-            query = $scope.query;
+        query = $("#query").val();
+        alertInfo(query);
+        if (query[0] === "@") {
             var i = 0;
             for ( ; i < query.length; i ++) {
-                if (query[i] === ' '){
+                if (query[i] === " "){
                     break;
                 }
             }
-            keyword = query.substring(i+1, query.length);
-        }
-        alertInfo(keyword);
-        
-        window.location.href = "/?searchId=" + searchId + "&keyword=" + keyword;
-
-        /*$http.get("/", {
-            params: {
-                "searchId": searchId,
-                "keyword": keyword
-            }
-        }).success(
-            function(data, status){
-                alertInfo("succ" + keyword);
-                window.location.href = "/?search";
-            }
-        ).error(
-            function(data, status){
-                alertInfo("error");
-            }
-        );*/
-    };
-
-	$scope.searchByTitle = function(query) {
-        var request;
-        var videos = [];
-        if(query === undefined || query === "") {
-            request = "/api/video/";
+            searchId = query.substring(1, i);
+            keyword = query.substring(i + 1, query.length);
         }
         else {
-            request = "/api/videolist/title/" + query;
+            searchId = "";
+            keyword = query;
         }
-        $http.get(request).success(
-            function(data, status){
-                for (var i = 0; i < data.length; ++i) {
-                    item = data[i];
-                    item.videoUrl = "/videos/" + item.video_id;
-                    videos.push(item);
-                }
-                $rootScope.videos = videos;
-            }
-        ).error(
-            function(data, status){
-                alertInfo("获取视频信息出错");
-            }
-        );
+        window.location.href = "/?searchId=" + searchId + "&keyword=" + keyword;
     };
 
 	$scope.checkLogin = function() {
@@ -349,6 +302,20 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 		$scope.get_videos();
+
+        $scope.getType = function() {
+            $http.get("/api/video/_categories").success(
+                function(data, status) {
+                    $scope.types = [];
+                    for (var i = 0; i < data.length; ++ i)  {
+                        item = data[i];
+                        $scope.types.push(item);
+                    }
+                    alertInfo("success");
+                }
+            );
+        };
+        
 
 		$scope.DisableVideo = function(id) {
 			$http.post("/api/video/" + id + "/_disable").success(
