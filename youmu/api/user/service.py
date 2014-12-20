@@ -24,6 +24,7 @@ class UserService(object):
             id = str(id)
             return re.match(r'[0-9a-zA-Z\_\-]{1,15}', id) != None
         except Exception, e:
+            print e
             return False
 
     @staticmethod
