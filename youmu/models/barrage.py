@@ -37,7 +37,7 @@ class Barrage(object):
             str((self.stamp - datetime(1970, 1, 1, 8)).total_seconds()),
             str(self.pool),
             str(self.user_id),
-            str(0)
+            str(0)  # TODO barrage row id (for barrage history)
         ])
         return '<d p="' + p + '">' + self.content + '</d>'
 
