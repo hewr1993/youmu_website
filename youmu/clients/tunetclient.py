@@ -14,10 +14,11 @@ def analyze_info(s):
     # if (len(something) < 4):
         # pass
     # return (something[1].text, something[2].text)
+    print "yoyo"
     obj = json.loads(s)
-    print type(name)
-    print name.encode("gbk")
+    print "heihei"
     name = obj["realname"]
+    print name.encode("gbk")
     id = obj["username"]
     return (name, id)
 
