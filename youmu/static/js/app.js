@@ -30,12 +30,13 @@ angular.module('youmuApp', ['mm.foundation'])
 		};
 	});
 
-var alertInfo = function(info) {
+var alertInfo = function(info, vanishTime) {
+	vanishTime = vanishTime ? vanishTime : 3000;
 	$("#alertInfo").html(info);
 	$("#alertModal").foundation("reveal", "open");
 	setTimeout(function() {
 		$("#alertModal").foundation("reveal", "close");
-	}, 3000);
+	}, vanishTime);
 };
 
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
@@ -149,6 +150,20 @@ var videoStoreCtrl = function ($scope, $rootScope, $http) {
 };
 
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
+	// test barrage
+	/*$http.post(
+		"/api/barrage/video/" + $("#video_id").val(), 
+		{
+			"position": 0.5, 
+			"mode": 1,
+			"size": 12,
+			"color": "ffffffff",
+			"pool": 0,
+			"content": "abcdefg"
+		}
+	).success(function(data, status) {
+		alertInfo(JSON.stringify(data));
+	});*/
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
