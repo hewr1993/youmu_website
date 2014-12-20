@@ -307,15 +307,13 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
             $http.get("/api/video/_categories").success(
                 function(data, status) {
                     $scope.types = [];
-                    for (var i = 0; i < data.length; ++ i)  {
-                        item = data[i];
+                    for (var i = 0; i < data.categories.length; ++ i)  {
+                        item = data.categories[i];
                         $scope.types.push(item);
                     }
-                    alertInfo("success");
                 }
             );
-        };
-        
+        };      
 
 		$scope.DisableVideo = function(id) {
 			$http.post("/api/video/" + id + "/_disable").success(
