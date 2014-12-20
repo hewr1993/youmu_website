@@ -16,8 +16,8 @@ def analyze_info(s):
     # return (something[1].text, something[2].text)
     obj = json.loads(s)
     name = obj["realname"]
-    print name
     print type(name)
+    print name.encode("gbk")
     id = obj["username"]
     return (name, id)
 
