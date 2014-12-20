@@ -64,7 +64,9 @@ def update_me():
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
         ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
         f = request.files["avatar"]
+        print "oooooooooooo", f.filename
         pname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(f.filename)
+        print "yoyoyoyyooyo", pname
         f.save(pname)
         if mimetypes.guess_type(pname)[0] not in ALLOWED_MIMETYPES:
             os.remove(pname)
