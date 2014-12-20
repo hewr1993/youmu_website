@@ -129,10 +129,13 @@ def upload_video():
         pname = ""
     # other information
     postBody = request.form
+    category = postBody.get("category", "")
+    if not category in VideoService.get_categories(): category = ""
     obj = Video(owner_id = current_user.id,
         title = postBody["title"],
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         cover = pname,
+        category = category,
         description = postBody["description"])
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
