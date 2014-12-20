@@ -15,7 +15,7 @@ def analyze_info(s):
         # pass
     # return (something[1].text, something[2].text)
     print "yoyo"
-    obj = json.loads(s)
+    obj = json.loads(s, "gbk")
     print "heihei"
     name = obj["realname"]
     print name.encode("gbk")
