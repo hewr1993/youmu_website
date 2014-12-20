@@ -42,6 +42,51 @@ var alertInfo = function(info, vanishTime) {
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
+    searchId = "";
+    keyword = "";
+
+    $scope.chooseType = function(type){
+        if (type === "id"){
+            searchId = $("#query").val();
+            $scope.query = "@" + $("#query").val() + " ";
+        }
+    };
+
+    $scope.search = function() {
+        if (searchId === ""){
+            keyword = $("#query").val();
+        }
+        else {
+            query = $scope.query;
+            var i = 0;
+            for ( ; i < query.length; i ++) {
+                if (query[i] === ' '){
+                    break;
+                }
+            }
+            keyword = query.substring(i+1, query.length);
+        }
+        alertInfo(keyword);
+        
+        window.location.href = "/?searchId=" + searchId + "&keyword=" + keyword;
+
+        /*$http.get("/", {
+            params: {
+                "searchId": searchId,
+                "keyword": keyword
+            }
+        }).success(
+            function(data, status){
+                alertInfo("succ" + keyword);
+                window.location.href = "/?search";
+            }
+        ).error(
+            function(data, status){
+                alertInfo("error");
+            }
+        );*/
+    };
+
 	$scope.searchByTitle = function(query) {
         var request;
         var videos = [];
@@ -66,6 +111,7 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
             }
         );
     };
+
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
@@ -139,14 +185,39 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
-	$http.get("/api/video/").success(function(data, status) {
-		$rootScope.videos = [];
-		for (var i = 0; i < data.length; ++i) {
-			item = data[i];
-			item.videoUrl = "/videos/" + item.video_id;
-			$rootScope.videos.push(item);
-		}
-	});
+    
+    searchId = $("#searchId").val();
+    keyword = $("#keyword").val();
+    
+    if ($("#searchId").val() != ""){
+        $http.get("/api/videolist/owner/" + searchId).success(function(data, status) {
+            $rootScope.videos = [];
+		    for (var i = 0; i < data.length; ++i) {
+			    item = data[i];
+    			item.videoUrl = "/videos/" + item.video_id;
+                if (item.title.search(keyword) != -1){
+                    $rootScope.videos.push(item);
+                }
+    		}
+        });
+    }
+    else {
+	    $http.get("/api/video/").success(function(data, status) {
+            $rootScope.videos = [];
+		    for (var i = 0; i < data.length; ++i) {
+			    item = data[i];
+			    item.videoUrl = "/videos/" + item.video_id;
+                if (item.title.search(keyword) != -1 ||
+                    item.owner_id.search(keyword) != -1 ||
+                    item.description.search(keyword) != -1 ||
+                    item.category.search(keyword) != -1
+                   )
+                {
+                    $rootScope.videos.push(item);
+                }
+    		}
+	    });
+    }
 };
 
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
