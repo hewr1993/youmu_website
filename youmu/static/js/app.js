@@ -36,11 +36,35 @@ var alertInfo = function(info) {
 	setTimeout(function() {
 		$("#alertModal").foundation("reveal", "close");
 	}, 3000);
-}
+};
 
 var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.logoUrl = "/static/img/youmu-seal.jpg";
 	$scope.isLogin = false;
+	$scope.searchByTitle = function(query) {
+        var request;
+        var videos = [];
+        if(query === undefined || query === "") {
+            request = "/api/video/";
+        }
+        else {
+            request = "/api/videolist/title/" + query;
+        }
+        $http.get(request).success(
+            function(data, status){
+                for (var i = 0; i < data.length; ++i) {
+                    item = data[i];
+                    item.videoUrl = "/videos/" + item.video_id;
+                    videos.push(item);
+                }
+                $rootScope.videos = videos;
+            }
+        ).error(
+            function(data, status){
+                alertInfo("获取视频信息出错");
+            }
+        );
+    };
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
@@ -111,22 +135,26 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.checkLogin();
 };
 
-var videoStoreCtrl = function ($scope, $http) {
+var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
 	$http.get("/api/video/").success(function(data, status) {
-		$scope.videos = [];
+		$rootScope.videos = [];
 		for (var i = 0; i < data.length; ++i) {
 			item = data[i];
 			item.videoUrl = "/videos/" + item.video_id;
-			$scope.videos.push(item);
-		};
+			$rootScope.videos.push(item);
+		}
 	});
 };
 
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
+	});
+	$http.get("/api/comment/video/" + $("#video_id").val()).success(function(data, status) {
+		$scope.video.comments = data;
+		$scope.video.comments_count = data.length;
 	});
 	$http.post("/api/video/" + $("#video_id").val() + "/_play").success(function(data, status) {});
 	$scope.refreshCommentBox = function() {
@@ -209,16 +237,23 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		$scope.username = UserService.getName();
 		$scope.user_id = UserService.getID();
 		$scope.isAdmin = UserService.isAdmin();
+		$scope.avatar = UserService.getAvatar();
 		$scope.get_videos = function(){
 			if (UserService.isAdmin()) url = "/api/video/"; else url = "/api/videolist/owner/" + $scope.user_id; 
 			$http.get(url).success(
 				function(data, status) {
 					$scope.videos = [];
-					for (var i = 0; i < data.length; ++i) {
-						item = data[i];
-						item.videoUrl = "/videos/" + item.video_id;
+                    for (var i = 0; i < data.length; ++i) {
+                        item = data[i];
+                        item.videoUrl = "/videos/" + item.video_id;
+                        $http.get("/api/comment/video/" + item.video_id).success(
+                            function(data, status) {
+                                item.comments = data;
+                                item.commentsLen = data.length;
+                            }
+                        );
 						$scope.videos.push(item);
-					};
+					}
 				}
 				//"owner_name":"曼联第四","description":"如题","tags":[],"banned":false,"play_count":16,"owner_avatar":"/static/uploads/images/u1lkdXl_blueberry_chrome.jpg","disabled":false,"upload_time":"2014-11-11 01:48:20","like":1,"title":"膜拜badpoet","video_id":"8","cover":"/static/uploads/images/uxa5m3R_save_5000_214503_1e-8.jpg","length":0,"owner_id":"hwr12","videoUrl":"/videos/8"} 
 			).error(
@@ -228,6 +263,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			);
 		};
 		$scope.get_videos();
+
 		$scope.DisableVideo = function(id) {
 			$http.post("/api/video/" + id + "/_disable").success(
 				function(data, status) {
@@ -243,6 +279,24 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 			$http.post("/api/video/" + id + "/_enable").success(
 				function(data, status) {
 					$scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
+		$scope.ToggleVideoEnableDisable = function(id) {
+			$http.get("/api/video/" + id).success(
+				function(data, status) {
+                    $scope.get_videos();
+                    if(data.disabled) {
+                        $scope.EnableVideo(id);
+                    }
+                    else {
+                        $scope.DisableVideo(id);
+                    }
+                    $scope.get_videos();
 				}
 			).error(
 				function(data, status) {
@@ -272,6 +326,24 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			);
 		};
+		$scope.ToggleVideoBanUnban = function(id) {
+			$http.get("/api/video/" + id).success(
+				function(data, status) {
+                    $scope.get_videos();
+                    if(data.banned) {
+                        $scope.UnbanVideo(id);
+                    }
+                    else {
+                        $scope.BanVideo(id);
+                    }
+                    $scope.get_videos();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+		};
 
 		$scope.getUsers = function(){
 			$http.get("/api/user").success(
@@ -288,8 +360,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 
 		if ($scope.isAdmin){
 			$scope.getUsers();
-			
-		};
+		}
 
 		$scope.EnableUser = function(user_id){
 			$http.post("/api/user/" + user_id + "/_enable").success(
@@ -316,6 +387,36 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 				}
 			);
 		};
+
+        $scope.ToggleUserEnableDisable = function(user_id){
+			$http.get("/api/user/" + user_id).success(
+				function(data, status) {
+                    if(data.disabled) {
+                        $scope.EnableUser(user_id);
+                    }
+                    else {
+                        $scope.DisableUser(user_id);
+                    }
+					$scope.getUsers();
+				}
+			).error(
+				function(data, status) {
+					alertInfo("服务器繁忙，稍后再试");
+				}
+			);
+        };
+
+        $scope.ToggleUserIsAdmin = function(user_id){
+            $http.post("/api/user/" + user_id + "/_toggle-admin").success(
+                function(data, status) {
+                    $scope.getUsers();
+                }
+            ).error(
+                function(data, status) {
+                    alertInfo("服务器繁忙，稍后再试");
+                }
+            );
+        };
 
 		$('#modifyProfileForm').on('valid.fndtn.abide', function() {
 			$("#modifyProfileButton").attr("disabled", "disabled");

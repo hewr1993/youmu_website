@@ -42,6 +42,30 @@ def query_on_title(title):
     reverse = request.args.get('reverse', 0) > 0
     res = VideoListService.query_on_title(title, offset, size, order_by, reverse,
                                           show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
-                                          show_disabled = current_user.is_admin())
+                                          show_disabled = (not current_user.is_anonymous()) and current_user.is_admin())
+    res = [v.to_rich_dict() for v in res]
+    return json.dumps(res, ensure_ascii = False)
+
+@video_list.route("/owner_name/<owner_name>", methods = ["GET"])
+def query_on_owner_name(owner_name):
+    offset = request.args.get('offset', 0)
+    size = request.args.get('size', 10)
+    order_by = request.args.get('order_by', "upload_time")
+    reverse = request.args.get('reverse', 0) > 0
+    res = VideoListService.query_on_owner_name(owner_name, offset, size, order_by, reverse,
+                                          show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
+                                          show_disabled = (not current_user.is_anonymous()) and current_user.is_admin())
+    res = [v.to_rich_dict() for v in res]
+    return json.dumps(res, ensure_ascii = False)
+
+@video_list.route("/description/<description>", methods = ["GET"])
+def query_on_description(description):
+    offset = request.args.get('offset', 0)
+    size = request.args.get('size', 10)
+    order_by = request.args.get('order_by', "upload_time")
+    reverse = request.args.get('reverse', 0) > 0
+    res = VideoListService.query_on_description(description, offset, size, order_by, reverse,
+                                          show_banned = (not current_user.is_anonymous()) and current_user.is_admin(),
+                                          show_disabled = (not current_user.is_anonymous()) and current_user.is_admin())
     res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)

@@ -1,23 +1,18 @@
-<div class="panel callout radius">
-	<h6>共有{{users.length}}个用户</h6>
-</div>
-<div class="panel">
-<table>
-	<thead>
-		<tr>
-			<th>用户ID</th>
-			<th>用户名</th>
-			<th>屏蔽/解禁</th>
-		</tr>
-	</thead>
-	<div>
-	<!--div ng-repeat="user in users"-->
-		<tr ng-repeat="user in users">
-			<td>{{user.id}}</td>
-			<td>{{user.name}}</td>
-			<td><button ng-click="EnableUser(user.id);" ng-show="user.disabled">解禁</button>
-				<button ng-click="DisableUser(user.id);" ng-hide="user.disabled">屏蔽</button></td>
-		</tr>
-	<!--/div-->
-</table>
-</div>
+<div>共有{{users.length}}个用户</div>
+
+<ul class="users-list">
+    <li class="user-list-item" ng-repeat="user in users | orderBy: 'id'">
+        <div class="user-avatar"><img class="avatar" src="{{user.avatar}}" /></div>
+        <div class="user-id">{{user.id}} ({{user.name}})</div>
+        <div class="user-controls">
+            <div class="user-control-area user-disable-area">
+                <label for="user-disable-{{user.id}}">屏蔽</label>
+                <button class="toggle" name="user-disable-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.disabled]" ng-click="ToggleUserEnableDisable(user.id);">toggle enable/disable</button>
+            </div>
+            <div class="user-control-area user-make-admin-area">
+                <label for="user-make-admin-{{user.id}}">设管理员</label>
+                <button class="toggle" name="user-make-admin-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.admin]" ng-click="ToggleUserIsAdmin(user.id);">toggle enable/disable</button>
+            </div>
+        </div>
+    </li>
+</ul>

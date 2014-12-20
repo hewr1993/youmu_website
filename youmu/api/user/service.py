@@ -71,8 +71,10 @@ class UserService(object):
         if not mongo.has_user_id(user_id):
             return "no such person"
         data = mongo.get_user_by_id(user_id)
-        data["name"] = name
-        data["avatar"] = avatar
+        if name:
+            data["name"] = name
+        if avatar:
+            data["avatar"] = avatar
         mongo.update_user(data)
         return "ok"
 
@@ -95,3 +97,7 @@ class UserService(object):
             "total": mongo.count_users(),
             "result": [UserService.mto(u) for u in mongo.list_users(offset, size)]
         }
+
+    @staticmethod
+    def get_user_by_name(user_name):
+        return UserService.mto(mongo.get_user_by_name(user_name))

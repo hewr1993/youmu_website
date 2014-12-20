@@ -16,14 +16,14 @@
         <div class="content">
 
             <div class="main" ng-controller="videoStoreCtrl">
-                <div class="video-list-length">
+                <div class="main-subheader video-list-length">
                     找到{{videos.length}}个视频
                 </div>
 
                 <div class="video-list">
                     <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
                         <a class="video-link" href="{{video.videoUrl}}" target="_blank">
-                            <img class='video-thumbnail' src="{{video.cover}}" />
+                            <img class="video-thumbnail" src="{{video.cover}}" />
 
                             <div class="video-data-container-area">
                                 <div class="video-data-area">

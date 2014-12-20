@@ -1,5 +1,85 @@
-.video-main-container, .video-player-container, .video-data, .video-description-container {
+.video-main-container, .video-player-container {
     @include span-columns(12);
+}
+
+.video-info {
+    @include span-columns(12);
+}
+
+.video-stats {
+    .label {
+        display: none;
+    }
+
+    .video-stat {
+        display: block;
+        width: 100%;
+        font-size: ms(1);
+        padding: 30px;
+
+        &:before {
+            font-family: FontAwesome;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        transition: 0.2s all ease;
+    }
+
+    .likes-count {
+        background-color: $green;
+        color: darken($green, 30);
+
+        &:before {
+            content: "\f087";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: darken($green, 20);
+            color: #FFE;
+        }
+    }
+
+    .has-liked {
+        background-color: darken($green, 20);
+        color: #FFE;
+
+        &:before {
+            content: "\f164";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: $green;
+            color: darken($green, 30);
+        }
+    }
+
+    .views-count {
+        background-color: $red;
+        color: darken($red, 30);
+        
+        &:before {
+            content: "\f06e";
+        }
+    }
+
+    .comments-count {
+        background-color: $blue;
+        color: darken($blue, 25);
+        
+        &:before {
+            content: "\f0e5";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: darken($blue, 20);
+            color: #FFE;
+        }
+    }
+}
+
+.video-main-container {
+    margin-top: 50px;
 }
 
 /* Fluid video iframes by Thierry Koblentz via A List Apart. */
@@ -20,53 +100,65 @@
     }
 }
 
-.video-data .uploader, .video-data .likes-count, .video-data .views-count {
-    font-size: 2em;
-    padding: 30px;
-    color: white;
+.avatar {
+    border: 3px solid #EEEEFF;
+    background-color: #EEEEFF;
+    border-radius: 50%;
 }
 
-.video-data {
-    .label {
-        display: none;
-    }
+.video-meta {
+    padding: $gutter * 2;
+    background-color: $navbar-background-color;
 
-    .uploader {
-        background-color: $blue;
-
-        &:before {
-            content: "\f007";
-            font-family: FontAwesome;
-            opacity: 0.7;
-        }
-
-        &:hover, &:active, &:focus {
-            background-color: lighten($blue, 10);
-        }
-    }
-
-    .likes-count {
-        background-color: $green;
-
-        &:before {
-            content: "\f164";
-            font-family: FontAwesome;
-            opacity: 0.7;
-        }
-
-        &:hover, &:active, &:focus {
-            background-color: lighten($green, 10);
-        }
-    }
-
-    .views-count {
-        background-color: $red;
-        
-        &:before {
-            content: "\f06e";
-            font-family: FontAwesome;
-            opacity: 0.7;
-        }
+    .avatar {
+        height: 80px;
     }
 }
 
+.video-header {
+    display: table;
+    width: 100%;
+
+    .video-avatar, .byline {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .video-avatar {
+        width: 100px;
+        padding-right: $gutter;
+    }
+}
+
+.username, .time {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.username {
+    padding-left: 5px;
+}
+
+.time {
+    margin-left: $gutter;
+    color: #77777F;
+    font-size: 12px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: ms(2);
+    margin: 0 0 10px 0;
+}
+
+.username, .description {
+    color: $main-text-color;
+}
+
+.description {
+    margin-top: 30px;
+}
+
+.vjs-poster {
+    background-color: black;    // To hide video if image is too small
+}

@@ -37,6 +37,9 @@ class MongoClient(object):
     def get_user_by_mid(self, user_mongo_id):
         return self.user_col.find_one({"_id": ObjectId(user_mongo_id)})
 
+    def get_user_by_name(self, user_name):
+        return self.user_col.find_one({"name": user_name})
+
     def list_users(self, offset = 0, size = 10):
         return self.user_col.find()[offset : size]
 

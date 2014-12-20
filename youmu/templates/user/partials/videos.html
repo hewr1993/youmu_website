@@ -1,26 +1,39 @@
-<div class="panel callout radius">
-	<h6>共上传{{videos.length}}个视频</h6>
-	<a href="#" data-reveal-id="uploadVideoModal" class="radius button">上传新视频</a>
-</div>
-<div class="large-8 columns">
-	<div class="row">
-		<div class="small-4 columns" ng-repeat="video in videos">
-			<!-- TODO：根据最新设计修改 -->
-			<a href="{{video.videoUrl}}" target="_blank">
-				<div style="height:258px; line-height:258px;">
-					<img ng-src="{{video.cover}}">
-				</div>
-			</a>
-			<div class="panel">
-				{{video.title}}<br>
-				<button class="warning" ng-click="EnableVideo(video.video_id);" ng-show="video.disabled">保密</button>
-				<button class="success" ng-click="DisableVideo(video.video_id);" ng-show="!video.disabled">公开</button>
-				<button class="alert" ng-click="UnbanVideo(video.video_id);" ng-show="video.banned&&isAdmin">和谐</button>
-				<button class="success" ng-click="BanVideo(video.video_id);" ng-show="!video.banned&&isAdmin">解禁</button>
-			</div>
-		</div>
-	</div>
-</div>
+<!-- <div class="videos-list-length">共上传{{videos.length}}个视频</div> -->
+<a href="#" data-reveal-id="uploadVideoModal" class="button">上传新视频</a>
+
+<ul class="video-list">
+    <li class="video-list-item" ng-repeat="video in videos | orderBy: 'video_id'">
+        <div class="video-cover">
+            <a href="{{video.videoUrl}}" target="_blank"><img ng-src="{{video.cover}}"></a>
+        </div>
+        <div class="title video-title">
+            <a href="{{video.videoUrl}}" target="_blank">{{video.title}}</a>
+        </div>
+        <div class="video-info">
+            <div class="video-stats">
+                <div class="video-stat time video-upload-time">{{video.upload_time}}</div>
+                <div class="video-stat video-owner-name" ng-show="isAdmin">{{video.owner_id}} ({{video.owner_name}})</div>
+                <div class="video-stat views-count">{{video.play_count}}</div>
+                <div class="video-stat likes-count">{{video.like}}</div>
+                <!-- <div class="video-stat comments-count">{{video.commentsLen}}</div> -->
+            </div>
+            <div class="video-controls">
+                <div class="video-control-area video-disable-area" ng-show="video.owner_id == user_id">
+                    <label for="video-disable-{{video.video_id}}">保密</label>
+                    <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
+                </div>
+                <div class="video-control-area video-ban-area" ng-show="isAdmin">
+                    <label for="video-ban-{{video.video_id}}">屏蔽</label>
+                    <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
+                </div>
+                <div class="video-control-area video-ban-notify-area" ng-show="!isAdmin && video.banned">
+                    此视频已被管理员屏蔽。
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+
 <div id="uploadVideoModal" class="reveal-modal" data-reveal>
 	<form class="custom" id="uploadVideoForm" data-abide="ajax">
 		<!--<form action="/api/video/upload" method="post" enctype="multipart/form-data">-->

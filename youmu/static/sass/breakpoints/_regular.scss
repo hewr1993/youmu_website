@@ -40,3 +40,28 @@
     }
 }
 
+.navbar {
+    .search-area input {
+        width: 60%;
+    }
+}
+
+.video-info {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.video-meta, .video-stats {
+    display: table-cell;
+}
+
+.video-stats {
+    vertical-align: top;
+    width: 25%;
+}
+
+.comments-list, .comment-form {
+    @include span-columns(8);
+    @include shift(2);
+}

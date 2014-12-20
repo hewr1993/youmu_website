@@ -18,10 +18,11 @@ header, .main {
     padding-bottom: 91px;   // height of navbar
 }
 
-.video-list-length {
+.main-subheader {
     color: #90989b;
     font-size: ms(2);
     font-style: italic;
+    margin: 0;
     margin-bottom: 50px;
     text-align: center;
     @include span-columns(12);

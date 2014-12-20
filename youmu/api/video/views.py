@@ -31,7 +31,7 @@ def get_video_list():
 def get_video_by_id(video_id):
     v = VideoService.get_video_by_id(video_id)
     if v:
-        if v.valid(current_user.id):
+        if current_user.is_anonymous() or v.valid(current_user.id):
             v = v.to_rich_dict()
         else:
             v = None

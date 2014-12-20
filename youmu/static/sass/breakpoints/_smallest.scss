@@ -13,45 +13,28 @@
 }
 
 .navbar {
-    .logo {
+    .logo, .avatar {
         display: none;
     }
 
     .button {
-        padding-left:  5px;
-        padding-right: 5px;
-    }
-
-    .login {
-        @include span-columns(3);
-        @include shift(1);
-        margin-right: 0;
-    }
-
-    .logout {
-        @include span-columns(4);
-    }
-
-    .user, .logout-button {
-        @include span-columns(2 of 4);
-    }
-
-    .user {
-        padding-top: 14px;
-        padding-bottom: 15px;
-        text-align: right;
+        padding-left:  15px;
+        padding-right: 15px;
     }
 
     .search-area {
-        @include span-columns(8 of 12);
-
+        width: 60%;
         input {
-            @include span-columns(5 of 8);
-            margin-right: 0;
+            width: 60%;
         }
-        .button {
-            @include span-columns(3 of 8);
-        }
+    }
+
+    .login-logout-area {
+        width: 40%;
+    }
+
+    .user {
+        margin: 0 $gutter / 2 0 0;
     }
 }
 
@@ -63,5 +46,61 @@
 
     .video-data-area {
         padding: 10px 20px;
+    }
+}
+
+.byline {
+    padding: 20px 0;
+}
+
+.title {
+    padding-bottom: 20px;
+}
+
+.comment-avatar, .video-avatar, .byline, .title {
+    display: block;
+    @include span-columns(12);
+    text-align: center;
+}
+
+.comment-avatar, .video-avatar {
+    padding: 0;
+}
+
+.video-info {
+    .video-header {
+        display: block;
+        @include span-columns(12);
+    }
+
+    .video-avatar {
+        display: block;
+        @include span-columns(12);
+        text-align: center;
+        padding: 0;
+    }
+
+    .username, .time {
+        @include span-columns(6);
+        padding: 0;
+    }
+
+    .username {
+        text-align: left;
+    }
+
+    .time {
+        text-align: right;
+        margin-left: 0;
+    }
+}
+
+.comment-item {
+    .username, .time {
+        display: block;
+        @include span-columns(12);
+        padding: 0;
+        text-align: left;
+        margin-left: 0;
     }
 }

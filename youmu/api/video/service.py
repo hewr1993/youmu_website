@@ -17,6 +17,7 @@ class VideoService(object):
             title = item.get("title", "Untitled Video"),
             owner_id = item.get("owner_id", ""),
             disabled = item.get("disabled", False),
+            banned = item.get("banned", False),
             upload_time = item.get("upload_time", "1900-01-01-00:00:00"),
             length = item.get("length", 0),
             tags = item.get("tags", []),
