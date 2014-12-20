@@ -24,7 +24,8 @@ class VideoService(object):
             cover = item.get("cover", ""),
             description = item.get("description", "You know nothing, Jon Snow."),
             play_count = item.get("play_count", 0),
-            like = item.get("like", 0)
+            like = item.get("like", 0),
+            category = item.get("category", "")
         )
 
     @staticmethod
