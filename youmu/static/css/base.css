@@ -79,6 +79,22 @@ table {
     font-size: 12px;
     content: "x"; }
 
+.share ul, .share ul li {
+  display: inline-block; }
+.share .share-type {
+  font-size: 0; }
+  .share .share-type:before {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 22px;
+    font-family: "FontAwesome"; }
+.share .renren:before {
+  content: "\f18b"; }
+.share .sina-weibo:before {
+  content: "\f18a"; }
+.share .weixin:before {
+  content: "\f1d7"; }
+
 /* MODULES */
 body {
   background-image: url('/static/img/stone_lion_bw_overlay.jpg');
@@ -273,6 +289,15 @@ header, .main {
 
 .vjs-poster {
   background-color: black; }
+
+.video .share {
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid #77777F; }
+  .video .share .label {
+    color: #77777f;
+    background-color: transparent;
+    font-size: 1em; }
 
 .navbar {
   float: left;
