@@ -3,6 +3,7 @@ __author__ = 'badpoet'
 import urllib
 import urllib2
 from BeautifulSoup import BeautifulSoup
+import json
 
 URL_LOGIN = "http://student.tsinghua.edu.cn/practiceLogin.do"
 
