@@ -88,7 +88,6 @@
 										}
 									}
 									WeixinApi.ready(function(Api) {
-
 										// 微信分享的数据
 										var wxData = {
 											"appId": "", // 服务号可以填写appId
@@ -97,7 +96,6 @@
 											"desc": $(".video-info .description").html(),
 											"imgUrl": "http://" + document.location.host + $("video").attr("poster")
 										};
-
 										// 分享的回调
 										var wxCallbacks = function(){}/*{
 											// 收藏操作不执行回调，默认是开启(true)的
@@ -129,16 +127,12 @@
 												alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
 											}
 										};*/
-
 										// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
 										Api.shareToFriend(wxData, wxCallbacks);
-
 										// 点击分享到朋友圈，会执行下面这个代码
 										Api.shareToTimeline(wxData, wxCallbacks);
-
 										// 点击分享到腾讯微博，会执行下面这个代码
 										Api.shareToWeibo(wxData, wxCallbacks);
-
 										// iOS上，可以直接调用这个API进行分享，一句话搞定
 										Api.generalShare(wxData,wxCallbacks);
 									});
