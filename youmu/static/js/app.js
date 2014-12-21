@@ -60,8 +60,8 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
                     break;
                 }
             }
-            searchId = query.substring(1, i1-1);
-            keyword = query.substring(i2, query.length);
+            searchId = query.substring(1, i1);
+            keyword = query.substring(i2, query.length);  
         }
         else {
             searchId = "";

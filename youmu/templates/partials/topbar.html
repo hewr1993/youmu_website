@@ -8,7 +8,7 @@
     <div class="search-area">
         <a class="button dropdown" data-dropdown="drop1">~</a>
         <ul class="f-dropdown" id="drop1">
-            <li><a onclick="setPosition();">上传人id</a></li>
+            <li><a onclick="setCursorPosition();">上传人id</a></li>
             <li><a href="#">视频标题</a></li>  
         </ul>
         <input type="text" ng-model="query" value="" id="query">
@@ -64,7 +64,7 @@
 
 
 <script>
-function setPosition(){ 
+function setCursorPosition(){ 
     ctrl = document.getElementById("query");
     ctrl.value = "@ " + ctrl.value;
     pos = 1;
