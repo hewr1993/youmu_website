@@ -87,3 +87,8 @@ class VideoService(object):
             return False
         mongo.ban_video(video_id, op)
         return True
+
+    @staticmethod
+    def get_categories():
+        res = [e["name"] for e in mongo.get_video_categories()]
+        return res

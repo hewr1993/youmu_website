@@ -129,10 +129,13 @@ def upload_video():
         pname = ""
     # other information
     postBody = request.form
+    category = postBody.get("category", "")
+    if not category in VideoService.get_categories(): category = ""
     obj = Video(owner_id = current_user.id,
         title = postBody["title"],
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         cover = pname,
+        category = category,
         description = postBody["description"])
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
@@ -141,3 +144,7 @@ def upload_video():
 @video.route("/file/<video_id>/WAIMAIdi2fen0.5price")
 def get_file_name(video_id):
     return VideoService.get_file_name(video_id)
+
+@video.route("/_categories", methods = ["GET"])
+def get_categories():
+    return json.dumps({"categories": VideoService.get_categories()})

@@ -15,9 +15,14 @@ frontend = Blueprint("frontend", __name__)
 def foundation():
     return render_template('foundation-index.html')
 
-@frontend.route('/')
+@frontend.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    searchId = request.args.get("searchId", "")
+    keyword = request.args.get("keyword", "")
+    print searchId
+    print keyword
+    return render_template('index.html', searchId=searchId, keyword=keyword)
+    # return render_template('index.html')
 
 @frontend.route('/demo')
 def demo():

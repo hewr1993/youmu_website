@@ -6,8 +6,15 @@
     </div>
 
     <div class="search-area">
-        <input type="text" placeholder="视频标题" ng-model="searchByTitleQuery">
-        <a class="button search-button" ng-click="searchByTitle(searchByTitleQuery);"><span class="label">搜索</span></a>
+        <a class="button dropdown" data-dropdown="drop1">~</a>
+        <ul class="f-dropdown" id="drop1">
+            <li><a onclick="setPosition();">上传人id</a></li>
+            <li><a href="#">视频标题</a></li>  
+        </ul>
+        <input type="text" ng-model="query" value="" id="query">
+        <a class="button search-button" ng-click="search()">
+            <span class="label">搜索</span>
+        </a>
     </div>
 
     <div class="login-logout-area">
@@ -54,3 +61,23 @@
         <h3 id="alertInfo" style="color:red;font-weight:bold;"></h3>
     </center>
 </div>
+
+
+<script>
+function setPosition(){ 
+    ctrl = document.getElementById("query");
+    ctrl.value = "@ " + ctrl.value;
+    pos = 1;
+    if(ctrl.setSelectionRange){ 
+        ctrl.setSelectionRange(pos, pos);
+        ctrl.focus();
+    }
+    else if (ctrl.createTextRange) { 
+        var range = ctrl.createTextRange(); 
+        range.collapse(true); 
+        range.moveEnd('character', pos); 
+        range.moveStart('character', pos); 
+        range.select(); 
+    } 
+};
+</script>
