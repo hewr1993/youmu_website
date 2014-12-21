@@ -1,5 +1,5 @@
 <!-- <div class="videos-list-length">共上传{{videos.length}}个视频</div> -->
-<a href="#" data-reveal-id="uploadVideoModal" class="button" ng-click="getType()">上传新视频</a>
+<a href="#" data-reveal-id="uploadVideoModal" class="button" ng-click="getCategory()">上传新视频</a>
 <ul class="video-list">
     <li class="video-list-item" ng-repeat="video in videos | orderBy: 'video_id'">
         <div class="video-cover">
@@ -73,12 +73,12 @@
 				</label>
 				<small class="error">视频不能为空</small> 
 			</div>
-            <!--div class="type-field">
+            <div class="category-field">
                 <label>视频类别</label>
-                <div ng-repeat="type in types">
-                <label><input type="checkbox" name="{{type}}" />{{type}}</label>
+                <div ng-repeat="category in categories">
+                <label><input type="radio" name="category" value="{{category}}" />{{category}}</label>
                 </div>
-            </div-->
+            </div>
             <button type="submit" id="uploadVideoButton">上传视频</button>
 		</fieldset>
 	</form>
