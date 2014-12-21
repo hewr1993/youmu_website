@@ -71,12 +71,16 @@
 										rrShareOnclick(rrShareParam);
 									}
 									function WeiXinShare() {
-										WeixinJSBridge.invoke(‘shareTimeline‘, {
-											"title": $(".video-info .title").html(),
-											"link": "http://www.36kr.com",
-											"desc": " 关注互联网创业 ",
-											"img_url": "http://www.36kr.com/assets/images/apple-touch-icon.png"
-										});
+										if (typeof WeixinJSBridge == "undefined") {
+											alertInfo("请使用微信客户端分享");
+										} else {
+											WeixinJSBridge.invoke('shareTimeline', {
+												"title": $(".video-info .title").html(),
+												"link": window.location.href,
+												"desc": $(".video-info .description").html(),
+												"img_url": "http://" + document.location.host + $("video").attr("poster")
+											});
+										}
 									}
 								</script>
 								<li><a href="javascript:;" class="share-type renren" onclick="rrShareClick()">人人</a></li>
