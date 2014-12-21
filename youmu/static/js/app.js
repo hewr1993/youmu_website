@@ -49,14 +49,19 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
         query = $("#query").val();
         alertInfo(query);
         if (query[0] === "@") {
+            var i1 = 0, i2 = 0;
             var i = 0;
             for ( ; i < query.length; i ++) {
                 if (query[i] === " "){
+                    i1 = i;
+                }
+                if (i1 != 0 && query[i] != " ") {
+                    i2 = i;
                     break;
                 }
             }
-            searchId = query.substring(1, i);
-            keyword = query.substring(i + 1, query.length);
+            searchId = query.substring(1, i1-1);
+            keyword = query.substring(i2, query.length);
         }
         else {
             searchId = "";
@@ -303,13 +308,13 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 		};
 		$scope.get_videos();
 
-        $scope.getType = function() {
+        $scope.getCategory = function() {
             $http.get("/api/video/_categories").success(
                 function(data, status) {
-                    $scope.types = [];
+                    $scope.categories = [];
                     for (var i = 0; i < data.categories.length; ++ i)  {
                         item = data.categories[i];
-                        $scope.types.push(item);
+                        $scope.categories.push(item);
                     }
                 }
             );
