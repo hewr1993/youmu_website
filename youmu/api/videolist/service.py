@@ -69,7 +69,6 @@ class VideoListService(object):
         owner_token = "owner:"
         category_token = "category:"
         query_string = u""
-        print type(kw)
         for word in kw.split(" "):
             if word.find(owner_token) == 0:
                 owner = word[len(owner_token) : ]
@@ -79,12 +78,8 @@ class VideoListService(object):
                 query_string += word + u" "
         query_string = query_string.strip()
         try:
-            print type(query_string)
-            print type(owner)
-            print type(category)
             owner_id = UserService.get_user_by_name(owner).id if owner else ""
             result = VideoListService.query_on_title(query_string, offset=0, size=1000, order_by="play_count")
-            print len(result)
             return [e for e in result if (owner == "" or e.owner_id == owner_id) and (category == "" or e.category == category)]
         except Exception, e:
             print e
