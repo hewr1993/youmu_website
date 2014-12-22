@@ -32,7 +32,7 @@ angular.module('youmuApp', ['mm.foundation'])
 
 var alertInfo = function(info, vanishTime) {
 	vanishTime = vanishTime ? vanishTime : 3000;
-	$("#alertInfo").html(info);
+	$("#alertInfo").html(info + vanishTime);
 	$("#alertModal").foundation("reveal", "open");
 	setTimeout(function() {
 		$("#alertModal").foundation("reveal", "close");
@@ -481,7 +481,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 					alertInfo("开始上传");
 				},
 				uploadProgress: function(event, position, total, percentComplete) {
-					alertInfo("上传进度: " + percentComplete + "%");
+					alertInfo("上传进度: " + percentComplete + "%", 100000);
 				},
 				success: function(data) {
 					res = JSON.parse(data);

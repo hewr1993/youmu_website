@@ -103,7 +103,7 @@ def upload_video():
         # video
         try:
             UPLOAD_FOLDER = "youmu/static/uploads/videos/"
-            ALLOWED_MIMETYPES = ("video/mp4", "audio/mpeg")
+            ALLOWED_MIMETYPES = ("video/mp4", "video/x-matroska", "audio/mpeg")
             f = request.files["video"]
             ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
             fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
