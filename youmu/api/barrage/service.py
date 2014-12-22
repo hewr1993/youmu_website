@@ -3,6 +3,7 @@ __author__ = 'badpoet'
 from youmu.clients import mongo
 from youmu.models.barrage import Barrage
 import youmu.models.video
+from youmu.api.video.service import VideoService
 
 class BarrageService(object):
 
