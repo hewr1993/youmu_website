@@ -49,7 +49,9 @@
 								<img class="avatar" ng-src="{{video.owner_avatar}}" />
 							</div>
 							<div class="byline">
-								<h1 class="title">{{video.title}}</h1>
+								<h1 class="title">{{video.title}}
+									<span class="round label" style="font-size:16px">{{video.media_type == "video" ? "视频" : "音频"}}</span>
+								</h1>
 								<div class="username">{{video.owner_name}}</div>
 								<div class="time">{{video.upload_time | date}}</div>
 							</div>
