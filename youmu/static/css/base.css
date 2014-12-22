@@ -38,6 +38,63 @@ table {
   table-layout: fixed;
   width: 100%; }
 
+.video-tags {
+  margin-bottom: 0.5em; }
+  .video-tags .button {
+    padding: 0;
+    margin: 0; }
+  .video-tags .label {
+    background-color: transparent;
+    padding: 0 1em 0 0;
+    font-size: 12px;
+    color: #4d4d4d; }
+    .video-tags .label:before {
+      content: "\f02c";
+      font-family: "FontAwesome";
+      opacity: 0.8;
+      width: 1em;
+      margin-right: 10px;
+      display: inline-block;
+      text-align: center; }
+
+.video-tags-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block; }
+  .video-tags-list li {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 1em;
+    padding: 5px 10px;
+    border: 1px solid #3B3B40;
+    border-radius: 5px; }
+
+.remove-tag-button {
+  font-size: 0;
+  background-color: transparent; }
+  .remove-tag-button:hover, .remove-tag-button:active, .remove-tag-button:focus {
+    background-color: transparent; }
+  .remove-tag-button:before {
+    font-size: 12px;
+    content: "x"; }
+
+.share ul, .share ul li {
+  display: inline-block; }
+.share .share-type {
+  font-size: 0; }
+  .share .share-type:before {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 22px;
+    font-family: "FontAwesome"; }
+.share .renren:before {
+  content: "\f18b"; }
+.share .sina-weibo:before {
+  content: "\f18a"; }
+.share .weixin:before {
+  content: "\f1d7"; }
+
 /* MODULES */
 body {
   background-image: url('/static/img/stone_lion_bw_overlay.jpg');
@@ -232,6 +289,15 @@ header, .main {
 
 .vjs-poster {
   background-color: black; }
+
+.video .share {
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid #77777F; }
+  .video .share .label {
+    color: #77777f;
+    background-color: transparent;
+    font-size: 1em; }
 
 .navbar {
   float: left;

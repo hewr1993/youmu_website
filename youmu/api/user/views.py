@@ -63,6 +63,15 @@ def update_me():
     body = request.form
     name = body["name"]
     try:
+        user_of_name = UserService.get_user_by_name(name)
+
+        # If we get here, the name is taken
+        if user_of_name.id != current_user.id:
+            return json.dumps({"state":"fail", "content":"name is taken"}, ensure_ascii = False)
+    except Exception, e:
+        pass
+
+    try:
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
         ALLOWED_MIMETYPES = ("image/png", "image/jpeg", "image/jpg", "image/bmp")
         f = request.files["avatar"]
