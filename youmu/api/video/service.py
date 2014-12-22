@@ -25,7 +25,8 @@ class VideoService(object):
             description = item.get("description", "You know nothing, Jon Snow."),
             play_count = item.get("play_count", 0),
             like = item.get("like", 0),
-            category = item.get("category", "")
+            category = item.get("category", ""),
+            media_type = item.get("media_type", "video")
         )
 
     @staticmethod
