@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     $.stellar();
+	$("#query").val($("#query_str").val());
 });
 
 $(window).load(function() {
