@@ -13,11 +13,19 @@
         height: 50px;
     }
 
-    padding: $gutter 0;
-    border-bottom: 1px solid #77777F;
+    padding: 0;
+
+    &:after {
+        content: "";
+        display: block;
+        margin: 1.2 * $gutter 0;
+        border-top:  1px solid #AAAAAF;
+        border-bottom: 1px solid white;
+    }
 
     &:first-child {
         padding-top: 0;
+        border-top: none;
     }
 }
 
