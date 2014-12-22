@@ -32,7 +32,7 @@ angular.module('youmuApp', ['mm.foundation'])
 
 var alertInfo = function(info, vanishTime) {
 	vanishTime = vanishTime ? vanishTime : 3000;
-	$("#alertInfo").html(info + vanishTime);
+	$("#alertInfo").html(info);
 	$("#alertModal").foundation("reveal", "open");
 	setTimeout(function() {
 		$("#alertModal").foundation("reveal", "close");
