@@ -123,8 +123,8 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
-	//$http.get("/api/videolist/_search/" + $("#query_str").val()).success(function(data, status) {
-	$http.get("/api/video/").success(function(data, status) {
+	$http.get("/api/videolist/_search?keyword=" + $("#query_str").val()).success(function(data, status) {
+	//$http.get("/api/video/").success(function(data, status) {
 		$rootScope.videos = [];
 		for (var i = 0; i < data.length; ++i) {
 			item = data[i];
@@ -142,20 +142,6 @@ var videoStoreCtrl = function ($scope, $rootScope, $http) {
 };
 
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
-	// test barrage
-	/*$http.post(
-		"/api/barrage/video/" + $("#video_id").val(), 
-		{
-			"position": 0.5, 
-			"mode": 1,
-			"size": 12,
-			"color": "ffffffff",
-			"pool": 0,
-			"content": "abcdefg"
-		}
-	).success(function(data, status) {
-		alertInfo(JSON.stringify(data));
-	});*/
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
 	});
