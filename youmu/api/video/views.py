@@ -114,7 +114,7 @@ def upload_video():
                 return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
             fname = str(fname)
             fname = fname[fname.find("/"):]
-            media_type = "video" if mime_type.find("mp4") != -1 else "audio"
+            media_type = "audio" if mime_type.find("mp3") != -1 else "video"
         except:
             return json.dumps({"state":"fail", "content":"video/audio upload failed"}, ensure_ascii = False)
         url = ""
