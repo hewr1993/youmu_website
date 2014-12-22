@@ -19,13 +19,22 @@ header, .main {
 }
 
 .main-subheader {
-    color: #90989b;
+    color: #77777f;
     font-size: ms(2);
     font-style: italic;
     margin: 0;
     margin-bottom: 50px;
     text-align: center;
     @include span-columns(12);
+
+    &:after {
+        border-bottom: 1px solid $blue;
+        content: "";
+        display: block;
+        height: 0;
+        margin: 0.5em auto 0;
+        width: 60px;
+    }
 }
 
 .credits {
