@@ -7,10 +7,8 @@ html {
     position: relative;
 
     .video-link:hover {
-        box-shadow: 0 0 20px #333;
         .video-thumbnail {
-            filter: none;
-            -webkit-filter: grayscale(0);
+            transform: scale(1.5);
         }
     }
 
@@ -22,6 +20,16 @@ html {
         padding: 56.25% 0 0 0;
         overflow: hidden;
         transition: all 0.2s ease;
+
+        outline: solid 0px $yellow;
+
+        &:hover {
+            outline: solid 10px $yellow;
+        }
+
+        &:active {
+            outline: solid 6px darken($yellow, 10);
+        }
     }
 
     .video-thumbnail {
@@ -38,10 +46,6 @@ html {
         transition: all 0.2s ease;
 
         background-color: black;    // Overridden by image
-
-        filter: url(/static/img/filters.svg#grayscale); /* Firefox 3.5+ */
-        filter: gray; /* IE6-9 */
-        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
     }
 
     .video-data-container-area {
