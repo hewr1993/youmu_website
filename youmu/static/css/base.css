@@ -153,7 +153,7 @@ header, .main {
   padding-bottom: 50px;
   margin-top: 50px; }
 
-.video-uploader:before, .video-play-count:before, .video-likes-count:before {
+.video-uploader:before, .video-play-count:before, .video-likes-count:before, .video-media-type-video:before, .video-media-type-audio:before, .video-media-type-live:before {
   font-family: FontAwesome;
   opacity: 0.7;
   margin: 0 0.5em; }
@@ -167,6 +167,15 @@ header, .main {
 
 .video-likes-count:before {
   content: "\f164"; }
+
+.video-media-type-video:before {
+  content: "\f008"; }
+
+.video-media-type-audio:before {
+  content: "\f001"; }
+
+.video-media-type-live:before {
+  content: "\f012"; }
 
 .video-main-container, .video-player-container {
   float: left;

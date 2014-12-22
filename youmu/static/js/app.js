@@ -123,8 +123,10 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
-	$http.get("/api/videolist/_search?keyword=" + $("#query_str").val()).success(function(data, status) {
-	//$http.get("/api/video/").success(function(data, status) {
+	var url = "/api/video/";
+	if ($("#query_str").val().length > 0) 
+		url = "/api/videolist/_search?keyword=" + $("#query_str").val();
+	$http.get(url).success(function(data, status) {
 		$rootScope.videos = [];
 		for (var i = 0; i < data.length; ++i) {
 			item = data[i];

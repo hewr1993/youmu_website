@@ -100,18 +100,20 @@ def upload_video():
     # video
     try:
         UPLOAD_FOLDER = "youmu/static/uploads/videos/"
-        ALLOWED_MIMETYPES = ("video/mp4")
+        ALLOWED_MIMETYPES = ("video/mp4", "audio/mpeg")
         f = request.files["video"]
         ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
         fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
         f.save(fname)
-        if mimetypes.guess_type(fname)[0] not in ALLOWED_MIMETYPES:
+        mime_type = mimetypes.guess_type(fname)[0]
+        if mime_type not in ALLOWED_MIMETYPES:
             os.remove(fname)
             return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
         fname = str(fname)
         fname = fname[fname.find("/"):]
+        media_type = "video" if mime_type.find("mp4") != -1 else "audio"
     except:
-        return json.dumps({"state":"fail", "content":"video upload failed"}, ensure_ascii = False)
+        return json.dumps({"state":"fail", "content":"video/audio upload failed"}, ensure_ascii = False)
     # cover
     try:
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
@@ -136,7 +138,8 @@ def upload_video():
         upload_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         cover = pname,
         category = category,
-        description = postBody["description"])
+        description = postBody["description"],
+        media_type = media_type)
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
 
