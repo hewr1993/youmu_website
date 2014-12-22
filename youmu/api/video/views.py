@@ -97,23 +97,31 @@ def is_liked_by_me(video_id):
 def upload_video():
     if current_user.is_anonymous():
         return '{"state":"fail"}'
-    # video
-    try:
-        UPLOAD_FOLDER = "youmu/static/uploads/videos/"
-        ALLOWED_MIMETYPES = ("video/mp4", "audio/mpeg")
-        f = request.files["video"]
-        ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
-        fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
-        f.save(fname)
-        mime_type = mimetypes.guess_type(fname)[0]
-        if mime_type not in ALLOWED_MIMETYPES:
-            os.remove(fname)
-            return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
-        fname = str(fname)
-        fname = fname[fname.find("/"):]
-        media_type = "video" if mime_type.find("mp4") != -1 else "audio"
-    except:
-        return json.dumps({"state":"fail", "content":"video/audio upload failed"}, ensure_ascii = False)
+    postBody = request.form
+    live = postBody.get("live", "0") == "0"
+    if live:
+        # video
+        try:
+            UPLOAD_FOLDER = "youmu/static/uploads/videos/"
+            ALLOWED_MIMETYPES = ("video/mp4", "audio/mpeg")
+            f = request.files["video"]
+            ascii_name = f.filename.encode("ascii", "xmlcharrefreplace")
+            fname = mktemp(suffix='_', prefix='u', dir=UPLOAD_FOLDER) + secure_filename(ascii_name)
+            f.save(fname)
+            mime_type = mimetypes.guess_type(fname)[0]
+            if mime_type not in ALLOWED_MIMETYPES:
+                os.remove(fname)
+                return json.dumps({"state":"fail", "content":"wrong mime type"}, ensure_ascii = False)
+            fname = str(fname)
+            fname = fname[fname.find("/"):]
+            media_type = "video" if mime_type.find("mp4") != -1 else "audio"
+        except:
+            return json.dumps({"state":"fail", "content":"video/audio upload failed"}, ensure_ascii = False)
+        url = ""
+    else:
+        media_type = "live"
+        url = postBody.get("rtmp", "")
+        fname = ""
     # cover
     try:
         UPLOAD_FOLDER = "youmu/static/uploads/images/"
@@ -130,7 +138,6 @@ def upload_video():
     except:
         pname = ""
     # other information
-    postBody = request.form
     category = postBody.get("category", "")
     if not category in VideoService.get_categories(): category = ""
     obj = Video(owner_id = current_user.id,
@@ -139,7 +146,8 @@ def upload_video():
         cover = pname,
         category = category,
         description = postBody["description"],
-        media_type = media_type)
+        media_type = media_type,
+        url = url)
     VideoService.insert_video(obj, fname)
     return json.dumps({"state":"success"}, ensure_ascii = False)
 

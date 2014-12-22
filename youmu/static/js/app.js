@@ -124,7 +124,7 @@ var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
 	var url = "/api/video/";
-	if ($("#query_str").val().length > 0) 
+	if ($("#query_str").val() != "") 
 		url = "/api/videolist/_search?keyword=" + $("#query_str").val();
 	$http.get(url).success(function(data, status) {
 		$rootScope.videos = [];
@@ -146,6 +146,33 @@ var videoStoreCtrl = function ($scope, $rootScope, $http) {
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
+		var url, mtype;
+		if (data.media_type != "live") {
+			mtype = "video/mp4";
+			url = "http://" + document.domain + ":8888/" + data.video_id;
+		} else {
+			mtype = "rtmp/mp4";
+			if (data.url == "") {
+				url = "rtmp://" + document.domain + ":1935/myapp/" + data.video_id;
+			} else {
+				url = data.url;
+			}
+		}
+		$(".video-player-container").append(
+			'<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="'+data.cover+'" data-setup="{}" width="100%">'+
+				'<source src="'+url+'" id="playboxUrl" type="'+mtype+'" />'+
+				'<p class="vjs-no-js">'+
+					'To view this video please enable JavaScript, and consider upgrading to a web browser'+
+					'that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
+				'</p>'+
+			'</video>'
+		);
+		window.thevideojs = videojs("playbox");
+		if (data.media_type != "live") {
+			thevideojs.ABP();
+			thevideojs.danmu.load("/api/barrage/video/" + data.video_id);
+			thevideojs.DMB();
+		}
 	});
 	$http.get("/api/comment/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video.comments = data;

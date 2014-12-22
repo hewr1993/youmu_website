@@ -68,16 +68,28 @@
 				</label>
 			</div>
             <div class="video-field"> 
-				<label>视频文件 <small>必填</small>
-					<input type="file" name="video" required />
-				</label>
-				<small class="error">视频不能为空</small> 
+				<input type="checkbox" name="live" ng-model="live" />
+				<label>直播</label>
+				<div ng-show="!live">
+					<label>视频文件 <small>必填</small>
+						<input type="file" name="video" ng-required="!live" />
+					</label>
+					<small class="error">视频不能为空</small> 
+				</div>
+				<div ng-show="live">
+					<label>RTMP地址
+						<input type="text" name="rtmp" placeholder="不填则为默认地址"/>
+					</label>
+				</div>
 			</div>
             <div class="category-field">
                 <label>视频类别</label>
-                <div ng-repeat="category in categories">
-                <label><input type="radio" name="category" value="{{category}}" />{{category}}</label>
-                </div>
+				<select name="category">
+					<option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+				</select>
+                <!--<div ng-repeat="category in categories">-->
+                <!--<label><input type="radio" name="category" value="{{category}}" />{{category}}</label>-->
+                <!--</div>-->
             </div>
             <button type="submit" id="uploadVideoButton">上传视频</button>
 		</fieldset>
