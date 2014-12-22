@@ -7,10 +7,15 @@ from youmu.api.user.service import UserService
 
 class Video(object):
 
+    VIDEO = "video"
+    AUDIO = "audio"
+    LIVE = "live"
+    MEDIA_TYPES = [VIDEO, AUDIO, LIVE]
+
     def __init__(self, video_id = "", title = "", cover = "", description = "",
                  play_count = 0, like = 0, owner_id = "", disabled = False,
                  banned = False, upload_time = "", length = 0, tags = (),
-                 category = "", media_type = "video"):
+                 category = "", media_type = VIDEO, url = ""):
         self.video_id = unicode(video_id)
         self.title = title
         self.cover = cover if len(cover) > 0 else "http://placehold.it/1000x1000&amp;text=Thumbnail"
@@ -25,6 +30,7 @@ class Video(object):
         self.tags = tags
         self.category = category
         self.media_type = media_type
+        self.url = url
 
     def to_dict(self):
         dic = {
@@ -41,7 +47,8 @@ class Video(object):
             "length": self.length,
             "tags": self.tags,
             "category": self.category,
-            "media_type": self.media_type
+            "media_type": self.media_type,
+            "url": self.url
         }
         return dic
 
