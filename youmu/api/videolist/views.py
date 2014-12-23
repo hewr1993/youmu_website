@@ -22,6 +22,13 @@ def general_query():
     res = [v.to_rich_dict() for v in res]
     return json.dumps(res, ensure_ascii = False)
 
+@video_list.route("/_search", methods = ["GET"])
+def adv_search():
+    kw = request.args.get('keyword', "")
+    res = VideoListService.adv_search(kw) if kw else []
+    res = [v.to_rich_dict() for v in res]
+    return json.dumps(res, ensure_ascii = False)
+
 @video_list.route("/owner/<owner_id>", methods = ["GET"])
 def query_on_owner(owner_id):
     offset = request.args.get('offset', 0)

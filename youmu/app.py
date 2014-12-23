@@ -44,6 +44,7 @@ def create_app(config = None, app_name = None, blueprints = None):
     configure_template_filters(app)
     configure_error_handlers(app)
     configure_jinja(app)
+    app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 * 1024
 
     return app
 

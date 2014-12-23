@@ -14,15 +14,6 @@
 		<script src="/static/js/videojs_dmbox.js"></script>
 		<script src="/static/js/vendor/jquery.js"></script>
 		<link href="/static/fonts/foundation-icons.css" rel="stylesheet">
-		<script>
-			$(document).ready(function(){
-				window.thevideojs = videojs("playbox");
-				thevideojs.ABP();
-				//thevideojs.danmu.load("/static/comment.xml");
-				thevideojs.danmu.load("/api/barrage/video/" + $("#video_id").val());
-				thevideojs.DMB();
-			});
-		</script>
 	</head>
 	<body class="video" ng-controller="videoDataCtrl">
 		<div class="main">
@@ -30,18 +21,9 @@
 			<div class="video-main-container">
 				<div class="video-player-container">
 					<input type="hidden" value="{{ video_id }}" id="video_id"/>
-					<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="{{video.cover}}" data-setup="{}" width="100%">
-						<source src="" id="playboxUrl" type="video/mp4" />
-						<p class="vjs-no-js">
-							To view this video please enable JavaScript, and consider upgrading to a web browser
-							that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-						</p>
-					</video>
-					<script>
-						$("#playboxUrl").attr("src", "http://" + document.domain + ":8888/" + $("#video_id").val());
-					</script>
+					<input type="hidden" value="{{video.media_type}}" id="media_type"/>
+					<input type="hidden" value="{{video.url}}" id="media_url"/>
 				</div>
-
 				<div class="video-info">
 					<div class="video-meta">
 						<div class="video-header">
@@ -49,7 +31,9 @@
 								<img class="avatar" ng-src="{{video.owner_avatar}}" />
 							</div>
 							<div class="byline">
-								<h1 class="title">{{video.title}}</h1>
+								<h1 class="title">{{video.title}}
+									<span class="round label" style="font-size:16px">{{video.media_type == "video" ? "视频" : (video.media_type == "audio" ? "音频" : "直播")}}</span>
+								</h1>
 								<div class="username">{{video.owner_name}}</div>
 								<div class="time">{{video.upload_time | date}}</div>
 							</div>

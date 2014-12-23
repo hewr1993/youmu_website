@@ -6,15 +6,17 @@
     </div>
 
     <div class="search-area">
-        <a class="button dropdown" data-dropdown="drop1">~</a>
-        <ul class="f-dropdown" id="drop1">
-            <li><a onclick="setCursorPosition();">上传人id</a></li>
-            <li><a href="#">视频标题</a></li>  
-        </ul>
-        <input type="text" ng-model="query" value="" id="query">
-        <a class="button search-button" ng-click="search()">
-            <span class="label">搜索</span>
-        </a>
+		<form id="searchForm" class="custom" data-abide="ajax">
+			<a id="search_drop_btn" href="#" data-dropdown="search_drop" aria-controls="search_drop" aria-expanded="false" class="button dropdown">&nbsp;&nbsp;</a>
+			<ul id="search_drop" data-dropdown-content class="f-dropdown" aria-hidden="true" aria-autoclose="true" tabindex="-1">
+				<li onclick="setQueryCursor('owner');"><a href="javascript:;">指定用户名</a></li>
+				<li onclick="setQueryCursor('category');"><a href="javascript:;">指定分类</a></li>
+			</ul>
+			<input type="text" ng-model="query" value="" id="query" placeholder="懂你的搜索">
+			<a class="button search-button" ng-click="search()">
+				<span class="label">搜索</span>
+			</a>
+		</form>
     </div>
 
     <div class="login-logout-area">
@@ -64,10 +66,10 @@
 
 
 <script>
-function setCursorPosition(){ 
+function setQueryCursor(prefix) { 
     ctrl = document.getElementById("query");
-    ctrl.value = "@ " + ctrl.value;
-    pos = 1;
+    ctrl.value = prefix + ": " + ctrl.value;
+    pos = prefix.length + 1;
     if(ctrl.setSelectionRange){ 
         ctrl.setSelectionRange(pos, pos);
         ctrl.focus();

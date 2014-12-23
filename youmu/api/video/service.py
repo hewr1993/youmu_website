@@ -25,7 +25,9 @@ class VideoService(object):
             description = item.get("description", "You know nothing, Jon Snow."),
             play_count = item.get("play_count", 0),
             like = item.get("like", 0),
-            category = item.get("category", "")
+            category = item.get("category", ""),
+            media_type = item.get("media_type", "video"),
+            url = item.get("url", "")
         )
 
     @staticmethod
@@ -92,3 +94,7 @@ class VideoService(object):
     def get_categories():
         res = [e["name"] for e in mongo.get_video_categories()]
         return res
+
+    @staticmethod
+    def get_media_type_by_id(video_id):
+        return VideoService.get_video_by_id(video_id).media_type

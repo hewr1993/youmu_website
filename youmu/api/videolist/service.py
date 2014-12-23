@@ -43,7 +43,7 @@ class VideoListService(object):
     @staticmethod
     def query_on_owner_name(owner_name, offset=0, size=10, order_by="upload_time",
                        reverse=False, show_banned=False, show_disabled=False):
-        user = UserService.get_user_by_name(owner_name);
+        user = UserService.get_user_by_name(owner_name)
         query = { "owner_id": user.id }
         return VideoListService.return_query_res(query, offset, size,
                 order_by, reverse, show_banned, show_disabled)
@@ -61,3 +61,27 @@ class VideoListService(object):
         query = { "description": { "$regex": description, "$options": "i" } }
         return VideoListService.return_query_res(query, offset, size,
                 order_by, reverse, show_banned, show_disabled)
+
+    @staticmethod
+    def adv_search(kw):
+        owner = ""
+        category = ""
+        owner_token = "owner:"
+        category_token = "category:"
+        query_string = u""
+        for word in kw.split(" "):
+            if word.find(owner_token) == 0:
+                owner = word[len(owner_token) : ]
+            elif word.find(category_token) == 0:
+                category = word[len(category_token) : ]
+            else:
+                query_string += word + u" "
+        query_string = query_string.strip()
+        try:
+            owner_id = UserService.get_user_by_name(owner).id if owner else ""
+            result = VideoListService.query_on_title(query_string, offset=0, size=1000, order_by="play_count")
+            return [e for e in result if (owner == "" or e.owner_id == owner_id) and (category == "" or e.category == category)]
+        except Exception, e:
+            print e
+            return []
+

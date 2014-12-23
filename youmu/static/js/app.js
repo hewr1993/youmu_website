@@ -44,32 +44,12 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 	$scope.isLogin = false;
     searchId = "";
     keyword = "";
-
     $scope.search = function() {
-        query = $("#query").val();
-        alertInfo(query);
-        if (query[0] === "@") {
-            var i1 = 0, i2 = 0;
-            var i = 0;
-            for ( ; i < query.length; i ++) {
-                if (query[i] === " "){
-                    i1 = i;
-                }
-                if (i1 != 0 && query[i] != " ") {
-                    i2 = i;
-                    break;
-                }
-            }
-            searchId = query.substring(1, i1);
-            keyword = query.substring(i2, query.length);  
-        }
-        else {
-            searchId = "";
-            keyword = query;
-        }
-        window.location.href = "/?searchId=" + searchId + "&keyword=" + keyword;
+        window.location.href = "/?query=" + $("#query").val();
     };
-
+	$('#searchForm').on('valid.fndtn.abide', function() {
+		$scope.search();
+	});
 	$scope.checkLogin = function() {
 		$http.get("/api/user/_me").success(
 			function(data, status){
@@ -143,58 +123,56 @@ var topBarCtrl = function ($scope, $rootScope, $http, UserService) {
 var videoStoreCtrl = function ($scope, $rootScope, $http) {
 	$scope.logoUrl = "/static/img/youmu-circle.png";
 	$scope.authorUrl = "/static/img/youmu-seal.jpg";
-    
-    searchId = $("#searchId").val();
-    keyword = $("#keyword").val();
-    
-    if ($("#searchId").val() != ""){
-        $http.get("/api/videolist/owner/" + searchId).success(function(data, status) {
-            $rootScope.videos = [];
-		    for (var i = 0; i < data.length; ++i) {
-			    item = data[i];
-    			item.videoUrl = "/videos/" + item.video_id;
-                if (item.title.search(keyword) != -1){
-                    $rootScope.videos.push(item);
-                }
-    		}
-        });
-    }
-    else {
-	    $http.get("/api/video/").success(function(data, status) {
-            $rootScope.videos = [];
-		    for (var i = 0; i < data.length; ++i) {
-			    item = data[i];
-			    item.videoUrl = "/videos/" + item.video_id;
-                if (item.title.search(keyword) != -1 ||
-                    item.owner_id.search(keyword) != -1 ||
-                    item.description.search(keyword) != -1 ||
-                    item.category.search(keyword) != -1
-                   )
-                {
-                    $rootScope.videos.push(item);
-                }
-    		}
-	    });
-    }
+	var url = "/api/video/";
+	if ($("#query_str").val() != "") 
+		url = "/api/videolist/_search?keyword=" + $("#query_str").val();
+	$http.get(url).success(function(data, status) {
+		$rootScope.videos = [];
+		for (var i = 0; i < data.length; ++i) {
+			item = data[i];
+			item.videoUrl = "/videos/" + item.video_id;
+			if (item.title.search(keyword) != -1 ||
+				item.owner_id.search(keyword) != -1 ||
+				item.description.search(keyword) != -1 ||
+				item.category.search(keyword) != -1
+			   )
+			{
+				$rootScope.videos.push(item);
+			}
+		}
+	});
 };
 
 var videoDataCtrl = function ($scope, $rootScope, $http, UserService) {
-	// test barrage
-	/*$http.post(
-		"/api/barrage/video/" + $("#video_id").val(), 
-		{
-			"position": 0.5, 
-			"mode": 1,
-			"size": 12,
-			"color": "ffffffff",
-			"pool": 0,
-			"content": "abcdefg"
-		}
-	).success(function(data, status) {
-		alertInfo(JSON.stringify(data));
-	});*/
 	$http.get("/api/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video = data;
+		var url, mtype;
+		if (data.media_type != "live") {
+			mtype = "video/mp4";
+			url = "http://" + document.domain + ":8888/" + data.video_id;
+		} else {
+			mtype = "rtmp/mp4";
+			if (data.url == "") {
+				url = "rtmp://" + document.domain + ":1935/myapp/" + data.video_id;
+			} else {
+				url = data.url;
+			}
+		}
+		$(".video-player-container").append(
+			'<video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="'+data.cover+'" data-setup="{}" width="100%">'+
+				'<source src="'+url+'" id="playboxUrl" type="'+mtype+'" />'+
+				'<p class="vjs-no-js">'+
+					'To view this video please enable JavaScript, and consider upgrading to a web browser'+
+					'that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
+				'</p>'+
+			'</video>'
+		);
+		window.thevideojs = videojs("playbox");
+		if (data.media_type != "live") {
+			thevideojs.ABP();
+			thevideojs.danmu.load("/api/barrage/video/" + data.video_id);
+			thevideojs.DMB();
+		}
 	});
 	$http.get("/api/comment/video/" + $("#video_id").val()).success(function(data, status) {
 		$scope.video.comments = data;
@@ -503,7 +481,7 @@ var personalCenterCtrl = function ($scope, $rootScope, $http, UserService) {
 					alertInfo("开始上传");
 				},
 				uploadProgress: function(event, position, total, percentComplete) {
-					alertInfo("上传进度: " + percentComplete + "%");
+					alertInfo("上传进度: " + percentComplete + "%", 100000);
 				},
 				success: function(data) {
 					res = JSON.parse(data);

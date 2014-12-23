@@ -2,6 +2,8 @@ __author__ = 'badpoet'
 
 from youmu.clients import mongo
 from youmu.models.barrage import Barrage
+from youmu.api.video.service import VideoService
+from youmu.models.video import Video
 
 class BarrageService(object):
 
@@ -21,6 +23,8 @@ class BarrageService(object):
 
     @staticmethod
     def add_barrage(barrage):
+        if VideoService.get_media_type_by_id(barrage.video_id) == Video.LIVE:
+            return
         mongo.insert_barrage(barrage.to_dict())
 
     @staticmethod

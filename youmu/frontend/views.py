@@ -17,11 +17,8 @@ def foundation():
 
 @frontend.route('/', methods=['GET'])
 def index():
-    searchId = request.args.get("searchId", "")
-    keyword = request.args.get("keyword", "")
-    print searchId
-    print keyword
-    return render_template('index.html', searchId=searchId, keyword=keyword)
+    query = request.args.get("query", "")
+    return render_template('index.html', query=query)
     # return render_template('index.html')
 
 @frontend.route('/demo')

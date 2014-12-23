@@ -14,8 +14,7 @@
 
         <div class="content">
             <div class="main" ng-controller="videoStoreCtrl">
-                <input type="hidden" value="{{ searchId }}" id="searchId">
-                <input type="hidden" value="{{ keyword }}" id="keyword">
+                <input type="hidden" value="{{ query }}" id="query_str">
                 <div class="main-subheader video-list-length">
                     找到{{videos.length}}个视频
                 </div>
@@ -32,6 +31,7 @@
                                         <div class="video-uploader">{{video.owner_name}}</div>
                                         <div class="video-play-count">{{video.play_count}}</div>
                                         <div class="video-likes-count">{{video.like}}</div>
+                                        <div ng-class="'video-media-type-' + video.media_type"></div>
                                     </div>
                                 </div>
                             </div>
